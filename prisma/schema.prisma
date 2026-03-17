@@ -1,0 +1,106 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+}
+
+model Carousel {
+  id        Int      @id @default(autoincrement())
+  title     String   @db.VarChar(255)
+  picture   String   @db.VarChar(500)
+  isOnline  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("carousel")
+}
+
+model Team {
+  id        Int      @id @default(autoincrement())
+  label     String   @db.VarChar(255)
+  players   Player[]
+  trainings Training[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("team")
+}
+
+model Player {
+  id          Int       @id @default(autoincrement())
+  firstname   String    @db.VarChar(100)
+  lastname    String    @db.VarChar(100)
+  position    String?   @db.VarChar(100)
+  number      Int?
+  photo       String?   @db.VarChar(500)
+  teamId      Int
+  team        Team      @relation(fields: [teamId], references: [id], onDelete: Cascade)
+  dateOfBirth DateTime? @db.Date
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@map("player")
+}
+
+model Post {
+  id        Int      @id @default(autoincrement())
+  title     String   @db.VarChar(255)
+  slug      String   @unique @db.VarChar(255)
+  excerpt   String?  @db.Text
+  content   String   @db.LongText
+  picture   String?  @db.VarChar(500)
+  isOnline  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("post")
+}
+
+model Training {
+  id        Int      @id @default(autoincrement())
+  teamId    Int
+  team      Team     @relation(fields: [teamId], references: [id], onDelete: Cascade)
+  dayOfWeek Int      // 0=Lundi ... 6=Dimanche
+  startTime String   @db.VarChar(5)  // "18:30"
+  endTime   String   @db.VarChar(5)  // "20:00"
+  location  String?  @db.VarChar(255)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("training")
+}
+
+model Contact {
+  id        Int      @id @default(autoincrement())
+  firstname String   @db.VarChar(100)
+  lastname  String   @db.VarChar(100)
+  email     String   @db.VarChar(255)
+  phone     String?  @db.VarChar(20)
+  subject   String   @db.VarChar(255)
+  message   String   @db.Text
+  isRead    Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("contact")
+}
+
+enum Role {
+  ADMIN
+  SUPER_ADMIN
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  firstname String   @db.VarChar(100)
+  lastname  String   @db.VarChar(100)
+  email     String   @unique @db.VarChar(255)
+  password  String   @db.VarChar(255)
+  role      Role     @default(ADMIN)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("user")
+}

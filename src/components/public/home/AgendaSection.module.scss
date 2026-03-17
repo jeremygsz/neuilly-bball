@@ -1,0 +1,269 @@
+// ─── Tokens ──────────────────────────────────────────────────────────────────
+$black:   #0a0a0a;
+$white:   #ffffff;
+$red:     #e63329;
+$grey50:  #fafafa;
+$grey100: #f4f4f5;
+$grey200: #e4e4e7;
+$grey400: #a1a1aa;
+$grey600: #52525b;
+$grey900: #18181b;
+$radius:  4px;
+$bp-md:   768px;
+
+// ─── Section ─────────────────────────────────────────────────────────────────
+.section {
+  background: $grey50;
+  padding: 6rem 0 7rem;
+  border-top: 1px solid $grey200;
+  border-bottom: 1px solid $grey200;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+// ─── Header ──────────────────────────────────────────────────────────────────
+.header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 3rem;
+  gap: 1.5rem;
+
+  @media (max-width: $bp-md) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: $red;
+  margin-bottom: 0.75rem;
+}
+
+.eyebrowLine {
+  display: block;
+  width: 2rem;
+  height: 2px;
+  background: $red;
+  border-radius: 999px;
+}
+
+.sectionTitle {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2.25rem, 4.5vw, 3.5rem);
+  color: $grey900;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  margin: 0;
+}
+
+.allLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: $grey600;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  padding-bottom: 0.125rem;
+  white-space: nowrap;
+  transition: color 0.2s ease, border-color 0.2s ease;
+
+  &:hover {
+    color: $red;
+    border-color: $red;
+  }
+}
+
+// ─── Liste ────────────────────────────────────────────────────────────────────
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border: 1px solid $grey200;
+  border-radius: $radius;
+  overflow: hidden;
+  background: $white;
+}
+
+// ─── Row ──────────────────────────────────────────────────────────────────────
+.row {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1.375rem 1.5rem;
+  border-bottom: 1px solid $grey200;
+  transition: background 0.2s ease;
+
+  &:last-child { border-bottom: none; }
+
+  &:hover {
+    background: $grey50;
+
+    .rowArrow {
+      background: $red;
+      color: $white;
+      transform: translateX(3px);
+    }
+  }
+
+  @media (max-width: $bp-md) {
+    gap: 1rem;
+    padding: 1.125rem 1rem;
+  }
+}
+
+// Date bloc
+.dateBloc {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 3rem;
+  background: $grey900;
+  color: $white;
+  border-radius: $radius;
+  padding: 0.5rem 0.625rem;
+  flex-shrink: 0;
+}
+
+.dateDay {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.625rem;
+  line-height: 1;
+  letter-spacing: 0.02em;
+}
+
+.dateMonth {
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: $grey400;
+  margin-top: 0.1rem;
+}
+
+// Séparateur
+.separator {
+  width: 2px;
+  height: 3rem;
+  background: $grey200;
+  border-radius: 999px;
+  flex-shrink: 0;
+
+  @media (max-width: $bp-md) { display: none; }
+}
+
+// Contenu
+.content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+  min-width: 0;
+}
+
+.contentTop {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.typeBadge {
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 0.2rem 0.55rem;
+  border-radius: $radius;
+}
+
+.typeBadge--red    { background: rgba(#e63329, 0.1); color: $red; }
+.typeBadge--blue   { background: rgba(#2563eb, 0.1); color: #2563eb; }
+.typeBadge--orange { background: rgba(#ea580c, 0.1); color: #ea580c; }
+
+.competition {
+  font-size: 0.72rem;
+  color: $grey400;
+  font-weight: 500;
+}
+
+// Match title
+.matchTitle {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9375rem;
+  color: $grey900;
+  flex-wrap: wrap;
+
+  strong { font-weight: 700; }
+}
+
+.vs {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: $grey400;
+  padding: 0.15rem 0.4rem;
+  background: $grey100;
+  border-radius: $radius;
+}
+
+// Meta
+.meta {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.metaItem {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.75rem;
+  color: $grey400;
+  font-weight: 500;
+}
+
+.domicile {
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 0.2rem 0.5rem;
+  border-radius: $radius;
+}
+
+.domicile--home { background: rgba(#16a34a, 0.1); color: #16a34a; }
+.domicile--away { background: rgba(#9333ea, 0.1); color: #9333ea; }
+
+// Arrow
+.rowArrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: $radius;
+  background: $grey100;
+  color: $grey600;
+  flex-shrink: 0;
+  text-decoration: none;
+  transition: background 0.25s ease, color 0.25s ease, transform 0.25s ease;
+}

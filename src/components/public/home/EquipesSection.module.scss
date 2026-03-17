@@ -1,0 +1,244 @@
+// ─── Tokens ──────────────────────────────────────────────────────────────────
+$black:   #0a0a0a;
+$white:   #ffffff;
+$red:     #e63329;
+$grey100: #f4f4f5;
+$grey400: #a1a1aa;
+$grey600: #52525b;
+$grey900: #18181b;
+$radius:  4px;
+$bp-md:   768px;
+$bp-lg:   1024px;
+
+// ─── Section ─────────────────────────────────────────────────────────────────
+.section {
+  background: $white;
+  padding: 6rem 0 7rem;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+// ─── Header ──────────────────────────────────────────────────────────────────
+.header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: end;
+  gap: 2rem;
+  margin-bottom: 3.5rem;
+
+  @media (max-width: $bp-md) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.headerLeft {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: $red;
+}
+
+.eyebrowLine {
+  display: block;
+  width: 2rem;
+  height: 2px;
+  background: $red;
+  border-radius: 999px;
+}
+
+.sectionTitle {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2.25rem, 4.5vw, 3.5rem);
+  color: $grey900;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  margin: 0;
+}
+
+.headerRight {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.25rem;
+
+  @media (min-width: $bp-md) {
+    align-items: flex-end;
+    text-align: right;
+  }
+}
+
+.sectionDesc {
+  font-size: 0.9375rem;
+  color: $grey600;
+  line-height: 1.7;
+  margin: 0;
+}
+
+.allLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: $grey600;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  padding-bottom: 0.125rem;
+  transition: color 0.2s ease, border-color 0.2s ease;
+
+  &:hover {
+    color: $red;
+    border-color: $red;
+  }
+}
+
+// ─── Grid ─────────────────────────────────────────────────────────────────────
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+
+  @media (max-width: $bp-lg) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: $bp-md) {
+    grid-template-columns: 1fr;
+  }
+}
+
+// ─── Card ─────────────────────────────────────────────────────────────────────
+.card {
+  border-radius: $radius;
+  overflow: hidden;
+  background: $grey900;
+
+  &:hover {
+    .image       { transform: scale(1.06); }
+    .arrow       { transform: translateX(4px); background: $red; }
+    .imageOverlay { opacity: 0.55; }
+  }
+}
+
+.cardInner {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  height: 100%;
+}
+
+// Image
+.imageWrap {
+  position: relative;
+  height: 220px;
+  overflow: hidden;
+}
+
+.image {
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.imageOverlay {
+  position: absolute;
+  inset: 0;
+  background: rgba($black, 0.35);
+  opacity: 0.35;
+  transition: opacity 0.3s ease;
+  z-index: 1;
+}
+
+// Badge genre
+.badge {
+  position: absolute;
+  top: 0.875rem;
+  left: 0.875rem;
+  z-index: 2;
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 0.25rem 0.6rem;
+  border-radius: $radius;
+}
+
+.badge--blue   { background: rgba(37, 99, 235, 0.9);  color: $white; }
+.badge--pink   { background: rgba(219, 39, 119, 0.9); color: $white; }
+.badge--purple { background: rgba(124, 58, 237, 0.9); color: $white; }
+
+// Niveau
+.niveau {
+  position: absolute;
+  bottom: 0.875rem;
+  right: 0.875rem;
+  z-index: 2;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: rgba($white, 0.8);
+  background: rgba($black, 0.5);
+  backdrop-filter: blur(4px);
+  padding: 0.25rem 0.6rem;
+  border-radius: $radius;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+// Footer
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.25rem;
+  background: $grey900;
+  gap: 0.75rem;
+}
+
+.footerLeft {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.nom {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.125rem;
+  letter-spacing: 0.03em;
+  color: $white;
+  line-height: 1;
+}
+
+.joueurs {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.75rem;
+  color: $grey400;
+  font-weight: 500;
+}
+
+.arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: $radius;
+  background: rgba($white, 0.08);
+  color: $white;
+  flex-shrink: 0;
+  transition: transform 0.25s ease, background 0.25s ease;
+}
