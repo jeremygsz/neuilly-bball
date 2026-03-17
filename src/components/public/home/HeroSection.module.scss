@@ -180,7 +180,7 @@
     align-items: center;
     justify-content: center;
     padding: 0.875rem 1rem;
-    background: darken($red, 8%);
+    background:  #A50D25;
     transition: background 0.25s ease;
   }
 
@@ -188,7 +188,7 @@
     transform: translateY(-2px);
     box-shadow: 0 12px 32px rgba($red, 0.45);
 
-    .ctaIcon { background: darken($red, 14%); }
+    .ctaIcon { background:  #A50D25; }
   }
 
   &:active { transform: translateY(0); }

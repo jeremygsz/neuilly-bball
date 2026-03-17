@@ -270,7 +270,7 @@ background: lightblue;
   transition: background 0.2s ease, transform 0.2s ease;
 
   &:hover {
-    background: darken($red, 6%);
+    background: #A50D25;
     transform: translateY(-1px);
   }
 }

@@ -135,7 +135,7 @@ $bp-lg:   1024px;
 }
 
 .cardImage {
-  object-fit: cover;
+  object-fit: contain;
   transition: transform 0.5s ease;
 }
 
