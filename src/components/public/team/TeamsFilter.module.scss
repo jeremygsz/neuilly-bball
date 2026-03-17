@@ -1,0 +1,91 @@
+@use "@/styles/vars" as *;
+
+.wrapper {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: $grey-100;
+  padding: 1rem 0;
+  margin: 0 -1.5rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+
+  // Fade latéral sur mobile
+  &::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 3rem;
+    background: linear-gradient(to right, transparent, $grey-100);
+    pointer-events: none;
+
+    @media (min-width: $bp-md) { display: none; }
+  }
+}
+
+.inner {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding-bottom: 2px; // évite le clip du focus ring
+
+  &::-webkit-scrollbar { display: none; }
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  white-space: nowrap;
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  border: 1.5px solid $grey-200;
+  background: $white;
+  color: $grey-600;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color 0.2s $ease, color 0.2s $ease,
+  background 0.2s $ease, transform 0.15s $ease-bounce;
+
+  &:hover:not(.active) {
+    border-color: $blue;
+    color: $blue;
+    transform: translateY(-1px);
+  }
+
+  &:focus-visible {
+    outline: 2px solid $blue-light;
+    outline-offset: 2px;
+  }
+}
+
+.active {
+  background: $blue-dark;
+  border-color: $blue-dark;
+  color: $white;
+
+  .count {
+    background: rgba($white, 0.15);
+    color: $white;
+  }
+}
+
+.count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 5px;
+  border-radius: 999px;
+  background: $grey-100;
+  color: $grey-600;
+  font-size: 0.65rem;
+  font-weight: 700;
+  transition: background 0.2s $ease, color 0.2s $ease;
+}

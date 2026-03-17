@@ -6,6 +6,7 @@ import Image from "next/image";
 import { ArrowRight, ChevronDown } from "lucide-react";
 import s from "./HeroSection.module.scss";
 import {IMG} from "@/lib/mock/images";
+import {getCurrentSeason} from "@/lib/utils/season";
 
 function fadeUp(delay = 0): Pick<HTMLMotionProps<"div">, "initial" | "animate" | "transition"> {
     return {
@@ -63,7 +64,7 @@ export function HeroSection() {
                     {/* Tag saison */}
                     <motion.div className={s.tag} {...fadeUp(0.2)}>
                         <span className={s.tagLine} />
-                        <span>Saison 2024 — 2025</span>
+                        <span>Saison {getCurrentSeason()}</span>
                     </motion.div>
 
                     {/* Titre */}

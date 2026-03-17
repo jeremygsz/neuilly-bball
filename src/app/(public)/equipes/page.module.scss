@@ -1,0 +1,107 @@
+@use "@/styles/vars" as *;
+
+.page {
+  min-height: 100vh;
+  background: $grey-100;
+}
+
+// ─── Hero ─────────────────────────────────────────────────────────────────────
+.hero {
+  background: $blue-dark;
+  padding: 5rem 1.5rem 4rem;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: -80px;
+    right: -80px;
+    width: 320px;
+    height: 320px;
+    border-radius: 50%;
+    border: 60px solid rgba($red, 0.08);
+    pointer-events: none;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -40px;
+    left: 10%;
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    border: 30px solid rgba($blue-light, 0.1);
+    pointer-events: none;
+  }
+}
+
+.heroInner {
+  max-width: 700px;
+  margin: 0 auto;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.heroLabel {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: $red-light;
+  margin-bottom: 1rem;
+  background: rgba($red, 0.12);
+  padding: 0.3rem 0.9rem;
+  border-radius: 999px;
+  border: 1px solid rgba($red, 0.2);
+}
+
+.heroTitle {
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: 900;
+  color: $white;
+  line-height: 1.05;
+  margin-bottom: 1rem;
+}
+
+.accent { color: $red; }
+
+.heroSub {
+  font-size: 1rem;
+  color: $grey-400;
+  line-height: 1.7;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+// ─── Content ──────────────────────────────────────────────────────────────────
+.content {
+  padding: 3rem 0 5rem;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+// ─── Grid cards ───────────────────────────────────────────────────────────────
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+
+  @media (max-width: $bp-md) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: $bp-sm) {
+    grid-template-columns: 1fr;
+  }
+}

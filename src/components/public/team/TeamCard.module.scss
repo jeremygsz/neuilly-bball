@@ -1,0 +1,160 @@
+@use "@/styles/vars" as *;
+
+.card {
+  position: relative;
+  background: $white;
+  border: 1.5px solid $grey-200;
+  border-radius: 1.125rem;
+  overflow: hidden;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  padding: 1.5rem;
+  transition: border-color 0.25s $ease,
+  transform    0.25s $ease-bounce,
+  box-shadow   0.25s $ease;
+
+  &:hover {
+    border-color: var(--accent);
+    transform: translateY(-5px);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.1);
+
+    .cta { color: var(--accent); gap: 0.6rem; }
+    .stripe { transform: scaleX(1); }
+    .avatar { background: var(--accent); color: $white; }
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+  }
+}
+
+// ─── Stripe top ───────────────────────────────────────────────────────────────
+.stripe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s $ease;
+}
+
+// ─── Header ───────────────────────────────────────────────────────────────────
+.header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 0.75rem;
+  background: color-mix(in srgb, var(--accent) 10%, transparent);
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background 0.25s $ease, color 0.25s $ease;
+}
+
+.meta { flex: 1; }
+
+.title {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: $blue-dark;
+  line-height: 1.1;
+}
+
+.playerCount {
+  font-size: 0.75rem;
+  color: $grey-400;
+  font-weight: 500;
+  margin-top: 0.2rem;
+}
+
+// ─── Stats postes ─────────────────────────────────────────────────────────────
+.stats {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.stat {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  background: $grey-100;
+  border-radius: 999px;
+  padding: 0.25rem 0.625rem;
+}
+
+.statCount {
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: var(--accent);
+}
+
+.statLabel {
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: $grey-600;
+}
+
+// ─── Player avatars ───────────────────────────────────────────────────────────
+.playerAvatars {
+  display: flex;
+  align-items: center;
+}
+
+.playerAvatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--accent) 12%, $grey-100);
+  color: var(--accent);
+  font-size: 0.6rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid $white;
+  margin-left: -8px;
+  text-transform: uppercase;
+  overflow: hidden;
+
+  &:first-child { margin-left: 0; }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.playerAvatarMore {
+  background: $grey-200;
+  color: $grey-600;
+  font-size: 0.55rem;
+}
+
+// ─── CTA ──────────────────────────────────────────────────────────────────────
+.cta {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: $grey-400;
+  margin-top: auto;
+  padding-top: 0.75rem;
+  border-top: 1px solid $grey-100;
+  transition: color 0.25s $ease, gap 0.25s $ease-bounce;
+}
