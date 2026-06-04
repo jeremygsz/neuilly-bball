@@ -1,8 +1,8 @@
-import { MockPlayer } from "@/lib/mock/teams";
+import { Player } from "@prisma/client";
 import { User }       from "lucide-react";
 import s from "./PlayerCard.module.scss";
 
-interface Props { player: MockPlayer; }
+interface Props { player: Player; }
 
 const POSITION_COLORS: Record<string, string> = {
     "Meneur":      "#2550C0",
@@ -12,9 +12,9 @@ const POSITION_COLORS: Record<string, string> = {
     "Pivot":       "#0D1B3E",
 };
 
-function getAge(dob: string | null): string | null {
+function getAge(dob: Date | null): string | null {
     if (!dob) return null;
-    const diff = Date.now() - new Date(dob).getTime();
+    const diff = Date.now() - dob.getTime();
     return `${Math.floor(diff / (1000 * 60 * 60 * 24 * 365.25))} ans`;
 }
 

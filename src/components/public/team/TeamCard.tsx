@@ -1,15 +1,15 @@
-import { MockTeam }            from "@/lib/mock/teams";
+import { TeamWithPlayers } from "@/app/(public)/equipes/EquipesClientWrapper";
 import { Users, ChevronRight } from "lucide-react";
 import s from "./TeamCard.module.scss";
 
 interface Props {
-    team:    MockTeam;
+    team:    TeamWithPlayers;
     onClick: () => void;
 }
 
 const POSITION_ORDER = ["Meneur", "Arrière", "Ailier", "Ailier fort", "Pivot"];
 
-function getPositionStats(team: MockTeam) {
+function getPositionStats(team: TeamWithPlayers) {
     return POSITION_ORDER.map((pos) => ({
         label: pos,
         count: team.players.filter((p) => p.position === pos).length,

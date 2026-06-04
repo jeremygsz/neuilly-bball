@@ -1,11 +1,11 @@
 "use client";
 
-import { MockTeam } from "@/lib/mock/teams";
+import { TeamWithPlayers } from "@/app/(public)/equipes/EquipesClientWrapper";
 import { Users }    from "lucide-react";
 import s from "./TeamsFilter.module.scss";
 
 interface Props {
-    teams:    MockTeam[];
+    teams:    TeamWithPlayers[];
     activeId: number | "all";
     onChange: (id: number | "all") => void;
 }

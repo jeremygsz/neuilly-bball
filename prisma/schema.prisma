@@ -4,6 +4,7 @@ generator client {
 
 datasource db {
   provider = "mysql"
+  url      = env("DATABASE_URL")
 }
 
 model Carousel {
@@ -18,12 +19,12 @@ model Carousel {
 }
 
 model Team {
-  id        Int      @id @default(autoincrement())
-  label     String   @db.VarChar(255)
+  id        Int        @id @default(autoincrement())
+  label     String     @db.VarChar(255)
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
   players   Player[]
   trainings Training[]
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
 
   @@map("team")
 }
@@ -36,11 +37,12 @@ model Player {
   number      Int?
   photo       String?   @db.VarChar(500)
   teamId      Int
-  team        Team      @relation(fields: [teamId], references: [id], onDelete: Cascade)
   dateOfBirth DateTime? @db.Date
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
+  team        Team      @relation(fields: [teamId], references: [id], onDelete: Cascade)
 
+  @@index([teamId], map: "player_teamId_fkey")
   @@map("player")
 }
 
@@ -61,14 +63,15 @@ model Post {
 model Training {
   id        Int      @id @default(autoincrement())
   teamId    Int
-  team      Team     @relation(fields: [teamId], references: [id], onDelete: Cascade)
-  dayOfWeek Int      // 0=Lundi ... 6=Dimanche
-  startTime String   @db.VarChar(5)  // "18:30"
-  endTime   String   @db.VarChar(5)  // "20:00"
+  dayOfWeek Int
+  startTime String   @db.VarChar(5)
+  endTime   String   @db.VarChar(5)
   location  String?  @db.VarChar(255)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  team      Team     @relation(fields: [teamId], references: [id], onDelete: Cascade)
 
+  @@index([teamId], map: "training_teamId_fkey")
   @@map("training")
 }
 
@@ -87,11 +90,6 @@ model Contact {
   @@map("contact")
 }
 
-enum Role {
-  ADMIN
-  SUPER_ADMIN
-}
-
 model User {
   id        Int      @id @default(autoincrement())
   firstname String   @db.VarChar(100)
@@ -103,4 +101,9 @@ model User {
   updatedAt DateTime @updatedAt
 
   @@map("user")
+}
+
+enum Role {
+  ADMIN
+  SUPER_ADMIN
 }

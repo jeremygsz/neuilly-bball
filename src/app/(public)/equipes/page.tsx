@@ -1,23 +1,17 @@
-"use client";
-
-import { useState, useMemo } from "react";
-import { mockTeams, MockTeam } from "@/lib/mock/teams";
-import { TeamsFilter }         from "@/components/public/team/TeamsFilter";
-import { TeamCard }            from "@/components/public/team/TeamCard";
-import { TeamModal }           from "@/components/public/team/TeamModal";
+import { prisma } from "@/lib/prisma";
+import { getCurrentSeason } from "@/lib/utils/season";
+import { EquipesClientWrapper } from "./EquipesClientWrapper";
 import s from "./page.module.scss";
-import {getCurrentSeason} from "@/lib/utils/season";
 
-export default function EquipesPage() {
-    const [activeTeamId, setActiveTeamId]     = useState<number | "all">("all");
-    const [selectedTeam, setSelectedTeam]     = useState<MockTeam | null>(null);
-
-    const visibleTeams = useMemo(() =>
-            activeTeamId === "all"
-                ? mockTeams
-                : mockTeams.filter((t) => t.id === activeTeamId),
-        [activeTeamId]
-    );
+export default async function EquipesPage() {
+    const teams = await prisma.team.findMany({
+        include: {
+            players: true
+        },
+        orderBy: {
+            label: 'asc'
+        }
+    });
 
     return (
         <main className={s.page}>
@@ -36,36 +30,7 @@ export default function EquipesPage() {
                 </div>
             </section>
 
-            {/* ── Content ── */}
-            <section className={s.content}>
-                <div className={s.container}>
-
-                    <TeamsFilter
-                        teams={mockTeams}
-                        activeId={activeTeamId}
-                        onChange={setActiveTeamId}
-                    />
-
-                    <div className={s.grid}>
-                        {visibleTeams.map((team) => (
-                            <TeamCard
-                                key={team.id}
-                                team={team}
-                                onClick={() => setSelectedTeam(team)}
-                            />
-                        ))}
-                    </div>
-
-                </div>
-            </section>
-
-            {/* ── Modal ── */}
-            {selectedTeam && (
-                <TeamModal
-                    team={selectedTeam}
-                    onClose={() => setSelectedTeam(null)}
-                />
-            )}
+            <EquipesClientWrapper initialTeams={teams} />
 
         </main>
     );

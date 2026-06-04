@@ -1,14 +1,14 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { MockTeam }          from "@/lib/mock/teams";
+import { TeamWithPlayers } from "@/app/(public)/equipes/EquipesClientWrapper";
 import { PlayerCard }        from "@/components/public/player/PlayerCard";
 import { X, Users }          from "lucide-react";
 import { createPortal }      from "react-dom";
 import s from "./TeamModal.module.scss";
 
 interface Props {
-    team:    MockTeam;
+    team:    TeamWithPlayers;
     onClose: () => void;
 }
 

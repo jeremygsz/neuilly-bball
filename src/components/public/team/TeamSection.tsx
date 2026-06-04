@@ -1,10 +1,10 @@
-import { MockTeam }  from "@/lib/mock/teams";
+import { TeamWithPlayers } from "@/app/(public)/equipes/EquipesClientWrapper";
 import { PlayerCard } from "@/components/public/player/PlayerCard";
 
 import { Users }      from "lucide-react";
 import s from "./TeamSection.module.scss";
 
-interface Props { team: MockTeam; }
+interface Props { team: TeamWithPlayers; }
 
 const POSITION_ORDER = ["Meneur", "Arrière", "Ailier", "Ailier fort", "Pivot"];
 
