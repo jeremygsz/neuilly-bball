@@ -12,7 +12,6 @@ const navLinks = [
     { href: "/",              label: "Accueil"               },
     { href: "/equipes",       label: "Équipes"               },
     { href: "/actualites",    label: "À la une"              },
-    { href: "/stade",         label: "Stade & Entraînements" },
     { href: "/contact",       label: "Contact"               },
 ];
 
