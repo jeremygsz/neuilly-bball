@@ -91,6 +91,7 @@ function EquipeCard({ equipe, index }: { equipe: TeamWithCount; index: number })
 // ─── Section ─────────────────────────────────────────────────────────────────
 export async function EquipesSection() {
     const equipes = await prisma.team.findMany({
+        where: { isOnline: true },
         include: {
             _count: {
                 select: { players: true }

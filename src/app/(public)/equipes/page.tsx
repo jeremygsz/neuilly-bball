@@ -5,6 +5,7 @@ import s from "./page.module.scss";
 
 export default async function EquipesPage() {
     const teams = await prisma.team.findMany({
+        where: { isOnline: true },
         include: {
             players: true
         },

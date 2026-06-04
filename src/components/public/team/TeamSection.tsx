@@ -9,6 +9,22 @@ interface Props { team: TeamWithPlayers; }
 const POSITION_ORDER = ["Meneur", "Arrière", "Ailier", "Ailier fort", "Pivot"];
 
 export function TeamSection({ team }: Props) {
+    if (!team.isOnline) {
+        return (
+            <div className={s.emptyState}>
+                <p>Cette équipe n'est pas disponible pour le moment.</p>
+            </div>
+        );
+    }
+
+    if (team.players.length === 0) {
+        return (
+            <div className={s.emptyState}>
+                <p>Aucun joueur n'a encore été ajouté à cette équipe.</p>
+            </div>
+        );
+    }
+
     const sorted = [...team.players].sort((a, b) => {
         const ai = POSITION_ORDER.indexOf(a.position ?? "");
         const bi = POSITION_ORDER.indexOf(b.position ?? "");
