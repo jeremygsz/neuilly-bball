@@ -35,6 +35,20 @@ $ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
   0 8px 32px rgba(0, 0, 0, 0.35);
 }
 
+.header--light {
+  .logoText span:first-child { color: $blue-dark; }
+  .navLink {
+    color: rgba($blue-dark, 0.7);
+    &:hover {
+      color: $blue-dark;
+      background: rgba($blue-dark, 0.05);
+    }
+  }
+  .navLink--active {
+    color: $blue-dark;
+  }
+}
+
 // ─── Nav container ───────────────────────────────────────────────────────────
 .nav {
   max-width: 1240px;
@@ -205,19 +219,20 @@ $ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
   display: none;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
-  background: rgba($white, 0.06);
-  border: 1px solid rgba($white, 0.1);
-  border-radius: 8px;
+  width: 42px;
+  height: 42px;
+  background: $red;
+  border: none;
+  border-radius: 10px;
   color: $white;
   cursor: pointer;
-  transition: background 200ms $ease,
-  border-color 200ms $ease;
+  transition: all 200ms $ease;
+  box-shadow: 0 4px 12px rgba($red, 0.3);
 
   &:hover {
-    background: rgba($white, 0.12);
-    border-color: rgba($white, 0.2);
+    background: $red-light;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba($red, 0.4);
   }
 
   @media (max-width: 1024px) { display: flex; }

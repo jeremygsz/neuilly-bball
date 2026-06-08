@@ -60,6 +60,7 @@ export function Navbar() {
     const headerClass = [
         styles.header,
         scrolled ? styles["header--scrolled"] : styles["header--transparent"],
+        (!scrolled && pathname !== "/") ? styles["header--light"] : "",
     ].join(" ");
 
     return (
