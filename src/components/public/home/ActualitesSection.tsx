@@ -7,11 +7,16 @@ import { ArticleCard } from "@/components/public/blog/ArticleCard";
 
 // ─── Section ─────────────────────────────────────────────────────────────────
 export async function ActualitesSection() {
-    const articles = await prisma.post.findMany({
-        where: { isOnline: true },
-        take: 3,
-        orderBy: { createdAt: "desc" }
-    });
+    let articles = [];
+    try {
+        articles = await prisma.post.findMany({
+            where: { isOnline: true },
+            take: 3,
+            orderBy: { createdAt: "desc" }
+        });
+    } catch (error) {
+        console.error("Failed to fetch articles:", error);
+    }
 
     return (
         <section className={s.section}>

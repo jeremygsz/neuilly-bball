@@ -3,16 +3,23 @@ import { getCurrentSeason } from "@/lib/utils/season";
 import { EquipesClientWrapper } from "./EquipesClientWrapper";
 import s from "./page.module.scss";
 
+export const dynamic = "force-dynamic";
+
 export default async function EquipesPage() {
-    const teams = await prisma.team.findMany({
-        where: { isOnline: true },
-        include: {
-            players: true
-        },
-        orderBy: {
-            label: 'asc'
-        }
-    });
+    let teams = [];
+    try {
+        teams = await prisma.team.findMany({
+            where: { isOnline: true },
+            include: {
+                players: true
+            },
+            orderBy: {
+                label: 'asc'
+            }
+        });
+    } catch (error) {
+        console.error("Failed to fetch teams:", error);
+    }
 
     return (
         <main className={s.page}>

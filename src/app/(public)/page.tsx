@@ -5,13 +5,15 @@ import {AgendaSection} from "@/components/public/home/AgendaSection";
 import {ClubSection} from "@/components/public/home/ClubSection";
 import {PartenairesSection} from "@/components/public/home/PartenairesSection";
 
+export const dynamic = "force-dynamic";
+
 export default function HomePage() {
     return (
         <>
             <HeroSection />
             <ActualitesSection />
             <EquipesSection />
-            <AgendaSection />
+            {/*<AgendaSection />*/}
             <ClubSection />
             {/*<PartenairesSection />*/}
         </>

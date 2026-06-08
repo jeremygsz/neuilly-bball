@@ -90,16 +90,21 @@ function EquipeCard({ equipe, index }: { equipe: TeamWithCount; index: number })
 
 // ─── Section ─────────────────────────────────────────────────────────────────
 export async function EquipesSection() {
-    const equipes = await prisma.team.findMany({
-        where: { isOnline: true },
-        include: {
-            _count: {
-                select: { players: true }
-            }
-        },
-        take: 6,
-        orderBy: { createdAt: "desc" }
-    });
+    let equipes = [];
+    try {
+        equipes = await prisma.team.findMany({
+            where: { isOnline: true },
+            include: {
+                _count: {
+                    select: { players: true }
+                }
+            },
+            take: 6,
+            orderBy: { createdAt: "desc" }
+        });
+    } catch (error) {
+        console.error("Failed to fetch teams:", error);
+    }
 
     return (
         <section className={s.section}>

@@ -3,11 +3,18 @@ import { ArticleCard } from "@/components/public/blog/ArticleCard";
 import * as m from "framer-motion/client";
 import s from "./page.module.scss";
 
+export const dynamic = "force-dynamic";
+
 export default async function ActualitesPage() {
-    const articles = await prisma.post.findMany({
-        where: { isOnline: true },
-        orderBy: { createdAt: "desc" }
-    });
+    let articles = [];
+    try {
+        articles = await prisma.post.findMany({
+            where: { isOnline: true },
+            orderBy: { createdAt: "desc" }
+        });
+    } catch (error) {
+        console.error("Failed to fetch articles:", error);
+    }
 
     return (
         <main className={s.page}>
