@@ -120,23 +120,14 @@
   line-height: 0.9;
   letter-spacing: 0.01em;
   margin-bottom: 1.75rem;
-}
-
-.titleTop {
-  font-size: clamp(4rem, 10vw, 8.5rem);
-  color: $white;
-  display: block;
-}
-
-.titleBottom {
-  font-size: clamp(4rem, 10vw, 8.5rem);
-  color: $white;
-  display: block;
-  margin-left: 0.15em; // légère indentation
-}
-
-.titleRed {
-  color: $red;
+  >span {
+    font-size: clamp(4rem, 10vw, 8.5rem);
+    color: $white;
+    display: block;
+  }
+  .titleRed {
+    color: $red;
+  }
 }
 
 // ─── Subtitle ────────────────────────────────────────────────────────────────

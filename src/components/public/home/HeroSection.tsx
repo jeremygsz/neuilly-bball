@@ -73,6 +73,7 @@ export function HeroSection() {
                         <span className={s.titleBottom}>
                             BASKET<span className={s.titleRed}>BALL</span>
                         </span>
+                        <span className={s.titleTop}>Association</span>
                     </motion.h1>
 
                     {/* Sous-titre */}
