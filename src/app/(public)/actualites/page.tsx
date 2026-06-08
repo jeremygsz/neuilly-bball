@@ -2,11 +2,12 @@ import { prisma } from "@/lib/prisma";
 import { ArticleCard } from "@/components/public/blog/ArticleCard";
 import * as m from "framer-motion/client";
 import s from "./page.module.scss";
+import { Post } from "@prisma/client";
 
 export const dynamic = "force-dynamic";
 
 export default async function ActualitesPage() {
-    let articles = [];
+    let articles: Post[] = [];
     try {
         articles = await prisma.post.findMany({
             where: { isOnline: true },

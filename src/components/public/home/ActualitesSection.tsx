@@ -4,10 +4,11 @@ import s from "./ActualitesSection.module.scss";
 import { prisma } from "@/lib/prisma";
 import * as m from "framer-motion/client";
 import { ArticleCard } from "@/components/public/blog/ArticleCard";
+import { Post } from "@prisma/client";
 
 // ─── Section ─────────────────────────────────────────────────────────────────
 export async function ActualitesSection() {
-    let articles = [];
+    let articles: Post[] = [];
     try {
         articles = await prisma.post.findMany({
             where: { isOnline: true },

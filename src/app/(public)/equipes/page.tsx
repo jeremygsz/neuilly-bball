@@ -1,12 +1,12 @@
 import { prisma } from "@/lib/prisma";
 import { getCurrentSeason } from "@/lib/utils/season";
-import { EquipesClientWrapper } from "./EquipesClientWrapper";
+import { EquipesClientWrapper, TeamWithPlayers } from "./EquipesClientWrapper";
 import s from "./page.module.scss";
 
 export const dynamic = "force-dynamic";
 
 export default async function EquipesPage() {
-    let teams = [];
+    let teams: TeamWithPlayers[] = [];
     try {
         teams = await prisma.team.findMany({
             where: { isOnline: true },
