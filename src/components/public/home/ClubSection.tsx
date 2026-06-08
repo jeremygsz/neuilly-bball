@@ -122,7 +122,7 @@ export function ClubSection() {
 
                     {/* CTA */}
                     <div className={s.ctas}>
-                        <Link href="/club" className={s.ctaPrimary}>
+                        <Link href="/#" className={s.ctaPrimary}>
                             Découvrir le club
                             <ArrowRight size={15} />
                         </Link>
