@@ -191,7 +191,7 @@ export function Navbar() {
                                 initial="hidden"
                                 animate="visible"
                             >
-                                <Link href="/contact" className={styles.mobileCta}>
+                                <Link href="/inscription" className={styles.mobileCta}>
                                     Nous rejoindre
                                 </Link>
                             </motion.li>
