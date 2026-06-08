@@ -33,21 +33,27 @@ export default function ContactPage() {
                                     <div className={s.iconBox}><MapPin size={20} /></div>
                                     <div>
                                         <span className={s.itemLabel}>Adresse</span>
-                                        <p className={s.itemValue}>Gymnase Jean Bouin<br />92200 Neuilly-sur-Seine</p>
+                                        <p className={s.itemValue}>
+                                            <a href="https://maps.app.goo.gl/z5aDEDxJrXMgvE1K9" target='_blank'>
+                                                Complexe Sportif de l'île du Pont<br/> 92200 Neuilly-sur-Seine
+                                            </a>
+                                        </p>
                                     </div>
                                 </div>
                                 <div className={s.contactItem}>
                                     <div className={s.iconBox}><Phone size={20} /></div>
                                     <div>
                                         <span className={s.itemLabel}>Téléphone</span>
-                                        <p className={s.itemValue}>01 47 47 12 34</p>
+                                        <a href="tel:+33646861477" className={s.itemValue}>
+                                            +33 (0)6 46 86 14 77
+                                        </a>
                                     </div>
                                 </div>
                                 <div className={s.contactItem}>
                                     <div className={s.iconBox}><Mail size={20} /></div>
                                     <div>
                                         <span className={s.itemLabel}>Email</span>
-                                        <p className={s.itemValue}>contact@neuillybasketball.fr</p>
+                                        <p className={s.itemValue}>contact@neuillybasketball.com</p>
                                     </div>
                                 </div>
                             </div>

@@ -10,9 +10,12 @@ import styles from "./Navbar.module.scss";
 
 const navLinks = [
     { href: "/",              label: "Accueil"               },
+    { href: "/#",          label: "Le Club"               },
     { href: "/equipes",       label: "Équipes"               },
-    { href: "/actualites",    label: "À la une"              },
-    { href: "/contact",       label: "Contact"               },
+    { href: "/#",        label: "Nos Stages"            },
+    { href: "/#",             label: "Nos Équipements"      },
+    { href: "/actualites",    label: "À La Une"              },
+    // { href: "/contact",       label: "Contact"               },
 ];
 
 const headerVariants = {
@@ -121,8 +124,8 @@ export function Navbar() {
 
                 {/* ── CTA Desktop ── */}
                 <div className={styles.cta}>
-                    <Link href="/contact" className={styles.ctaButton}>
-                        Nous rejoindre
+                    <Link href="/inscription" className={styles.ctaButton}>
+                        Inscription
                     </Link>
                 </div>
 

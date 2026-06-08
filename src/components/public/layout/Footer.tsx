@@ -6,10 +6,10 @@ import s from "./Footer.module.scss";
 const footerLinks = {
     club: [
         { href: "/",           label: "Accueil"               },
-        { href: "/equipes",    label: "Nos Équipes"           },
+        { href: "/club",       label: "Le Club"               },
+        { href: "/equipe",     label: "Équipes"               },
         { href: "/actualites", label: "À la une"              },
-        { href: "/stade",      label: "Stade & Entraînements" },
-        { href: "/contact",    label: "Contact"               },
+        // { href: "/contact",    label: "Contact"               },
     ],
     infos: [
         { href: "/mentions-legales",          label: "Mentions légales"             },
@@ -102,21 +102,20 @@ export function Footer() {
                         <ul className={s.contactList}>
                             <li className={s.contactItem}>
                                 <MapPin size={15} className={s.contactIcon} />
-                                <span>
-                                    Gymnase Municipal<br />
-                                    92200 Neuilly-sur-Seine
-                                </span>
+                                <a href="https://maps.app.goo.gl/z5aDEDxJrXMgvE1K9" target='_blank'>
+                                    Complexe Sportif de l'île du Pont<br/> 92200 Neuilly-sur-Seine
+                                </a>
                             </li>
                             <li>
-                                <a href="tel:+33123456789" className={s.contactLink}>
+                                <a href="tel:+33646861477" className={s.contactLink}>
                                     <Phone size={15} className={s.contactIcon} />
-                                    +33 1 23 45 67 89
+                                    +33 (0)6 46 86 14 77
                                 </a>
                             </li>
                             <li>
                                 <a href="mailto:contact@neuilly-basketball.fr" className={s.contactLink}>
                                     <Mail size={15} className={s.contactIcon} />
-                                    contact@neuilly-basketball.fr
+                                    contact@neuillybasketball.com
                                 </a>
                             </li>
                         </ul>

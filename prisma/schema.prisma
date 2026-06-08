@@ -3,8 +3,7 @@ generator client {
 }
 
 datasource db {
-  provider = "mysql"
-  url      = env("DATABASE_URL")
+  provider = "postgresql"
 }
 
 model Carousel {
@@ -43,7 +42,7 @@ model Player {
   updatedAt   DateTime  @updatedAt
   team        Team      @relation(fields: [teamId], references: [id], onDelete: Cascade)
 
-  @@index([teamId], map: "player_teamId_fkey")
+  @@index([teamId])
   @@map("player")
 }
 
@@ -52,7 +51,7 @@ model Post {
   title     String   @db.VarChar(255)
   slug      String   @unique @db.VarChar(255)
   excerpt   String?  @db.Text
-  content   String   @db.LongText
+  content   String   @db.Text
   picture   String?  @db.VarChar(500)
   isOnline  Boolean  @default(true)
   createdAt DateTime @default(now())
@@ -72,7 +71,7 @@ model Training {
   updatedAt DateTime @updatedAt
   team      Team     @relation(fields: [teamId], references: [id], onDelete: Cascade)
 
-  @@index([teamId], map: "training_teamId_fkey")
+  @@index([teamId])
   @@map("training")
 }
 

@@ -1,0 +1,261 @@
+@use "@/styles/vars" as *;
+
+.main {
+  position: relative;
+  min-height: 100vh;
+  padding: 8rem 0 6rem;
+  overflow: hidden;
+  background-color: $white;
+}
+
+.bgDecor {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.15;
+
+  .blob1 {
+    position: absolute;
+    top: -10%;
+    right: -10%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, $red 0%, transparent 70%);
+    filter: blur(80px);
+  }
+
+  .blob2 {
+    position: absolute;
+    bottom: -10%;
+    left: -10%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, $blue 0%, transparent 70%);
+    filter: blur(80px);
+  }
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 4rem;
+
+  .title {
+    font-size: clamp(3rem, 8vw, 5rem);
+    line-height: 0.9;
+    margin: 1.5rem 0;
+    color: $blue-dark;
+    text-transform: uppercase;
+  }
+  span{
+    color: $red;
+  }
+  .brush {
+    position: relative;
+    display: inline-block;
+    padding: 0 1rem;
+    color: $white;
+    z-index: 1;
+    margin-top: 1rem;
+    font-size: 2rem;
+    
+    &::before {
+      content: "";
+      position: absolute;
+      inset: -5px -15px;
+      background: $blue-dark;
+      z-index: -1;
+      transform: rotate(-1.5deg) skew(-10deg);
+      border-radius: 4px;
+      // Effet pinceau simplifié avec un dégradé ou une forme irrégulière
+      clip-path: polygon(2% 15%, 98% 5%, 96% 85%, 5% 95%);
+    }
+  }
+
+  .lead {
+    font-size: 1.25rem;
+    color: $grey-400;
+    max-width: 600px;
+    margin: 0 auto;
+    font-weight: 500;
+  }
+}
+
+.ctaCard {
+  background: $blue-dark;
+  border-radius: var(--radius-xl);
+  padding: 3rem;
+  box-shadow: var(--shadow-lg);
+  margin-bottom: 4rem;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle at 100% 0%, rgba($red, 0.2) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .ctaInner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    text-align: center;
+
+    @media (min-width: $bp-md) {
+      flex-direction: row;
+      text-align: left;
+    }
+  }
+
+  .ctaText {
+    h2 {
+      font-size: 2.5rem;
+      color: $white;
+      margin-bottom: 0.5rem;
+      line-height: 1.1;
+    }
+
+    p {
+      color: rgba($white, 0.7);
+      font-size: 1.1rem;
+    }
+  }
+}
+
+.infoGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-bottom: 5rem;
+}
+
+.infoItem {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 1.5rem;
+  background: $white;
+  border-radius: var(--radius-lg);
+  border: 1px solid $grey-200;
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+  }
+
+  .iconWrapper {
+    flex-shrink: 0;
+    width: 50px;
+    height: 50px;
+    border-radius: 12px;
+    background: rgba($red, 0.1);
+    color: $red;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  h3 {
+    font-size: 1.5rem;
+    color: $blue-dark;
+    margin-bottom: 0.25rem;
+  }
+
+  p {
+    font-size: 0.9rem;
+    color: $grey-400;
+    line-height: 1.4;
+  }
+}
+
+.textSection {
+  background: $grey-100;
+  border-radius: var(--radius-xl);
+  padding: 3rem;
+  border: 1px solid $grey-200;
+
+  h2 {
+    font-size: 2rem;
+    color: $blue-dark;
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+}
+
+.textContainer {
+  position: relative;
+  max-height: 500px;
+  overflow-y: auto;
+  padding-right: 1.5rem;
+  
+  // Custom scrollbar
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: $grey-200;
+    border-radius: 10px;
+    &:hover {
+      background: $grey-400;
+    }
+  }
+}
+
+.scrollContent {
+  color: $grey-400;
+  font-size: 1.05rem;
+  line-height: 1.7;
+
+  p {
+    margin-bottom: 1.5rem;
+  }
+
+  strong {
+    color: $blue-dark;
+    font-weight: 700;
+    display: block;
+    margin-top: 2rem;
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+  }
+
+  ul {
+    list-style: none;
+    margin-bottom: 1.5rem;
+    
+    li {
+      position: relative;
+      padding-left: 1.5rem;
+      margin-bottom: 0.75rem;
+
+      &::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0.6em;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: $red;
+      }
+    }
+  }
+}

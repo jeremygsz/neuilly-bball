@@ -51,7 +51,7 @@ export function ClubSection() {
 
                         {/* Badge flottant */}
                         <div className={s.imageBadge}>
-                            <span className={s.imageBadgeYear}>1987</span>
+                            <span className={s.imageBadgeYear}>2022</span>
                             <span className={s.imageBadgeLabel}>Fondé en</span>
                         </div>
                     </div>
