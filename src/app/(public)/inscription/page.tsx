@@ -13,6 +13,25 @@ function fadeUp(delay = 0): HTMLMotionProps<"div"> {
     };
 }
 
+const planningData = [
+    { category: "U6 à U10", age: "6 à 10 ans", day: "Mercredi", time: "13h00 - 15h00", public: "Enfants", color: "#3b82f6" },
+    { category: "U10 à U15", age: "10 à 15 ans", day: "Mercredi", time: "15h30 - 18h00", public: "Enfants", color: "#10b981" },
+    { category: "U15 à U18", age: "15 à 18 ans", day: "Mercredi", time: "18h00 - 20h00", public: "Enfants", color: "#f59e0b" },
+    { category: "Basket Entreprise", age: "Adultes", day: "Mardi", time: "12h00 - 13h00", public: "Adultes", color: "#a855f7" },
+    { category: "Vétérans Loisirs Féminins", age: "À partir de 20 ans", day: "Vendredi", time: "18h00 - 20h00", public: "Adultes", color: "#ec4899" },
+    { category: "Vétérans Loisirs Masculins", age: "À partir de 20 ans", day: "Mardi", time: "20h00 - 22h00", public: "Adultes", color: "#6366f1" },
+    { category: "Vétérans Loisirs Masculins", age: "À partir de 20 ans", day: "Vendredi", time: "20h00 - 22h00", public: "Adultes", color: "#6366f1" },
+    { category: "Seniors 1", age: "Adultes", day: "Jeudi", time: "20h00 - 22h00", public: "Adultes", color: "#ef4444" },
+    { category: "Seniors 1", age: "Adultes", day: "Samedi", time: "11h00 - 13h00", public: "Adultes", color: "#ef4444" },
+    { category: "Enfants U6 à U18*", age: "6 à 18 ans", day: "Samedi", time: "15h30 - 18h00", public: "Toutes les catégories enfants", color: "multi" },
+];
+
+const legendData = [
+    { label: "U6 à U10", color: "#3b82f6" },
+    { label: "U10 à U15", color: "#10b981" },
+    { label: "U15 à U18", color: "#f59e0b" },
+];
+
 export default function InscriptionPage() {
     return (
         <main className={s.main}>
@@ -94,6 +113,55 @@ export default function InscriptionPage() {
                             </div>
                         </motion.div>
                     </div>
+
+                    {/* ── Planning Section ── */}
+                    <motion.section className={s.planningSection} {...fadeUp(0.75)}>
+                        <div className={s.planningHeader}>
+                            <h2 className="font-display">Planning prévisionnel 2026-2027</h2>
+                            <p>Complexe Sportif de l'Île du Pont - Neuilly-sur-Seine</p>
+                        </div>
+
+                        <div className={s.tableWrapper}>
+                            <table className={s.planningTable}>
+                                <thead>
+                                    <tr>
+                                        <th>Catégorie</th>
+                                        <th>Âge indicatif</th>
+                                        <th>Jour</th>
+                                        <th>Horaires</th>
+                                        <th>Public</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {planningData.map((item, index) => (
+                                        <tr key={index} className={item.color === 'multi' ? s.specialRow : ''}>
+                                            <td className={s.categoryCell}>
+                                                <div 
+                                                    className={`${s.colorTag} ${item.color === 'multi' ? s.multi : ''}`}
+                                                    style={item.color !== 'multi' ? { backgroundColor: item.color } : {}}
+                                                />
+                                                {item.category}
+                                            </td>
+                                            <td>{item.age}</td>
+                                            <td>{item.day}</td>
+                                            <td>{item.time}</td>
+                                            <td>{item.public}</td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div className={s.legend}>
+                            <span className={s.legendTitle}>Légende :</span>
+                            {legendData.map((item, index) => (
+                                <div key={index} className={s.legendItem}>
+                                    <div className={s.legendColor} style={{ backgroundColor: item.color }} />
+                                    <span>{item.label}</span>
+                                </div>
+                            ))}
+                        </div>
+                    </motion.section>
 
                     {/* ── Explanatory Text ── */}
                     <motion.div className={s.textSection} {...fadeUp(0.8)}>
