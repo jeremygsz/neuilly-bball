@@ -84,7 +84,7 @@ export function HeroSection() {
                     {/* CTAs */}
                     <motion.div className={s.ctas} {...fadeUp(0.65)}>
                         <Link href="/inscription" className={s.ctaPrimary}>
-                            <span>Nous rejoindre</span>
+                            <span>Inscription</span>
                             <span className={s.ctaIcon}><ArrowRight size={16} /></span>
                         </Link>
                         <Link href="/equipes" className={s.ctaSecondary}>
