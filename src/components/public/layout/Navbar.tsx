@@ -14,6 +14,7 @@ const navLinks = [
     { href: "/equipes",       label: "Équipes"               },
     { href: "/#",        label: "Nos Stages"            },
     { href: "/#",             label: "Nos Équipements"      },
+    { href: "/#",             label: "Boutique"      },
     { href: "/actualites",    label: "À La Une"              },
     // { href: "/contact",       label: "Contact"               },
 ];

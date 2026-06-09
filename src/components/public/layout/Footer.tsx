@@ -5,11 +5,13 @@ import s from "./Footer.module.scss";
 
 const footerLinks = {
     club: [
-        { href: "/",           label: "Accueil"               },
-        { href: "/#",       label: "Le Club"               },
-        { href: "/equipe",     label: "Équipes"               },
-        { href: "/actualites", label: "À la une"              },
-        // { href: "/contact",    label: "Contact"               },
+        { href: "/",              label: "Accueil"               },
+        { href: "/#",          label: "Le Club"               },
+        { href: "/equipes",       label: "Équipes"               },
+        { href: "/#",        label: "Nos Stages"            },
+        { href: "/#",             label: "Nos Équipements"      },
+        { href: "/#",             label: "Boutique"      },
+        { href: "/actualites",    label: "À La Une"              },
     ],
     infos: [
         { href: "/mentions-legales",          label: "Mentions légales"             },
@@ -19,9 +21,7 @@ const footerLinks = {
 };
 
 const socials = [
-    { href: "https://facebook.com",  icon: Facebook,  label: "Facebook"  },
-    { href: "https://instagram.com", icon: Instagram, label: "Instagram" },
-    { href: "https://youtube.com",   icon: Youtube,   label: "YouTube"   },
+    { href: "https://www.instagram.com/neuilly_basketball_association/", icon: Instagram, label: "Instagram" },
 ];
 
 export function Footer() {

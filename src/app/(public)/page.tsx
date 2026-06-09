@@ -14,7 +14,7 @@ export default function HomePage() {
             <ActualitesSection />
             <EquipesSection />
             {/*<AgendaSection />*/}
-            <ClubSection />
+            {/*<ClubSection />*/}
             {/*<PartenairesSection />*/}
         </>
     );
