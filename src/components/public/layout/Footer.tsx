@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { BallIcon } from "@/components/public/icons/BallIcon";
-import { MapPin, Phone, Mail, Facebook, Instagram, Youtube } from "lucide-react";
+import { MapPin, Phone, Mail, Facebook, Instagram, Youtube, MessageCircle } from "lucide-react";
 import s from "./Footer.module.scss";
 
 const footerLinks = {
@@ -22,6 +22,7 @@ const footerLinks = {
 
 const socials = [
     { href: "https://www.instagram.com/neuilly_basketball_association/", icon: Instagram, label: "Instagram" },
+    { href: "https://wa.me/33646861477", icon: MessageCircle, label: "WhatsApp" },
 ];
 
 export function Footer() {
