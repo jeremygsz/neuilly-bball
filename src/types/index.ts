@@ -40,11 +40,15 @@ export interface CarouselItem {
 }
 
 // ─── Teams & Players ─────────────────────────────────────────────────────────
+export type Gender = "Masculin" | "Féminin" | "Mixte";
+
 export interface TeamWithPlayers {
     id: number;
     label: string;
-    players: Player[];
+    gender: Gender;
+    players?: Player[];
     trainings: Training[];
+    isOnline: boolean;
     createdAt: Date;
     updatedAt: Date;
 }

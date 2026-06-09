@@ -1,4 +1,4 @@
-import { TeamWithPlayers } from "@/app/(public)/equipes/EquipesClientWrapper";
+import { TeamWithPlayers } from "@/types";
 import { PlayerCard } from "@/components/public/player/PlayerCard";
 
 import { Users }      from "lucide-react";
@@ -17,7 +17,7 @@ export function TeamSection({ team }: Props) {
         );
     }
 
-    if (team.players.length === 0) {
+    if (!team.players || team.players.length === 0) {
         return (
             <div className={s.emptyState}>
                 <p>Aucun joueur n'a encore été ajouté à cette équipe.</p>

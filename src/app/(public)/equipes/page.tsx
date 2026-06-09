@@ -10,13 +10,10 @@ export default async function EquipesPage() {
     try {
         teams = await prisma.team.findMany({
             where: { isOnline: true },
-            include: {
-                players: true
-            },
             orderBy: {
-                label: 'asc'
+                id: 'asc'
             }
-        });
+        }) as unknown as TeamWithPlayers[];
     } catch (error) {
         console.error("Failed to fetch teams:", error);
     }

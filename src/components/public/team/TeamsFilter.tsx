@@ -1,6 +1,4 @@
-"use client";
-
-import { TeamWithPlayers } from "@/app/(public)/equipes/EquipesClientWrapper";
+import { TeamWithPlayers } from "@/types";
 import { Users }    from "lucide-react";
 import s from "./TeamsFilter.module.scss";
 
@@ -20,7 +18,6 @@ export function TeamsFilter({ teams, activeId, onChange }: Props) {
                 >
                     <Users size={14} />
                     Toutes les équipes
-                    <span className={s.count}>{teams.reduce((acc, t) => acc + t.players.length, 0)}</span>
                 </button>
 
                 {teams.map((team) => (
@@ -30,7 +27,6 @@ export function TeamsFilter({ teams, activeId, onChange }: Props) {
                         onClick={() => onChange(team.id)}
                     >
                         {team.label}
-                        <span className={s.count}>{team.players.length}</span>
                     </button>
                 ))}
             </div>

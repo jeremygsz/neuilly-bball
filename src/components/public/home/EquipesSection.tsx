@@ -5,27 +5,26 @@ import { ArrowRight, Users } from "lucide-react";
 import s from "./EquipesSection.module.scss";
 import { prisma } from "@/lib/prisma";
 import * as m from "framer-motion/client";
+import { Team } from "@prisma/client";
 
 // ─── Types ───────────────────────────────────────────────────────────────────
 interface TeamWithCount {
     id: number;
     label: string;
+    gender?: string; // Optionnel pour éviter les erreurs de type Prisma
     _count: {
         players: number;
     };
-    // Note: Temporary fallback for missing fields in DB schema
     slug?: string;
-    genre?: string;
     image?: string;
     niveau?: string;
 }
 
-// ─── Default values (since DB schema is minimalist) ──────────────────────────
+// ─── Default values ──────────────────────────────────────────────────────────
 const DEFAULT_IMAGE = "https://images.unsplash.com/photo-1546519638-68e109498ffc?w=800";
-const DEFAULT_GENRE = "Mixte";
 const DEFAULT_NIVEAU = "Compétition";
 
-const GENRE_COLOR: Record<string, string> = {
+const GENDER_COLOR: Record<string, string> = {
     Masculin: "blue",
     Féminin:  "pink",
     Mixte:    "purple",
@@ -33,8 +32,8 @@ const GENRE_COLOR: Record<string, string> = {
 
 // ─── Card ─────────────────────────────────────────────────────────────────────
 function EquipeCard({ equipe, index }: { equipe: TeamWithCount; index: number }) {
-    const genre = equipe.genre || DEFAULT_GENRE;
-    const color = GENRE_COLOR[genre] || "purple";
+    const gender = equipe.gender || "Masculin";
+    const color = GENDER_COLOR[gender] || "purple";
     const slug = equipe.label.toLowerCase().replace(/\s+/g, "-");
 
     return (
@@ -58,9 +57,9 @@ function EquipeCard({ equipe, index }: { equipe: TeamWithCount; index: number })
                     />
                     <div className={s.imageOverlay} />
 
-                    {/* Genre badge */}
+                    {/* Gender badge */}
                     <span className={`${s.badge} ${s[`badge--${color}`]}`}>
-                        {genre}
+                        {gender}
                     </span>
 
                     {/* Niveau */}
@@ -92,7 +91,7 @@ function EquipeCard({ equipe, index }: { equipe: TeamWithCount; index: number })
 export async function EquipesSection() {
     let equipes: TeamWithCount[] = [];
     try {
-        equipes = await prisma.team.findMany({
+        const result = await prisma.team.findMany({
             where: { isOnline: true },
             include: {
                 _count: {
@@ -100,8 +99,9 @@ export async function EquipesSection() {
                 }
             },
             take: 6,
-            orderBy: { createdAt: "desc" }
+            orderBy: { id: "asc" }
         });
+        equipes = result as unknown as TeamWithCount[];
     } catch (error) {
         console.error("Failed to fetch teams:", error);
     }

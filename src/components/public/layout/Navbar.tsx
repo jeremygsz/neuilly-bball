@@ -57,10 +57,12 @@ export function Navbar() {
         return () => clearTimeout(id);
     }, [pathname]);
 
+    const isLightPage = pathname?.startsWith("/inscription");
+
     const headerClass = [
         styles.header,
         scrolled ? styles["header--scrolled"] : styles["header--transparent"],
-        (!scrolled && pathname !== "/") ? styles["header--light"] : "",
+        (!scrolled && isLightPage) ? styles["header--light"] : "",
     ].join(" ");
 
     return (

@@ -1,4 +1,4 @@
-import { TeamWithPlayers } from "@/app/(public)/equipes/EquipesClientWrapper";
+import { TeamWithPlayers } from "@/types";
 import { Users, ChevronRight } from "lucide-react";
 import s from "./TeamCard.module.scss";
 
@@ -7,27 +7,11 @@ interface Props {
     onClick: () => void;
 }
 
-const POSITION_ORDER = ["Meneur", "Arrière", "Ailier", "Ailier fort", "Pivot"];
-
-function getPositionStats(team: TeamWithPlayers) {
-    return POSITION_ORDER.map((pos) => ({
-        label: pos,
-        count: team.players.filter((p) => p.position === pos).length,
-    })).filter((p) => p.count > 0);
-}
-
 // Couleur d'accent par équipe (cyclique)
 const TEAM_ACCENTS = ["#C8102E", "#2550C0", "#1B8C4C", "#8B2FC9", "#C87210"];
 
 export function TeamCard({ team, onClick }: Props) {
-    const stats  = getPositionStats(team);
     const accent = TEAM_ACCENTS[(team.id - 1) % TEAM_ACCENTS.length];
-    const initials = team.label
-        .split(" ")
-        .map((w) => w[0])
-        .slice(0, 2)
-        .join("")
-        .toUpperCase();
 
     return (
         <article
@@ -50,41 +34,14 @@ export function TeamCard({ team, onClick }: Props) {
                 <div className={s.meta}>
                     <h2 className={s.title}>{team.label}</h2>
                     <p className={s.playerCount}>
-                        {team.players.length} joueur{team.players.length > 1 ? "s" : ""}
+                        {team.gender}
                     </p>
                 </div>
             </div>
 
-            {/* Stats postes */}
-            <div className={s.stats}>
-                {stats.map(({ label, count }) => (
-                    <div key={label} className={s.stat}>
-                        <span className={s.statCount}>{count}</span>
-                        <span className={s.statLabel}>{label}</span>
-                    </div>
-                ))}
-            </div>
-
-            {/* Avatars initiales joueurs */}
-            <div className={s.playerAvatars}>
-                {team.players.slice(0, 6).map((p) => (
-                    <div key={p.id} className={s.playerAvatar} title={`${p.firstname} ${p.lastname}`}>
-                        {p.photo
-                            ? <img src={p.photo} alt="" />
-                            : `${p.firstname[0]}${p.lastname[0]}`
-                        }
-                    </div>
-                ))}
-                {team.players.length > 6 && (
-                    <div className={`${s.playerAvatar} ${s.playerAvatarMore}`}>
-                        +{team.players.length - 6}
-                    </div>
-                )}
-            </div>
-
             {/* CTA */}
             <div className={s.cta}>
-                <span>Voir l'équipe</span>
+                <span>Informations</span>
                 <ChevronRight size={16} />
             </div>
 

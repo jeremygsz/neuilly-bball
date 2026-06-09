@@ -1,11 +1,12 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { TeamWithPlayers } from "@/app/(public)/equipes/EquipesClientWrapper";
+import { TeamWithPlayers } from "@/types";
 import { PlayerCard }        from "@/components/public/player/PlayerCard";
 import { X, Users }          from "lucide-react";
 import { createPortal }      from "react-dom";
 import s from "./TeamModal.module.scss";
+import {getCurrentSeason} from "@/lib/utils/season";
 
 interface Props {
     team:    TeamWithPlayers;
@@ -35,7 +36,7 @@ export function TeamModal({ team, onClose }: Props) {
         if (e.target === overlayRef.current) onClose();
     };
 
-    const sorted = [...team.players].sort((a, b) => {
+    const sorted = [...(team.players || [])].sort((a, b) => {
         const ai = POSITION_ORDER.indexOf(a.position ?? "");
         const bi = POSITION_ORDER.indexOf(b.position ?? "");
         return (ai === -1 ? 99 : ai) - (bi === -1 ? 99 : bi);
@@ -61,8 +62,9 @@ export function TeamModal({ team, onClose }: Props) {
                         <div>
                             <h2 className={s.title}>{team.label}</h2>
                             <p className={s.subtitle}>
-                                {team.players.length} joueur{team.players.length > 1 ? "s" : ""}
-                                &nbsp;— Saison 2024 / 2025
+                                {team.gender} &nbsp;—&nbsp;
+                                {team.players?.length || 0} joueur{(team.players?.length || 0) > 1 ? "s" : ""}
+                                &nbsp;— {getCurrentSeason()}
                             </p>
                         </div>
                     </div>

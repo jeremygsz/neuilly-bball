@@ -13,7 +13,7 @@ model Carousel {
   picture   String   @db.VarChar(500)
   isOnline  Boolean  @default(true)
   createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  updatedAt DateTime @default(now()) @updatedAt
 
   @@map("carousel")
 }
@@ -21,13 +21,20 @@ model Carousel {
 model Team {
   id        Int        @id @default(autoincrement())
   label     String     @db.VarChar(255)
+  gender    Gender     @default(Masculin)
   isOnline  Boolean    @default(true)
   createdAt DateTime   @default(now())
-  updatedAt DateTime   @updatedAt
+  updatedAt DateTime   @default(now()) @updatedAt
   players   Player[]
   trainings Training[]
 
   @@map("team")
+}
+
+enum Gender {
+  Masculin
+  Féminin
+  Mixte
 }
 
 model Player {
@@ -40,7 +47,7 @@ model Player {
   teamId      Int
   dateOfBirth DateTime? @db.Date
   createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
+  updatedAt   DateTime  @default(now()) @updatedAt
   team        Team      @relation(fields: [teamId], references: [id], onDelete: Cascade)
 
   @@index([teamId])
@@ -56,7 +63,7 @@ model Post {
   picture   String?  @db.VarChar(500)
   isOnline  Boolean  @default(true)
   createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  updatedAt DateTime @default(now()) @updatedAt
 
   @@map("post")
 }
@@ -69,7 +76,7 @@ model Training {
   endTime   String   @db.VarChar(5)
   location  String?  @db.VarChar(255)
   createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  updatedAt DateTime @default(now()) @updatedAt
   team      Team     @relation(fields: [teamId], references: [id], onDelete: Cascade)
 
   @@index([teamId])
@@ -86,7 +93,7 @@ model Contact {
   message   String   @db.Text
   isRead    Boolean  @default(false)
   createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  updatedAt DateTime @default(now()) @updatedAt
 
   @@map("contact")
 }
@@ -99,7 +106,7 @@ model User {
   password  String   @db.VarChar(255)
   role      Role     @default(ADMIN)
   createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  updatedAt DateTime @default(now()) @updatedAt
 
   @@map("user")
 }

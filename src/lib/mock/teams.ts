@@ -18,6 +18,7 @@ export interface MockPlayer {
 export interface MockTeam {
     id: number;
     label: string;
+    gender: "Masculin" | "Féminin" | "Mixte";
     players: MockPlayer[];
 }
 
@@ -25,6 +26,7 @@ export const mockTeams: MockTeam[] = [
     {
         id: 1,
         label: "Équipe Première",
+        gender: "Masculin",
         players: [
             { id: 1,  firstname: "Thomas",   lastname: "Durand",   position: "Meneur",      number: 4,  photo: null, dateOfBirth: "1995-03-12" },
             { id: 2,  firstname: "Lucas",    lastname: "Martin",   position: "Arrière",     number: 7,  photo: null, dateOfBirth: "1997-07-24" },
@@ -39,6 +41,7 @@ export const mockTeams: MockTeam[] = [
     {
         id: 2,
         label: "Équipe Réserve",
+        gender: "Masculin",
         players: [
             { id: 9,  firstname: "Hugo",     lastname: "Simon",    position: "Meneur",      number: 3,  photo: null, dateOfBirth: "1999-02-14" },
             { id: 10, firstname: "Baptiste", lastname: "Laurent",  position: "Ailier",      number: 9,  photo: null, dateOfBirth: "2000-08-07" },
@@ -51,6 +54,7 @@ export const mockTeams: MockTeam[] = [
     {
         id: 3,
         label: "U18",
+        gender: "Masculin",
         players: [
             { id: 15, firstname: "Axel",     lastname: "Fontaine", position: "Meneur",      number: 4,  photo: null, dateOfBirth: "2006-01-10" },
             { id: 16, firstname: "Noah",     lastname: "Dupont",   position: "Ailier",      number: 12, photo: null, dateOfBirth: "2007-04-22" },
@@ -62,6 +66,7 @@ export const mockTeams: MockTeam[] = [
     {
         id: 4,
         label: "U15",
+        gender: "Masculin",
         players: [
             { id: 20, firstname: "Léo",      lastname: "Perrin",   position: "Meneur",      number: 5,  photo: null, dateOfBirth: "2009-03-15" },
             { id: 21, firstname: "Nathan",   lastname: "Colin",    position: "Pivot",       number: 21, photo: null, dateOfBirth: "2010-07-08" },
