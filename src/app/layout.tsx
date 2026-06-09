@@ -14,13 +14,54 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-    title: "Neuilly Basketball",
-    description: "Club de basketball de Neuilly-sur-Seine",
+    title: {
+        default: "Neuilly Basketball",
+        template: "%s | Neuilly Basketball"
+    },
+    description: "Club de basketball de Neuilly-sur-Seine. Rejoignez l'association pour progresser, jouer en compétition ou en loisir dans une ambiance conviviale.",
+    icons: {
+        icon: "/images/basketball.png",
+    },
+    openGraph: {
+        type: "website",
+        url: "https://neuilly-basketball.fr",
+        title: "Neuilly Basketball",
+        description: "Club de basketball de Neuilly-sur-Seine.",
+        images: [{ url: "/images/logo.jpeg", width: 800, height: 600, alt: "Neuilly Basketball Logo" }],
+        siteName: "Neuilly Basketball",
+    },
+    twitter: {
+        card: "summary_large_image",
+        title: "Neuilly Basketball",
+        description: "Club de basketball de Neuilly-sur-Seine.",
+        images: ["/images/logo.jpeg"],
+    },
+};
+
+const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "SportsClub",
+    "name": "Neuilly Basketball Association",
+    "url": "https://neuilly-basketball.fr",
+    "logo": "https://neuilly-basketball.fr/images/logo.jpeg",
+    "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Neuilly-sur-Seine",
+        "addressRegion": "Île-de-France",
+        "addressCountry": "FR"
+    },
+    "description": "Club de basketball de Neuilly-sur-Seine proposant des entraînements et des compétitions pour enfants et adultes."
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
     return (
         <html lang="fr">
+        <head>
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+            />
+        </head>
         <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         {children}
         </body>

@@ -3,6 +3,12 @@ import { ArticleCard } from "@/components/public/blog/ArticleCard";
 import * as m from "framer-motion/client";
 import s from "./page.module.scss";
 import { Post } from "@prisma/client";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: "Actualités",
+    description: "Toutes les dernières nouvelles, résultats et événements du club Neuilly Basketball.",
+};
 
 export const dynamic = "force-dynamic";
 

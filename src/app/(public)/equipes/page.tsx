@@ -3,6 +3,12 @@ import { getCurrentSeason } from "@/lib/utils/season";
 import { EquipesClientWrapper } from "./EquipesClientWrapper";
 import { TeamWithPlayers } from "@/types";
 import s from "./page.module.scss";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: "Nos Équipes",
+    description: "Découvrez toutes les équipes de Neuilly Basketball : du baby-basket aux seniors.",
+};
 
 export const dynamic = "force-dynamic";
 

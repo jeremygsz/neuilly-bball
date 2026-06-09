@@ -1,6 +1,12 @@
 import { MapPin, Phone, Mail, Facebook, Instagram } from "lucide-react";
 import { ContactForm } from "@/components/public/contact/ContactForm";
 import s from "./page.module.scss";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: "Contact",
+    description: "Contactez Neuilly Basketball Association pour toute question concernant les inscriptions, les entraînements ou le club.",
+};
 
 export default function ContactPage() {
     return (
