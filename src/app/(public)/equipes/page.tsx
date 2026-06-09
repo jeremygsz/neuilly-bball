@@ -1,6 +1,7 @@
 import { prisma } from "@/lib/prisma";
 import { getCurrentSeason } from "@/lib/utils/season";
-import { EquipesClientWrapper, TeamWithPlayers } from "./EquipesClientWrapper";
+import { EquipesClientWrapper } from "./EquipesClientWrapper";
+import { TeamWithPlayers } from "@/types";
 import s from "./page.module.scss";
 
 export const dynamic = "force-dynamic";
