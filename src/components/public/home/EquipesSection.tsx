@@ -101,6 +101,7 @@ export async function EquipesSection() {
             take: 6,
             orderBy: { id: "asc" }
         });
+        console.log("Teams fetched in production (home):", result);
         equipes = result as unknown as TeamWithCount[];
     } catch (error) {
         console.error("Failed to fetch teams:", error);

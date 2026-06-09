@@ -15,6 +15,7 @@ export default async function EquipesPage() {
                 id: 'asc'
             }
         }) as unknown as TeamWithPlayers[];
+        console.log("Teams fetched in production:", teams);
     } catch (error) {
         console.error("Failed to fetch teams:", error);
     }
