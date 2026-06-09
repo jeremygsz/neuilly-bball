@@ -1,0 +1,54 @@
+@use "@/styles/vars" as *;
+
+.section {
+    padding: 6rem 1.5rem;
+    background: $white;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.content {
+    h2 {
+        font-size: clamp(2rem, 5vw, 3rem);
+        color: $blue-dark;
+        margin-bottom: 1.5rem;
+        text-align: center;
+        line-height: 1.2;
+    }
+}
+
+.lead {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: $red;
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.textBody {
+    color: $grey-600;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    
+    p {
+        margin-bottom: 1.5rem;
+    }
+}
+
+.closing {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: $blue-dark;
+    text-align: center;
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 2px solid $grey-100;
+    
+    i {
+        font-style: italic;
+        opacity: 0.85;
+    }
+}
