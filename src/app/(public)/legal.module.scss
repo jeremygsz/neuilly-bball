@@ -1,0 +1,133 @@
+@use "@/styles/vars" as *;
+
+.page {
+  min-height: 100vh;
+  background: $white;
+}
+
+// ─── Hero ─────────────────────────────────────────────────────────────────────
+.hero {
+  background: $blue-dark;
+  padding: 6rem 1.5rem 5rem;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: -80px;
+    right: -80px;
+    width: 320px;
+    height: 320px;
+    border-radius: 50%;
+    border: 60px solid rgba($red, 0.08);
+    pointer-events: none;
+  }
+}
+
+.heroInner {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.heroTitle {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: 400;
+  color: $white;
+  line-height: 1.05;
+  letter-spacing: 0.02em;
+}
+
+.accent { color: $red; }
+
+// ─── Content ──────────────────────────────────────────────────────────────────
+.content {
+  padding: 5rem 0 8rem;
+}
+
+.container {
+  max-width: 850px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.richText {
+  color: $blue-dark;
+  line-height: 1.7;
+
+  h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.25rem;
+    margin: 3.5rem 0 1.5rem;
+    color: $blue;
+    letter-spacing: 0.02em;
+    border-bottom: 2px solid $grey-100;
+    padding-bottom: 0.5rem;
+    display: block;
+  }
+
+  h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin: 2rem 0 1rem;
+    color: $blue-dark;
+  }
+
+  p {
+    margin-bottom: 1.25rem;
+    color: $grey-600;
+  }
+
+  ul {
+    margin-bottom: 1.5rem;
+    padding-left: 1.5rem;
+    list-style-type: disc;
+
+    li {
+      margin-bottom: 0.5rem;
+      color: $grey-600;
+    }
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem 0;
+    font-size: 0.9375rem;
+
+    th, td {
+      border: 1px solid $grey-200;
+      padding: 0.75rem 1rem;
+      text-align: left;
+    }
+
+    th {
+      background: $grey-100;
+      font-weight: 700;
+      color: $blue;
+    }
+  }
+
+  hr {
+    border: 0;
+    height: 1px;
+    background: $grey-200;
+    margin: 4rem 0;
+  }
+
+  strong {
+    color: $blue-dark;
+    font-weight: 700;
+  }
+
+  .lastUpdate {
+    font-style: italic;
+    color: $grey-400;
+    margin-bottom: 2rem;
+    display: block;
+  }
+}
