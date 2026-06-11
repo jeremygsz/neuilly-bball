@@ -38,13 +38,6 @@ export function TeamCard({ team, onClick }: Props) {
                     </p>
                 </div>
             </div>
-
-            {/* CTA */}
-            <div className={s.cta}>
-                <span>Informations</span>
-                <ChevronRight size={16} />
-            </div>
-
         </article>
     );
 }
