@@ -99,6 +99,10 @@
     transform: translateY(-8px);
     border-color: rgba($red, 0.3);
     background: rgba($white, 0.05);
+
+    .cardImage .image {
+      transform: scale(1.05);
+    }
   }
 }
 
@@ -133,6 +137,43 @@
 .cardHeader {
   padding: 32px;
   border-bottom: 1px solid rgba($white, 0.05);
+  height: 280px;
+  display: flex;
+  flex-direction: column;
+}
+
+.cardImage {
+  position: relative;
+  width: 100%;
+  height: 220px;
+  overflow: hidden;
+  display: block; // Link behavior
+  text-decoration: none;
+
+  .image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s $ease;
+  }
+
+  .imageOverlay {
+    position: absolute;
+    inset: 0;
+    background: rgba($blue-dark, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s $ease;
+    backdrop-filter: blur(2px);
+  }
+
+  &:hover {
+    .imageOverlay {
+      opacity: 1;
+    }
+  }
 }
 
 .cardBadge {
@@ -143,6 +184,7 @@
   font-weight: 700;
   text-transform: uppercase;
   margin-bottom: 16px;
+  align-self: flex-start;
 }
 
 .cardTitle {
@@ -171,6 +213,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
+  margin-top: auto;
 }
 
 .infoItem {
