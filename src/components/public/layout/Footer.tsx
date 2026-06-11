@@ -132,7 +132,7 @@ export function Footer() {
                         © {currentYear} Neuilly Basketball — Tous droits réservés.
                     </p>
                     <p className={s.madeWith}>
-                        Fait avec ❤️ pour le basket
+                        Fait avec ❤️ pour le basketball
                     </p>
                 </div>
             </div>

@@ -34,7 +34,7 @@ export function WelcomeSection() {
                         <p><i>Que vous soyez débutant, joueur confirmé, enfant, adolescent ou adulte, nous serons heureux de vous accueillir et de partager avec vous notre passion du basketball.</i></p>
                         
                         <p className={s.closing}>
-                            <i>Bienvenue chez Neuilly Basketball Association.<br />Bienvenue dans la famille. 🏀💙❤</i>
+                            <i>Bienvenue chez Neuilly Basketball Association.<br />Bienvenue dans la famille du basketball. </i> 💙
                         </p>
                     </div>
                 </motion.div>
