@@ -12,7 +12,7 @@ const navLinks = [
     { href: "/",              label: "Accueil"               },
     { href: "/#",          label: "Le Club"               },
     { href: "/equipes",       label: "Équipes"               },
-    { href: "/#",        label: "Nos Stages"            },
+    { href: "/stages",        label: "Nos Stages"            },
     { href: "/#",             label: "Nos Équipements"      },
     { href: "/#",             label: "Boutique"      },
     { href: "/actualites",    label: "À La Une"              },
