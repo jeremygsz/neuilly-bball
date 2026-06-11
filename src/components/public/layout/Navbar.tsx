@@ -9,14 +9,14 @@ import { Menu, X } from "lucide-react";
 import styles from "./Navbar.module.scss";
 
 const navLinks = [
-    { href: "/",              label: "Accueil"               },
-    { href: "/#",          label: "Le Club"               },
-    { href: "/equipes",       label: "Équipes"               },
-    { href: "/stages",        label: "Nos Stages"            },
-    { href: "/#",             label: "Nos Équipements"      },
-    { href: "/#",             label: "Boutique"      },
-    { href: "/actualites",    label: "À La Une"              },
-    // { href: "/contact",       label: "Contact"               },
+    { href: "/",label: "Accueil"},
+    { href: "/#", label: "Le Club"},
+    { href: "/equipes",label: "Équipes"},
+    { href: "/stages", label: "Nos Stages"},
+    { href: "/#",label: "Nos Équipements"},
+    { href: "/boutique",label: "Boutique"},
+    { href: "/actualites",label: "À La Une"},
+    { href: "/contact",label: "Contact"},
 ];
 
 const headerVariants = {

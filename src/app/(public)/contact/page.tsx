@@ -1,4 +1,4 @@
-import { MapPin, Phone, Mail, Facebook, Instagram } from "lucide-react";
+import {MapPin, Phone, Mail, Facebook, Instagram, MessageCircle} from "lucide-react";
 import { ContactForm } from "@/components/public/contact/ContactForm";
 import s from "./page.module.scss";
 import { Metadata } from "next";
@@ -9,6 +9,11 @@ export const metadata: Metadata = {
 };
 
 export default function ContactPage() {
+    const socials = [
+        { href: "https://www.instagram.com/neuilly_basketball_association/", icon: Instagram, label: "Instagram" },
+        { href: "https://wa.me/33646861477", icon: MessageCircle, label: "WhatsApp" },
+    ];
+
     return (
         <main className={s.page}>
 
@@ -68,10 +73,7 @@ export default function ContactPage() {
                         <div className={s.infoGroup}>
                             <h2 className={s.infoTitle}>Suivez-nous</h2>
                             <div className={s.socials}>
-                                <a href="#" className={s.socialLink} aria-label="Facebook">
-                                    <Facebook size={20} />
-                                </a>
-                                <a href="#" className={s.socialLink} aria-label="Instagram">
+                                <a href="https://www.instagram.com/neuilly_basketball_association/" target={"_blank"} className={s.socialLink} aria-label="Instagram">
                                     <Instagram size={20} />
                                 </a>
                             </div>

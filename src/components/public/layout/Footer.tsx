@@ -10,7 +10,7 @@ const footerLinks = {
         { href: "/equipes",       label: "Équipes"               },
         { href: "/stages",        label: "Nos Stages"            },
         { href: "/#",             label: "Nos Équipements"      },
-        { href: "/#",             label: "Boutique"      },
+        { href: "/boutique",      label: "Boutique"      },
         { href: "/actualites",    label: "À La Une"              },
     ],
     infos: [
