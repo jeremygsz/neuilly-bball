@@ -18,7 +18,7 @@ function fadeUp(delay = 0): Pick<HTMLMotionProps<"div">, "initial" | "animate" |
 
 const STATS = [
     { value: "10",   label: "Équipes"        },
-    { value: "150+", label: "Licenciés"      },
+    { value: "200", label: "Licenciés"      },
     { value: "4",    label: "Machines de Shoot" },
 ];
 
@@ -84,7 +84,7 @@ export function HeroSection() {
                     {/* CTAs */}
                     <motion.div className={s.ctas} {...fadeUp(0.65)}>
                         <Link href="/inscription" className={s.ctaPrimary}>
-                            <span>Inscription</span>
+                            <span>Adhésion 2026-2027</span>
                             <span className={s.ctaIcon}><ArrowRight size={16} /></span>
                         </Link>
                         <Link href="/equipes" className={s.ctaSecondary}>

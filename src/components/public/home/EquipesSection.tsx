@@ -124,7 +124,7 @@ export async function EquipesSection() {
                             <span className={s.eyebrowLine} />
                             Nos équipes
                         </span>
-                        <h2 className={s.sectionTitle}>Du baby-basket<br />aux seniors</h2>
+                        <h2 className={s.sectionTitle}>Du mini basket<br />aux vétérans</h2>
                     </div>
 
                     <div className={s.headerRight}>

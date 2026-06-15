@@ -95,8 +95,7 @@ export function ClubSection() {
 
                     <p className={s.intro}>
                         Depuis 1987, notre association développe la pratique du basketball
-                        pour tous les âges et tous les niveaux. Du baby-basket aux équipes
-                        senior engagées en championnat régional, nous formons des joueurs
+                        pour tous les âges et tous les niveaux. Du mini basket aux vétérans, nous formons des joueurs
                         et des citoyens.
                     </p>
 

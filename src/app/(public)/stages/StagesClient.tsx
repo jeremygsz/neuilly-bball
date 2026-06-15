@@ -60,7 +60,8 @@ const stages = [
             { icon: Trophy, text: "Surprises & Plaisir" }
         ],
         type: "camp",
-        registerLink: "https://neuilly-basketball-association.sporteasy.net/collections/49997/checkout/"
+        registerLink: "https://neuilly-basketball-association.sporteasy.net/collections/49997/checkout/",
+        isFull: true
     }
 ];
 
@@ -69,7 +70,7 @@ export default function StagesClient() {
         <>
             <div className={s.grid}>
                 {stages.map((stage) => (
-                    <div key={stage.id} className={`${s.card} ${s[`card--${stage.type}`]}`}>
+                    <div key={stage.id} className={`${s.card} ${s[`card--${stage.type}`]} ${stage.isFull ? s.cardFull : ""}`}>
                         <div className={s.cardHeader}>
                             <div className={s.cardBadge}>{stage.subtitle}</div>
                             <h2 className={s.cardTitle}>{stage.title}</h2>
@@ -89,24 +90,31 @@ export default function StagesClient() {
                             </div>
                         </div>
 
-                        <a 
-                            href={stage.image} 
-                            target="_blank" 
-                            rel="noopener noreferrer"
-                            className={s.cardImage} 
-                            title="Ouvrir l'image en plein écran"
-                        >
-                            <Image
-                                src={stage.image}
-                                alt={stage.title}
-                                width={400}
-                                height={250}
-                                className={s.image}
-                            />
-                            <div className={s.imageOverlay}>
-                                <Maximize2 size={32} color="white" />
-                            </div>
-                        </a>
+                        <div className={s.imageWrapper}>
+                            <a 
+                                href={stage.image} 
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                                className={s.cardImage} 
+                                title="Ouvrir l'image en plein écran"
+                            >
+                                <Image
+                                    src={stage.image}
+                                    alt={stage.title}
+                                    width={400}
+                                    height={250}
+                                    className={s.image}
+                                />
+                                <div className={s.imageOverlay}>
+                                    <Maximize2 size={32} color="white" />
+                                </div>
+                            </a>
+                            {stage.isFull && (
+                                <div className={s.soldOutBadge}>
+                                    Complet
+                                </div>
+                            )}
+                        </div>
 
                         <div className={s.cardBody}>
                             <p className={s.cardDesc}>{stage.description}</p>
@@ -121,14 +129,20 @@ export default function StagesClient() {
                         </div>
 
                         <div className={s.cardFooter}>
-                            <a
-                                href={stage.registerLink}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className={s.registerBtn}
-                            >
-                                S'inscrire au stage
-                            </a>
+                            {stage.isFull ? (
+                                <div className={s.disabledBtn}>
+                                    Stage Complet
+                                </div>
+                            ) : (
+                                <a
+                                    href={stage.registerLink}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className={s.registerBtn}
+                                >
+                                    S'inscrire au stage
+                                </a>
+                            )}
                         </div>
                     </div>
                 ))}

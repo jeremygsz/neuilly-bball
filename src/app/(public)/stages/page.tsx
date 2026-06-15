@@ -18,7 +18,7 @@ export default function StagesPage() {
                         Nos <span className={s.accent}>Stages</span>
                     </h1>
                     <p className={s.heroSub}>
-                        Progresse, relève des défis et vis ta passion du basket
+                        Progresse, relève des défis et vis ta passion du basketball
                         avec nos coachs experts et du matériel de haut niveau.
                     </p>
                 </div>

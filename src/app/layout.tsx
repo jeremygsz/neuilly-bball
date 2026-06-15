@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     },
     description: "Club de basketball de Neuilly-sur-Seine. Rejoignez l'association pour progresser, jouer en compétition ou en loisir dans une ambiance conviviale.",
     icons: {
-        icon: "/images/basketball.png",
+        icon: "/images/logo.jpeg",
     },
     openGraph: {
         type: "website",

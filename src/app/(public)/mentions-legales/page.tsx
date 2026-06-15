@@ -29,9 +29,9 @@ export default function MentionsLegalesPage() {
                             Le présent site est édité par :<br />
                             <strong>Neuilly Basketball Association</strong><br />
                             Association sportive régie par la loi du 1er juillet 1901<br />
-                            Président : Noam Revah<br />
+                            Président : N. Revah<br />
                             Email : contact@neuillybasketball.com<br />
-                            Directeur de la publication : Noam Revah, en qualité de Président de l’association.
+                            Directeur de la publication : N. Revah, en qualité de Président de l’association.
                         </p>
 
                         <h2>2. Hébergeur du site</h2>

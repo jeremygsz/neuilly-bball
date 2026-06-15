@@ -88,8 +88,8 @@ $ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .logoImage {
-  width: 44px;
-  height: 44px;
+  width: 57px;
+  height: 57px;
   border-radius: 10px;
   object-fit: contain;
   transition: transform 400ms $ease-bounce;
@@ -133,6 +133,8 @@ $ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
 
 .navLink {
   position: relative;
+  display: flex;
+  align-items: center;
   padding: 0.55rem 1rem;
   font-size: 0.875rem;
   font-weight: 500;
@@ -290,6 +292,107 @@ $ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
   font-weight: 600;
   border-left: 2px solid $red;
   padding-left: calc(1rem - 2px);
+}
+
+// ─── Dropdowns ───────────────────────────────────────────────────────────────
+.navItemWithChildren {
+  position: relative;
+  display: flex;
+  align-items: center;
+
+  &:hover .chevron {
+    transform: rotate(180deg);
+  }
+}
+
+.chevron {
+  margin-left: 0.35rem;
+  transition: transform 300ms $ease;
+  opacity: 0.7;
+}
+
+.dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 220px;
+  background: rgba($blue-dark, 0.98);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba($white, 0.08);
+  border-radius: 12px;
+  padding: 0.6rem;
+  margin-top: 0.25rem;
+  list-style: none;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+  z-index: 100;
+  pointer-events: auto;
+}
+
+.dropdownLink {
+  display: block;
+  padding: 0.65rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: rgba($white, 0.7);
+  text-decoration: none;
+  border-radius: 8px;
+  transition: all 200ms $ease;
+
+  &:hover {
+    background: rgba($white, 0.08);
+    color: $white;
+    transform: translateX(4px);
+  }
+}
+
+.dropdownLink--active {
+  color: $red-light;
+  background: rgba($red, 0.1);
+}
+
+.mobileSubList {
+  list-style: none;
+  margin: 0.25rem 0 0.5rem 1rem;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  border-left: 1px solid rgba($white, 0.1);
+}
+
+.mobileSubLink {
+  display: block;
+  padding: 0.65rem 1rem;
+  font-size: 0.875rem;
+  color: rgba($white, 0.6);
+  text-decoration: none;
+  border-radius: 6px;
+  transition: all 200ms $ease;
+
+  &:hover {
+    color: $white;
+    background: rgba($white, 0.05);
+  }
+}
+
+.mobileSubLink--active {
+  color: $red-light;
+  font-weight: 600;
+}
+
+.mobileChevron {
+  margin-left: auto;
+  transition: transform 300ms $ease;
+}
+
+.mobileLinkTrigger {
+  width: 100%;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  text-align: left;
+  font-family: inherit;
 }
 
 .mobileCta {

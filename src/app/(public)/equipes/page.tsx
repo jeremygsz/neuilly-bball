@@ -7,7 +7,7 @@ import { Metadata } from "next";
 
 export const metadata: Metadata = {
     title: "Nos Équipes",
-    description: "Découvrez toutes les équipes de Neuilly Basketball : du baby-basket aux seniors.",
+    description: "Découvrez toutes les équipes de Neuilly Basketball : du mini basket aux vétérans.",
 };
 
 export const dynamic = "force-dynamic";

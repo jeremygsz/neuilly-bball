@@ -20,6 +20,21 @@ const PARTENAIRES = [
         img: "/images/partner/spalding.svg",
         desc: "Équipementier technique",
     },
+    {
+        nom: "Wilson",
+        img: "/images/partner/wilson.svg",
+        desc: "Partenaire technique",
+    },
+    {
+        nom: "Noah Basketball",
+        img: "/images/partner/noahbball.png",
+        desc: "Analyse de tir",
+    },
+    {
+        nom: "Dr Dish",
+        img: "/images/partner/drdish.svg",
+        desc: "Machine de tir",
+    },
 ];
 
 export function PartenairesSection() {
@@ -39,7 +54,7 @@ export function PartenairesSection() {
                     <h2 className={s.title}>Ils nous font <span className={s.accent}>Confiance</span></h2>
                     <p className={s.subtitle}>
                         Neuilly Basketball est fier de collaborer avec les plus grands 
-                        équipementiers du monde du basket.
+                        équipementiers et solutions technologiques du monde du basket.
                     </p>
                 </motion.div>
 

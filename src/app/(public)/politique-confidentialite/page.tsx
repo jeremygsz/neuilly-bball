@@ -36,7 +36,7 @@ export default function PolitiqueConfidentialitePage() {
                         <p>
                             Le responsable du traitement des données personnelles est :<br />
                             <strong>Neuilly Basketball Association</strong><br />
-                            Président : Noam Revah<br />
+                            Président : N Revah<br />
                             Email : contact@neuillybasketball.com<br />
                             Pour toute question relative à la protection des données personnelles, vous pouvez contacter l'association à l'adresse ci-dessus.
                         </p>

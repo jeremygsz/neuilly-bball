@@ -5,18 +5,30 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ChevronDown } from "lucide-react";
 import styles from "./Navbar.module.scss";
 
 const navLinks = [
-    { href: "/",label: "Accueil"},
-    { href: "/#", label: "Le Club"},
-    { href: "/equipes",label: "Équipes"},
-    { href: "/stages", label: "Nos Stages"},
-    { href: "/#",label: "Nos Équipements"},
-    { href: "/boutique",label: "Boutique"},
-    { href: "/actualites",label: "À La Une"},
-    { href: "/contact",label: "Contact"},
+    { href: "/", label: "Accueil" },
+    {
+        label: "Le Club",
+        children: [
+            { href: "/equipes", label: "Équipes" },
+            { href: "/#", label: "Nos Équipements" },
+            { href: "/#", label: "Sport Adapté" },
+            { href: "/#", label: "Notre Staff Technique" },
+            { href: "/#", label: "Infrastructure" },
+            { href: "/#", label: "Le mot du Président" },
+            { href: "/#", label: "Notre Histoire" },
+            { href: "/#", label: "Infrastucture" },
+            { href: "/actualites", label: "Nos Actualités" },
+
+        ]
+    },
+    { href: "/stages", label: "Nos Stages" },
+    { href: "/boutique", label: "Boutique" },
+    { href: "/#", label: "Nos partenaires" },
+    { href: "/contact", label: "Contact" },
 ];
 
 const headerVariants = {
@@ -45,6 +57,8 @@ const itemVariants = {
 export function Navbar() {
     const [isOpen,   setIsOpen]   = useState(false);
     const [scrolled, setScrolled] = useState(false);
+    const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+    const [openMobileDropdown, setOpenMobileDropdown] = useState<string | null>(null);
     const pathname = usePathname();
 
     useEffect(() => {
@@ -80,8 +94,8 @@ export function Navbar() {
                     <Image
                         src="/images/logo.jpeg"
                         alt="Neuilly Basketball Association"
-                        width={44}
-                        height={44}
+                        width={60}
+                        height={60}
                         className={styles.logoImage}
                         priority
                     />
@@ -94,33 +108,81 @@ export function Navbar() {
                 {/* ── Desktop links ── */}
                 <ul className={styles.navList}>
                     {navLinks.map((link) => {
-                        const isActive = pathname === link.href;
+                        const hasChildren = "children" in link;
+                        const isActive = link.href ? pathname === link.href : link.children?.some(child => pathname === child.href);
+
                         return (
-                            <li key={link.href}>
-                                <Link
-                                    href={link.href}
-                                    className={[
+                            <li
+                                key={link.label}
+                                className={hasChildren ? styles.navItemWithChildren : ""}
+                                onMouseEnter={() => hasChildren && setActiveDropdown(link.label)}
+                                onMouseLeave={() => hasChildren && setActiveDropdown(null)}
+                            >
+                                {link.href ? (
+                                    <Link
+                                        href={link.href}
+                                        className={[
+                                            styles.navLink,
+                                            isActive ? styles["navLink--active"] : "",
+                                        ].join(" ")}
+                                    >
+                                        {link.label}
+                                        {isActive && !hasChildren && (
+                                            <motion.span
+                                                layoutId="nav-underline"
+                                                style={{
+                                                    position: "absolute",
+                                                    bottom: 2,
+                                                    left: "1rem",
+                                                    right: "1rem",
+                                                    height: 2,
+                                                    background: "#C8102E",
+                                                    borderRadius: 2,
+                                                }}
+                                                transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                                            />
+                                        )}
+                                    </Link>
+                                ) : (
+                                    <div className={[
                                         styles.navLink,
                                         isActive ? styles["navLink--active"] : "",
-                                    ].join(" ")}
-                                >
-                                    {link.label}
-                                    {isActive && (
-                                        <motion.span
-                                            layoutId="nav-underline"
-                                            style={{
-                                                position: "absolute",
-                                                bottom: 2,
-                                                left: "1rem",
-                                                right: "1rem",
-                                                height: 2,
-                                                background: "#C8102E",
-                                                borderRadius: 2,
-                                            }}
-                                            transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                                        />
-                                    )}
-                                </Link>
+                                    ].join(" ")} style={{ cursor: 'default' }}>
+                                        {link.label}
+                                        <ChevronDown size={14} className={styles.chevron} />
+                                    </div>
+                                )}
+
+                                {hasChildren && link.children && (
+                                    <AnimatePresence>
+                                        {activeDropdown === link.label && (
+                                            <motion.ul
+                                                className={styles.dropdown}
+                                                initial={{ opacity: 0, y: 8, scale: 0.95 }}
+                                                animate={{ opacity: 1, y: 0, scale: 1 }}
+                                                exit={{ opacity: 0, y: 8, scale: 0.95 }}
+                                                transition={{ duration: 0.2, ease: "easeOut" }}
+                                            >
+                                                {link.children.map((child) => {
+                                                    const isChildActive = pathname === child.href;
+                                                    return (
+                                                        <li key={child.label}>
+                                                            <Link
+                                                                href={child.href}
+                                                                className={[
+                                                                    styles.dropdownLink,
+                                                                    isChildActive ? styles["dropdownLink--active"] : "",
+                                                                ].join(" ")}
+                                                            >
+                                                                {child.label}
+                                                            </Link>
+                                                        </li>
+                                                    );
+                                                })}
+                                            </motion.ul>
+                                        )}
+                                    </AnimatePresence>
+                                )}
                             </li>
                         );
                     })}
@@ -129,7 +191,7 @@ export function Navbar() {
                 {/* ── CTA Desktop ── */}
                 <div className={styles.cta}>
                     <Link href="/inscription" className={styles.ctaButton}>
-                        Inscription
+                        Adhésion 2026-2027
                     </Link>
                 </div>
 
@@ -167,24 +229,75 @@ export function Navbar() {
                     >
                         <ul className={styles.mobileList}>
                             {navLinks.map((link, i) => {
-                                const isActive = pathname === link.href;
+                                const hasChildren = "children" in link;
+                                const isActive = link.href ? pathname === link.href : link.children?.some(child => pathname === child.href);
+                                const isDropdownOpen = openMobileDropdown === link.label;
+
                                 return (
                                     <motion.li
-                                        key={link.href}
+                                        key={link.label}
                                         custom={i}
                                         variants={itemVariants}
                                         initial="hidden"
                                         animate="visible"
                                     >
-                                        <Link
-                                            href={link.href}
-                                            className={[
-                                                styles.mobileLink,
-                                                isActive ? styles["mobileLink--active"] : "",
-                                            ].join(" ")}
-                                        >
-                                            {link.label}
-                                        </Link>
+                                        {link.href ? (
+                                            <Link
+                                                href={link.href}
+                                                className={[
+                                                    styles.mobileLink,
+                                                    isActive ? styles["mobileLink--active"] : "",
+                                                ].join(" ")}
+                                            >
+                                                {link.label}
+                                            </Link>
+                                        ) : (
+                                            <>
+                                                <button
+                                                    onClick={() => setOpenMobileDropdown(isDropdownOpen ? null : link.label)}
+                                                    className={[
+                                                        styles.mobileLink,
+                                                        styles.mobileLinkTrigger,
+                                                        isActive ? styles["mobileLink--active"] : "",
+                                                    ].join(" ")}
+                                                >
+                                                    {link.label}
+                                                    <ChevronDown
+                                                        size={18}
+                                                        className={styles.mobileChevron}
+                                                        style={{ transform: isDropdownOpen ? "rotate(180deg)" : "none" }}
+                                                    />
+                                                </button>
+                                                <AnimatePresence>
+                                                    {isDropdownOpen && link.children && (
+                                                        <motion.ul
+                                                            className={styles.mobileSubList}
+                                                            initial={{ height: 0, opacity: 0 }}
+                                                            animate={{ height: "auto", opacity: 1 }}
+                                                            exit={{ height: 0, opacity: 0 }}
+                                                            transition={{ duration: 0.3, ease: "easeInOut" }}
+                                                        >
+                                                            {link.children.map((child) => {
+                                                                const isChildActive = pathname === child.href;
+                                                                return (
+                                                                    <li key={child.label}>
+                                                                        <Link
+                                                                            href={child.href}
+                                                                            className={[
+                                                                                styles.mobileSubLink,
+                                                                                isChildActive ? styles["mobileSubLink--active"] : "",
+                                                                            ].join(" ")}
+                                                                        >
+                                                                            {child.label}
+                                                                        </Link>
+                                                                    </li>
+                                                                );
+                                                            })}
+                                                        </motion.ul>
+                                                    )}
+                                                </AnimatePresence>
+                                            </>
+                                        )}
                                     </motion.li>
                                 );
                             })}
@@ -196,7 +309,7 @@ export function Navbar() {
                                 animate="visible"
                             >
                                 <Link href="/inscription" className={styles.mobileCta}>
-                                    Nous rejoindre
+                                    Adhésion 2026-2027
                                 </Link>
                             </motion.li>
                         </ul>

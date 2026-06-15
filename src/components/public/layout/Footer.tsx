@@ -14,9 +14,10 @@ const footerLinks = {
         { href: "/actualites",    label: "À La Une"              },
     ],
     infos: [
-        { href: "/mentions-legales",          label: "Mentions légales"             },
-        { href: "/politique-confidentialite", label: "Politique de confidentialité" },
+        { href: "/mentions-legales",          label: "Mentions Légales"             },
+        { href: "/politique-confidentialite", label: "Politique de Confidentialité" },
         { href: "/rgpd",                      label: "RGPD"                         },
+        { href: "/cookies",                   label: "Gestion des Cookies"          },
     ],
 };
 
@@ -49,7 +50,7 @@ export function Footer() {
 
                         <p className={s.desc}>
                             Club de basketball de Neuilly-sur-Seine.
-                            Rejoignez-nous pour vivre votre passion du basket
+                            Rejoignez-nous pour vivre votre passion du basketball
                             dans une ambiance familiale et compétitive.
                         </p>
 
