@@ -13,16 +13,13 @@ const navLinks = [
     {
         label: "Le Club",
         children: [
-            { href: "/equipes", label: "Équipes" },
-            { href: "/#", label: "Nos Équipements" },
-            { href: "/#", label: "Sport Adapté" },
+            { href: "/#", label: "Notre Histoire" },
+            { href: "/equipes", label: "Nos Équipes" },
             { href: "/#", label: "Notre Staff Technique" },
             { href: "/#", label: "Infrastructure" },
-            { href: "/#", label: "Le mot du Président" },
-            { href: "/#", label: "Notre Histoire" },
-            { href: "/#", label: "Infrastucture" },
+            { href: "/#", label: "Nos Équipements" },
+            { href: "/#", label: "Sport Adapté" },
             { href: "/actualites", label: "Nos Actualités" },
-
         ]
     },
     { href: "/stages", label: "Nos Stages" },
@@ -92,7 +89,7 @@ export function Navbar() {
                 {/* ── Logo ── */}
                 <Link href="/" className={styles.logo}>
                     <Image
-                        src="/images/logo.jpeg"
+                        src="/images/logo3d.png"
                         alt="Neuilly Basketball Association"
                         width={60}
                         height={60}

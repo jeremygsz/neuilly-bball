@@ -27,7 +27,7 @@ const PARTENAIRES = [
     },
     {
         nom: "Noah Basketball",
-        img: "/images/partner/noahbball.png",
+        img: "/images/partner/noah.svg",
         desc: "Analyse de tir",
     },
     {

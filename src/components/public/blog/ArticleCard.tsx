@@ -16,7 +16,7 @@ const CATEGORY_COLORS: Record<string, string> = {
     Événement:  "orange",
 };
 
-const DEFAULT_IMAGE = "/images/logo.jpeg";
+const DEFAULT_IMAGE = "/images/logo3d.png";
 const DEFAULT_CATEGORY = "Club";
 
 function formatDate(date: Date) {

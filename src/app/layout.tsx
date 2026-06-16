@@ -20,21 +20,21 @@ export const metadata: Metadata = {
     },
     description: "Club de basketball de Neuilly-sur-Seine. Rejoignez l'association pour progresser, jouer en compétition ou en loisir dans une ambiance conviviale.",
     icons: {
-        icon: "/images/logo.jpeg",
+        icon: "/images/logo3d.png",
     },
     openGraph: {
         type: "website",
         url: "https://neuilly-basketball.fr",
         title: "Neuilly Basketball",
         description: "Club de basketball de Neuilly-sur-Seine.",
-        images: [{ url: "/images/logo.jpeg", width: 800, height: 600, alt: "Neuilly Basketball Logo" }],
+        images: [{ url: "/images/logo3d.png", width: 800, height: 600, alt: "Neuilly Basketball Logo" }],
         siteName: "Neuilly Basketball",
     },
     twitter: {
         card: "summary_large_image",
         title: "Neuilly Basketball",
         description: "Club de basketball de Neuilly-sur-Seine.",
-        images: ["/images/logo.jpeg"],
+        images: ["/images/logo3d.png"],
     },
 };
 
@@ -43,7 +43,7 @@ const jsonLd = {
     "@type": "SportsClub",
     "name": "Neuilly Basketball Association",
     "url": "https://neuilly-basketball.fr",
-    "logo": "https://neuilly-basketball.fr/images/logo.jpeg",
+    "logo": "https://neuilly-basketball.fr/images/logo3d.png",
     "address": {
         "@type": "PostalAddress",
         "addressLocality": "Neuilly-sur-Seine",
