@@ -69,6 +69,21 @@ export function Navbar() {
         return () => clearTimeout(id);
     }, [pathname]);
 
+    // Bloque le défilement de la page en arrière-plan lorsque le menu mobile est ouvert (notamment sur Safari/iOS)
+    useEffect(() => {
+        if (isOpen) {
+            document.body.style.overflow = "hidden";
+            document.documentElement.style.overflow = "hidden";
+        } else {
+            document.body.style.overflow = "";
+            document.documentElement.style.overflow = "";
+        }
+        return () => {
+            document.body.style.overflow = "";
+            document.documentElement.style.overflow = "";
+        };
+    }, [isOpen]);
+
     const isLightPage = pathname?.startsWith("/inscription");
 
     const headerClass = [
