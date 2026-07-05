@@ -48,8 +48,8 @@ export async function submitContact(formData: FormData) {
         // 2. Envoi de l'email via Resend
         if (process.env.RESEND_API_KEY) {
             try {
-                await resend.emails.send({
-                    from: 'Neuilly Basketball <contact@neuillybasketball.com>',
+                const { data, error: mailError } = await resend.emails.send({
+                    from: 'Neuilly Basketball <contact@contact.neuillybasketball.com>',
                     to: ['contact@neuillybasketball.com'],
                     replyTo: email,
                     subject: `Nouveau message: ${subject} - ${firstname} ${lastname}`,
@@ -62,9 +62,14 @@ export async function submitContact(formData: FormData) {
                         <p>${message.replace(/\n/g, "<br>")}</p>
                     `,
                 });
-            } catch (mailError) {
-                console.error("Failed to send contact notification email via Resend:", mailError);
-                // On ne bloque pas l'utilisateur si la sauvegarde en base a réussi
+
+                if (mailError) {
+                    console.error("Resend API error sending contact notification email:", mailError);
+                } else {
+                    console.log("Contact notification email sent successfully:", data);
+                }
+            } catch (err) {
+                console.error("Failed to send contact notification email via Resend:", err);
             }
         }
 
