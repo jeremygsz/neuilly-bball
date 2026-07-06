@@ -22,7 +22,8 @@ const stages = [
             { icon: Trophy, text: "Matériel professionnel US" }
         ],
         type: "nocturne",
-        registerLink: "https://neuilly-basketball-association.sporteasy.net/collections/49999/"
+        registerLink: "https://neuilly-basketball-association.sporteasy.net/collections/49999/",
+        isFull: true
     },
     {
         id: "summer-camp-1",
