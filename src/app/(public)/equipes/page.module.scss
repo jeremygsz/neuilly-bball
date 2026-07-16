@@ -8,7 +8,7 @@
 // ─── Hero ─────────────────────────────────────────────────────────────────────
 .hero {
   background: $blue-dark;
-  padding: 5rem 1.5rem 4rem;
+  padding: 7rem 1.5rem 0;
   position: relative;
   overflow: hidden;
 
@@ -43,6 +43,7 @@
   text-align: center;
   position: relative;
   z-index: 1;
+  padding-bottom: 3rem;
 }
 
 .heroLabel {
@@ -65,6 +66,9 @@
   color: $white;
   line-height: 1.05;
   margin-bottom: 1rem;
+  font-family: var(--font-display);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
 }
 
 .accent { color: $red; }
@@ -77,9 +81,429 @@
   margin: 0 auto;
 }
 
-// ─── Content ──────────────────────────────────────────────────────────────────
+// ─── Tabs Bar ─────────────────────────────────────────────────────────────────
+.tabsBar {
+  background: $blue-dark;
+  padding: 0 1.5rem;
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  box-shadow: 0 4px 20px rgba($blue-dark, 0.3);
+
+  @media (min-width: $bp-lg) {
+    padding: 0 4rem;
+  }
+
+  @media (min-width: $bp-md) {
+    padding: 0 2.5rem;
+  }
+}
+
+.tabsInner {
+  max-width: 1240px;
+  margin: 0 auto;
+  display: flex;
+  gap: 0.375rem;
+  padding: 0.75rem 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar { display: none; }
+}
+
+.tabPill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  white-space: nowrap;
+  padding: 0.625rem 1.375rem;
+  border-radius: 999px;
+  border: 1.5px solid rgba($white, 0.15);
+  background: rgba($white, 0.06);
+  color: rgba($white, 0.6);
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--duration) $ease;
+  letter-spacing: 0.01em;
+
+  &:hover:not(.tabPillActive) {
+    background: rgba($white, 0.1);
+    border-color: rgba($white, 0.3);
+    color: $white;
+    transform: translateY(-1px);
+  }
+}
+
+.tabPillActive {
+  background: $red;
+  border-color: $red;
+  color: $white;
+  box-shadow: 0 4px 16px rgba($red, 0.35);
+}
+
+.tabCount {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 5px;
+  border-radius: 999px;
+  background: rgba($white, 0.2);
+  font-size: 0.65rem;
+  font-weight: 700;
+  line-height: 1;
+
+  .tabPillActive & {
+    background: rgba($white, 0.25);
+  }
+}
+
+// ─── Présentation Panel ───────────────────────────────────────────────────────
+.presentationPanel {
+  background: $white;
+}
+
+// ─── Intro Section ────────────────────────────────────────────────────────────
+.introSection {
+  padding: 7rem 0;
+  background: $white;
+}
+
+.introGrid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 4rem;
+  align-items: center;
+
+  @media (max-width: $bp-lg) {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+}
+
+.introContent {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.sectionTitle {
+  font-size: clamp(2rem, 4vw, 2.5rem);
+  font-weight: 800;
+  color: $blue-dark;
+  position: relative;
+  margin-bottom: 0.5rem;
+  line-height: 1.2;
+
+  &::after {
+    content: '';
+    display: block;
+    width: 3rem;
+    height: 3px;
+    background: $red;
+    border-radius: 2px;
+    margin-top: 0.75rem;
+  }
+}
+
+.leadText {
+  font-size: 1.15rem;
+  line-height: 1.65;
+  color: $blue;
+  font-weight: 600;
+}
+
+.bodyText {
+  font-size: 1.0625rem;
+  line-height: 1.75;
+  color: $grey-600;
+}
+
+.introVisual {
+  display: flex;
+  justify-content: center;
+}
+
+.valuesCard {
+  background: $blue-dark;
+  color: $white;
+  padding: 3.5rem 2.5rem;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  width: 100%;
+  max-width: 380px;
+
+  h3 {
+    font-size: 1.35rem;
+    font-weight: 800;
+  }
+}
+
+.valuesDivider {
+  width: 3rem;
+  height: 3px;
+  background: $red;
+  border-radius: 2px;
+  margin: 1.25rem 0 2rem;
+}
+
+.valuesList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: rgba($white, 0.85);
+    line-height: 1.4;
+  }
+}
+
+.valuesIcon {
+  color: $red-light;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+// ─── Two-Col Section ──────────────────────────────────────────────────────────
+.twoColSection {
+  padding: 7rem 0;
+  background: $grey-100;
+}
+
+.twoColGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem;
+
+  @media (max-width: $bp-lg) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.colCard {
+  background: $white;
+  padding: 3.5rem;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid $grey-200;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  position: relative;
+  transition: transform var(--duration) $ease, box-shadow var(--duration) $ease;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+  }
+
+  h3 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: $blue-dark;
+    border-bottom: 2px solid $grey-100;
+    padding-bottom: 0.75rem;
+  }
+
+  p {
+    font-size: 1rem;
+    color: $grey-600;
+    line-height: 1.7;
+  }
+}
+
+.cardNumber {
+  font-family: var(--font-display);
+  font-size: 4rem;
+  font-weight: 900;
+  color: rgba($blue, 0.07);
+  line-height: 1;
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  letter-spacing: 0.02em;
+  pointer-events: none;
+  user-select: none;
+}
+
+.cardQuote {
+  font-size: 0.9375rem !important;
+  font-weight: 600 !important;
+  color: $blue !important;
+  border-top: 1px solid $grey-200;
+  padding-top: 1rem;
+  line-height: 1.6 !important;
+}
+
+.dotList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+
+  li {
+    position: relative;
+    padding-left: 1.5rem;
+    font-size: 0.9375rem;
+    color: $blue-dark;
+    font-weight: 600;
+
+    &::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: $red;
+      font-weight: 800;
+    }
+  }
+}
+
+// ─── Spirit Section ───────────────────────────────────────────────────────────
+.spiritSection {
+  padding: 7rem 0;
+  background: $white;
+}
+
+.spiritCard {
+  background: linear-gradient(135deg, $blue-dark 0%, #15244c 100%);
+  border-radius: var(--radius-xl);
+  padding: 5rem 4rem;
+  max-width: 900px;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: -80px;
+    right: -80px;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    border: 50px solid rgba($red, 0.07);
+    pointer-events: none;
+  }
+
+  @media (max-width: $bp-md) {
+    padding: 3rem 2rem;
+  }
+}
+
+.spiritContent {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  position: relative;
+  z-index: 1;
+
+  .sectionTitle {
+    color: $white;
+
+    &::after { background: $red; }
+  }
+
+  .bodyText { color: rgba($white, 0.75); }
+  .leadText { color: rgba($white, 0.9); }
+}
+
+.spiritList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+
+  li {
+    position: relative;
+    padding-left: 1.75rem;
+    font-size: 1.0625rem;
+    color: rgba($white, 0.8);
+    line-height: 1.5;
+    font-style: italic;
+
+    &::before {
+      content: '"';
+      position: absolute;
+      left: 0;
+      color: $red-light;
+      font-size: 1.5rem;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 1;
+      top: -2px;
+    }
+  }
+}
+
+// ─── CTA Bridge ───────────────────────────────────────────────────────────────
+.ctaBridgeSection {
+  padding: 5rem 0 7rem;
+  background: $grey-100;
+}
+
+.ctaBridgeCard {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  background: $white;
+  padding: 2.5rem 3rem;
+  border-radius: var(--radius-lg);
+  border: 1px solid $grey-200;
+  box-shadow: var(--shadow-sm);
+  max-width: 800px;
+  margin: 0 auto;
+
+  @media (max-width: $bp-md) {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+.ctaBridgeText {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: $blue-dark;
+}
+
+.ctaBridgeBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.8rem 2rem;
+  border-radius: var(--radius);
+  background: $red;
+  color: $white;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all var(--duration) $ease;
+
+  &:hover {
+    background: $red-light;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-red);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+// ─── Catégories Panel ─────────────────────────────────────────────────────────
 .content {
   padding: 3rem 0 5rem;
+  background: $grey-100;
 }
 
 .container {
@@ -91,7 +515,6 @@
   gap: 2.5rem;
 }
 
-// ─── Grid cards ───────────────────────────────────────────────────────────────
 .grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -104,4 +527,18 @@
   @media (max-width: $bp-sm) {
     grid-template-columns: 1fr;
   }
+}
+
+.emptyState {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6rem 2rem;
+  background: $white;
+  border-radius: var(--radius-lg);
+  border: 1px dashed $grey-200;
+  color: $grey-600;
+  font-size: 1rem;
+  font-weight: 500;
+  text-align: center;
 }
