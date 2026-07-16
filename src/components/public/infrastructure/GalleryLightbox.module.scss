@@ -1,0 +1,185 @@
+@use "@/styles/vars" as *;
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+// ─── Rangée héro (3 grandes) ──────────────────────────────────────────────────
+.heroRow {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+  height: 360px;
+
+  @media (max-width: $bp-lg) {
+    height: 280px;
+  }
+
+  @media (max-width: $bp-md) {
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+}
+
+.heroItem {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  border: none;
+  padding: 0;
+  background: $grey-200;
+  display: block;
+  width: 100%;
+
+  @media (max-width: $bp-md) {
+    height: 260px;
+  }
+
+  &:hover {
+    .galleryImage {
+      transform: scale(1.06);
+    }
+
+    .overlay {
+      opacity: 1;
+    }
+
+    .zoomIcon {
+      transform: scale(1) rotate(0deg);
+      opacity: 1;
+    }
+  }
+}
+
+// ─── Grille principale ────────────────────────────────────────────────────────
+.grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.75rem;
+
+  @media (max-width: $bp-xl) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  @media (max-width: $bp-lg) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media (max-width: $bp-md) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: $bp-sm) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.gridItem {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius);
+  cursor: pointer;
+  border: none;
+  padding: 0;
+  background: $grey-200;
+  height: 160px;
+  display: block;
+  width: 100%;
+
+  @media (max-width: $bp-md) {
+    height: 130px;
+  }
+
+  @media (max-width: $bp-sm) {
+    height: 110px;
+  }
+
+  &:hover {
+    .galleryImage {
+      transform: scale(1.08);
+    }
+
+    .overlay {
+      opacity: 1;
+    }
+
+    .zoomIcon {
+      transform: scale(1) rotate(0deg);
+      opacity: 1;
+    }
+  }
+}
+
+.gridItemLast {
+  // style optionnel si on voulait afficher un "+N"
+}
+
+// ─── Image commune ────────────────────────────────────────────────────────────
+.galleryImage {
+  object-fit: cover;
+  transition: transform 0.5s $ease;
+}
+
+// ─── Overlay ──────────────────────────────────────────────────────────────────
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba($blue-dark, 0.75) 0%,
+    rgba($blue-dark, 0.2) 50%,
+    transparent 100%
+  );
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-start;
+  padding: 0.75rem;
+  opacity: 0;
+  transition: opacity var(--duration) $ease;
+}
+
+.zoomIcon {
+  font-size: 1.5rem;
+  color: $white;
+  background: rgba($red, 0.85);
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  transform: scale(0.6) rotate(-20deg);
+  opacity: 0;
+  transition: transform 0.25s $ease-bounce, opacity 0.2s $ease;
+  line-height: 1;
+  font-style: normal;
+}
+
+.label {
+  position: absolute;
+  bottom: 0.75rem;
+  left: 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: $white;
+  background: rgba($red, 0.85);
+  padding: 0.25rem 0.625rem;
+  border-radius: 999px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  backdrop-filter: blur(4px);
+}
+
+// ─── Hint ─────────────────────────────────────────────────────────────────────
+.hint {
+  text-align: center;
+  font-size: 0.875rem;
+  color: $grey-400;
+  font-style: italic;
+  margin-top: 0.5rem;
+}

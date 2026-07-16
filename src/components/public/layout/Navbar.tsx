@@ -16,7 +16,7 @@ const navLinks = [
             { href: "/notre-histoire", label: "Notre Histoire" },
             { href: "/equipes", label: "Nos Équipes" },
             { href: "/staff-technique", label: "Notre Staff Technique" },
-            { href: "/#", label: "Infrastructure" },
+            { href: "/infrastructure", label: "Infrastructure" },
             { href: "/equipements", label: "Nos Équipements" },
             { href: "/sport-adapte", label: "Sport Adapté" },
             { href: "/actualites", label: "Nos Actualités" },
