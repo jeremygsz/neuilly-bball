@@ -1,0 +1,683 @@
+@use "@/styles/vars" as *;
+
+.page {
+  min-height: 100vh;
+  background: $white;
+  color: $blue-dark;
+}
+
+// ─── Hero ─────────────────────────────────────────────────────────────────────
+.hero {
+  background: $blue-dark;
+  padding: 8rem 1.5rem 6rem;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: -80px;
+    right: -80px;
+    width: 320px;
+    height: 320px;
+    border-radius: 50%;
+    border: 60px solid rgba($red, 0.08);
+    pointer-events: none;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -150px;
+    left: -150px;
+    width: 400px;
+    height: 400px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba($blue-light, 0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+}
+
+.heroInner {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.heroLabel {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: $red-light;
+  margin-bottom: 1.5rem;
+  background: rgba($red, 0.12);
+  padding: 0.35rem 1rem;
+  border-radius: 999px;
+  border: 1px solid rgba($red, 0.2);
+}
+
+.heroTitle {
+  font-size: clamp(2.8rem, 7vw, 4.5rem);
+  font-weight: 900;
+  color: $white;
+  line-height: 1.05;
+  margin-bottom: 1.5rem;
+  font-family: var(--font-display);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.accent {
+  color: $red;
+  position: relative;
+  display: inline-block;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 8px;
+    left: 0;
+    width: 100%;
+    height: 6px;
+    background: rgba($red, 0.2);
+    z-index: -1;
+  }
+}
+
+.heroSub {
+  font-size: 1.125rem;
+  color: $grey-400;
+  line-height: 1.7;
+  max-width: 580px;
+  margin: 0 auto;
+}
+
+// ─── Intro Section ────────────────────────────────────────────────────────────
+.introSection {
+  padding: 7rem 0;
+  background: $white;
+}
+
+.introGrid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 4rem;
+  align-items: center;
+
+  @media (max-width: $bp-lg) {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+}
+
+.introContent {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.sectionTitle {
+  font-size: clamp(2rem, 4vw, 2.5rem);
+  font-weight: 800;
+  color: $blue-dark;
+  position: relative;
+  margin-bottom: 0.5rem;
+
+  &::after {
+    content: '';
+    display: block;
+    width: 3rem;
+    height: 3px;
+    background: $red;
+    border-radius: 2px;
+    margin-top: 0.75rem;
+  }
+}
+
+.leadText {
+  font-size: 1.25rem;
+  line-height: 1.6;
+  color: $blue;
+  font-weight: 600;
+}
+
+.bodyText {
+  font-size: 1.0625rem;
+  line-height: 1.75;
+  color: $grey-600;
+}
+
+.introVisual {
+  display: flex;
+  justify-content: center;
+}
+
+.pillarsCard {
+  background: $blue-dark;
+  color: $white;
+  padding: 3.5rem 2.5rem;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  width: 100%;
+  max-width: 360px;
+  position: relative;
+
+  h3 {
+    font-size: 1.35rem;
+    font-weight: 800;
+  }
+}
+
+.dividerAccent {
+  width: 3rem;
+  height: 3px;
+  background: $red;
+  border-radius: 2px;
+  margin: 1.25rem 0 2rem;
+}
+
+.pillarsList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+
+  li {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 1.0625rem;
+    font-weight: 600;
+  }
+}
+
+.pillarListIcon {
+  color: $red-light;
+  flex-shrink: 0;
+}
+
+// ─── Details Section (2 Columns Card) ─────────────────────────────────────────
+.detailsSection {
+  padding: 7rem 0;
+  background: $grey-100;
+}
+
+.twoColsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem;
+
+  @media (max-width: $bp-lg) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.colCard {
+  background: $white;
+  padding: 3.5rem;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid $grey-200;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  transition: transform var(--duration) var(--ease), box-shadow var(--duration) var(--ease);
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+  }
+
+  h3 {
+    font-size: 1.625rem;
+    font-weight: 800;
+    color: $blue-dark;
+    border-bottom: 2px solid $grey-100;
+    padding-bottom: 0.75rem;
+  }
+
+  p {
+    font-size: 1.0625rem;
+    color: $grey-600;
+    line-height: 1.7;
+  }
+}
+
+.cardIconWrapper {
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: var(--radius);
+  background: rgba($blue, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $blue;
+
+  .icon {
+    width: 1.75rem;
+    height: 1.75rem;
+  }
+}
+
+.objectivesList {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin: 0.5rem 0;
+
+  @media (max-width: $bp-sm) {
+    grid-template-columns: 1fr;
+  }
+
+  li {
+    position: relative;
+    padding-left: 1.5rem;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: $blue-dark;
+
+    &::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: $red;
+      font-weight: 800;
+    }
+  }
+}
+
+// ─── Tech Section (Innovation & Qualité) ──────────────────────────────────────
+.techSection {
+  padding: 7rem 0;
+  background: $white;
+}
+
+.techGrid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 4rem;
+  align-items: center;
+
+  @media (max-width: $bp-lg) {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+}
+
+.techContent {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.subTitle {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: $blue-dark;
+  margin-top: 1.5rem;
+  border-bottom: 2px solid $grey-100;
+  padding-bottom: 0.5rem;
+}
+
+.detailsBulletList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin: 0.5rem 0;
+
+  li {
+    position: relative;
+    padding-left: 1.5rem;
+    font-size: 0.9375rem;
+    color: $grey-600;
+    line-height: 1.5;
+
+    &::before {
+      content: '•';
+      position: absolute;
+      left: 0;
+      color: $red;
+      font-size: 1.25rem;
+      line-height: 1;
+      top: -1px;
+    }
+  }
+}
+
+.techVisual {
+  display: flex;
+  justify-content: center;
+}
+
+.techCard {
+  background: $grey-100;
+  border-left: 4px solid $red;
+  padding: 3rem 2.5rem;
+  border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+
+  h3 {
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: $blue-dark;
+  }
+}
+
+.techCardIcon {
+  width: 2rem;
+  height: 2rem;
+  color: $red;
+}
+
+.techCardText {
+  font-size: 0.9375rem;
+  color: $grey-600;
+  line-height: 1.6;
+}
+
+.techCardTextHighlight {
+  font-size: 1.0625rem;
+  font-weight: 700;
+  color: $blue;
+  line-height: 1.5;
+  border-top: 1px solid $grey-200;
+  padding-top: 1rem;
+  margin-top: 0.5rem;
+}
+
+// ─── Ambition Section ─────────────────────────────────────────────────────────
+.ambitionSection {
+  padding: 7rem 0;
+  background: $white;
+}
+
+.ambitionCard {
+  background: linear-gradient(135deg, $blue-dark 0%, #15244c 100%);
+  color: $white;
+  padding: 5rem 4rem;
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
+  text-align: center;
+  max-width: 900px;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: -50px;
+    left: -50px;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 30px solid rgba($white, 0.02);
+    pointer-events: none;
+  }
+
+  h2 {
+    font-size: clamp(2rem, 4vw, 2.5rem);
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+    font-family: var(--font-display);
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+
+  p {
+    font-size: 1.125rem;
+    line-height: 1.75;
+    color: rgba($white, 0.8);
+    max-width: 720px;
+    margin: 0 auto 1.5rem;
+  }
+}
+
+.dividerAccentCenter {
+  width: 3rem;
+  height: 3px;
+  background: $red;
+  border-radius: 2px;
+  margin: 0 auto 2rem;
+}
+
+.ambitionHighlight {
+  font-size: 1.35rem !important;
+  font-weight: 700;
+  color: $red-light !important;
+  border-top: 1px solid rgba($white, 0.1);
+  padding-top: 1.5rem;
+  margin-top: 2rem !important;
+  line-height: 1.5 !important;
+}
+
+// ─── Overview Section (Equipments list) ──────────────────────────────────────
+.overviewSection {
+  padding: 7rem 0;
+  background: $grey-100;
+}
+
+.headerCenter {
+  max-width: 700px;
+  margin: 0 auto 4.5rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+
+  h2 {
+    font-size: clamp(2rem, 4vw, 2.5rem);
+    font-weight: 800;
+    color: $blue-dark;
+  }
+}
+
+.headerSub {
+  font-size: 1.125rem;
+  color: $grey-600;
+  line-height: 1.6;
+}
+
+.equipmentsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+
+  @media (max-width: $bp-lg) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: $bp-sm) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.equipmentCard {
+  background: $white;
+  padding: 3rem 2rem;
+  border-radius: var(--radius-lg);
+  border: 1px solid $grey-200;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  transition: all var(--duration) var(--ease);
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+    border-color: rgba($red, 0.2);
+
+    .equipmentIcon {
+      color: $red;
+      transform: scale(1.05);
+    }
+  }
+
+  h4 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: $blue-dark;
+  }
+
+  p {
+    font-size: 0.9375rem;
+    color: $grey-600;
+    line-height: 1.6;
+  }
+}
+
+.equipmentIconWrapper {
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: var(--radius);
+  background: rgba($blue, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $blue;
+}
+
+.equipmentIcon {
+  width: 1.75rem;
+  height: 1.75rem;
+  transition: all var(--duration) var(--ease);
+}
+
+// ─── Why Section (Pourquoi investissons-nous) ─────────────────────────────────
+.whySection {
+  padding: 7rem 0;
+  background: $white;
+}
+
+.whyCard {
+  background: $white;
+  padding: 4.5rem;
+  border-radius: var(--radius-xl);
+  border: 1px solid $grey-200;
+  box-shadow: var(--shadow-md);
+  max-width: 900px;
+  margin: 0 auto;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 6px;
+    height: 100%;
+    background: $red;
+    border-radius: var(--radius-xl) 0 0 var(--radius-xl);
+  }
+
+  h2 {
+    font-size: 1.85rem;
+    font-weight: 800;
+    color: $blue-dark;
+  }
+}
+
+.whyLabel {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: $red;
+}
+
+.whyDivider {
+  width: 3rem;
+  height: 3px;
+  background: $grey-200;
+}
+
+.whyText {
+  font-size: 1.15rem;
+  line-height: 1.6;
+  color: $grey-600;
+}
+
+.whyTextHighlight {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: $blue;
+  line-height: 1.6;
+  border-top: 1px solid $grey-100;
+  padding-top: 1.5rem;
+}
+
+// ─── CTA Section ──────────────────────────────────────────────────────────────
+.ctaSection {
+  padding: 7rem 0 8rem;
+  background: $grey-100;
+}
+
+.ctaContentCard {
+  background: $white;
+  padding: 4.5rem;
+  border-radius: var(--radius-xl);
+  border: 1px solid $grey-200;
+  box-shadow: var(--shadow-md);
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 4px;
+    background: $red;
+    border-radius: 0 0 2px 2px;
+  }
+
+  h2 {
+    font-size: clamp(1.8rem, 3.5vw, 2.25rem);
+    font-weight: 800;
+    color: $blue-dark;
+  }
+
+  p {
+    font-size: 1.0625rem;
+    color: $grey-600;
+    line-height: 1.7;
+    max-width: 600px;
+  }
+}
+
+.ctaButtons {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+
+  @media (max-width: $bp-sm) {
+    flex-direction: column;
+    width: 100%;
+
+    a {
+      width: 100%;
+    }
+  }
+}

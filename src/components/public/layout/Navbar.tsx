@@ -17,7 +17,7 @@ const navLinks = [
             { href: "/equipes", label: "Nos Équipes" },
             { href: "/staff-technique", label: "Notre Staff Technique" },
             { href: "/#", label: "Infrastructure" },
-            { href: "/#", label: "Nos Équipements" },
+            { href: "/equipements", label: "Nos Équipements" },
             { href: "/sport-adapte", label: "Sport Adapté" },
             { href: "/actualites", label: "Nos Actualités" },
         ]
