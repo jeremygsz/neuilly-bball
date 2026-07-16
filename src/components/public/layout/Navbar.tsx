@@ -13,7 +13,7 @@ const navLinks = [
     {
         label: "Le Club",
         children: [
-            { href: "/#", label: "Notre Histoire" },
+            { href: "/notre-histoire", label: "Notre Histoire" },
             { href: "/equipes", label: "Nos Équipes" },
             { href: "/#", label: "Notre Staff Technique" },
             { href: "/#", label: "Infrastructure" },
