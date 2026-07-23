@@ -1,0 +1,575 @@
+@use "@/styles/vars" as *;
+
+.section {
+  padding: 2.5rem 0 4.5rem;
+  position: relative;
+  z-index: 10;
+}
+
+// ─── Banner Card ─────────────────────────────────────────────────────────────
+.bannerCard {
+  background: linear-gradient(135deg, $blue-dark 0%, #162B5B 100%);
+  border: 1px solid rgba($blue-light, 0.25);
+  border-radius: 1.25rem;
+  padding: 2rem 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  box-shadow: 0 14px 40px -10px rgba($blue-dark, 0.35);
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.4s $ease;
+  user-select: none;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 6px;
+    height: 100%;
+    background: $red;
+    border-radius: 6px 0 0 6px;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: -60px;
+    right: -60px;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba($red, 0.15) 0%, transparent 70%);
+    pointer-events: none;
+    transition: transform 0.6s $ease;
+  }
+
+  &:hover {
+    border-color: rgba($red, 0.4);
+    transform: translateY(-2px);
+    box-shadow: 0 20px 48px -12px rgba($blue-dark, 0.45);
+
+    &::after {
+      transform: scale(1.15);
+    }
+
+    .mailIcon {
+      transform: scale(1.12) rotate(-5deg);
+      color: $red-light;
+    }
+
+    .toggleButton {
+      background: $red-light;
+      box-shadow: 0 10px 25px rgba($red, 0.45);
+    }
+  }
+
+  @media (max-width: $bp-md) {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1.75rem 1.5rem;
+    gap: 1.5rem;
+  }
+}
+
+.bannerActive {
+  border-color: rgba($red, 0.4);
+  background: linear-gradient(135deg, #0A1633 0%, #152752 100%);
+  box-shadow: 0 20px 50px -10px rgba($blue-dark, 0.5);
+
+  .mailIcon {
+    color: $red-light;
+    transform: scale(1.1);
+  }
+}
+
+.bannerContent {
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
+  position: relative;
+  z-index: 2;
+
+  @media (max-width: $bp-sm) {
+    align-items: flex-start;
+    gap: 1.25rem;
+  }
+}
+
+.iconWrapper {
+  width: 4.25rem;
+  height: 4.25rem;
+  border-radius: 1.15rem;
+  background: rgba($white, 0.08);
+  border: 1px solid rgba($white, 0.16);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.mailIcon {
+  width: 2.25rem;
+  height: 2.25rem;
+  color: $white;
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.pulseRing {
+  position: absolute;
+  inset: -5px;
+  border-radius: 1.3rem;
+  border: 1.5px solid rgba($red, 0.45);
+  animation: pulseEnvelope 2.5s infinite ease-in-out;
+  pointer-events: none;
+}
+
+@keyframes pulseEnvelope {
+  0% {
+    transform: scale(0.97);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.06);
+    opacity: 0.15;
+  }
+  100% {
+    transform: scale(0.97);
+    opacity: 0.8;
+  }
+}
+
+.bannerText {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: $red-light;
+}
+
+.badgeIcon {
+  color: $red-light;
+}
+
+.bannerTitle {
+  font-size: clamp(1.4rem, 3vw, 1.85rem);
+  font-weight: 800;
+  color: $white;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+
+.bannerSubtitle {
+  font-size: 0.95rem;
+  color: rgba($white, 0.78);
+  line-height: 1.5;
+  margin: 0;
+  max-width: 620px;
+}
+
+.toggleButton {
+  background: $red;
+  color: $white;
+  border: none;
+  border-radius: 9999px;
+  padding: 0.85rem 1.75rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  cursor: pointer;
+  white-space: nowrap;
+  box-shadow: 0 6px 20px rgba($red, 0.35);
+  transition: all 0.3s $ease;
+  position: relative;
+  z-index: 2;
+
+  &:active {
+    transform: translateY(0);
+  }
+
+  @media (max-width: $bp-md) {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+.btnText {
+  line-height: 1;
+}
+
+.btnIconWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+// ─── 3D Envelope & Unfolding Letter Container ───────────────────────────────
+.letterWrapper {
+  perspective: 1200px;
+  margin-top: 0;
+  overflow: hidden;
+  transition: margin-top 0.6s $ease;
+
+  &.letterOpen {
+    margin-top: 2rem;
+    overflow: visible;
+
+    .envelopeFlap {
+      transform: rotateX(180deg);
+      z-index: 1;
+      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1) 0.05s;
+    }
+
+    .waxSeal {
+      transform: translate(-50%, -30px) scale(0) rotate(180deg);
+      opacity: 0;
+      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1) 0s, opacity 0.3s ease 0s;
+    }
+
+    .paperSheet {
+      max-height: 3000px;
+      opacity: 1;
+      padding-top: 3.5rem;
+      padding-bottom: 3.5rem;
+      transform: translateY(0) scale(1) rotateX(0deg);
+      filter: blur(0);
+      transition: max-height 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.22s,
+                  opacity 0.5s ease 0.22s,
+                  transform 0.7s cubic-bezier(0.34, 1.4, 0.64, 1) 0.22s,
+                  filter 0.5s ease 0.22s,
+                  padding 0.5s ease 0.22s;
+    }
+
+    .paperHeader, 
+    .handwrittenText,
+    .signatureBox {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+.envelopeContainer {
+  position: relative;
+  width: 100%;
+  transform-style: preserve-3d;
+}
+
+// Top Flap 3D Geometry
+.envelopeFlap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  transform-origin: top center;
+  transform-style: preserve-3d;
+  z-index: 10;
+  transform: rotateX(0deg);
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1) 0.3s;
+  pointer-events: none;
+
+  .flapShape {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, #12244C 0%, #1A3266 100%);
+    clip-path: polygon(0 0, 100% 0, 50% 100%);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+    border-top: 2px solid rgba($red, 0.5);
+  }
+}
+
+// Wax Seal Crest
+.waxSeal {
+  position: absolute;
+  top: 45px;
+  left: 50%;
+  transform: translate(-50%, 0) scale(1) rotate(0deg);
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, $red-light 0%, $red 60%, #85091C 100%);
+  color: $white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35), inset 0 2px 5px rgba($white, 0.4);
+  border: 2px solid rgba($white, 0.85);
+  z-index: 12;
+  cursor: pointer;
+  opacity: 1;
+  transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) 0.35s, opacity 0.4s ease 0.35s;
+
+  &:hover {
+    transform: translate(-50%, -2px) scale(1.1) rotate(12deg);
+    box-shadow: 0 8px 24px rgba($red, 0.5), inset 0 2px 6px rgba($white, 0.5);
+  }
+}
+
+.sealInner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sealIcon {
+  color: $white;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
+}
+
+// Parchment Paper Sheet
+.paperSheet {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  padding-top: 0;
+  padding-bottom: 0;
+  transform: translateY(-35px) scale(0.95) rotateX(8deg);
+  filter: blur(3px);
+  background-color: #FDFBF7;
+  background-image: 
+    linear-gradient(rgba($blue, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba($red, 0.025) 1px, transparent 1px);
+  background-size: 100% 2.2rem, 100% 100%;
+  border-radius: 1.25rem;
+  border: 1px solid rgba($blue-dark, 0.14);
+  box-shadow: 0 30px 70px -15px rgba($blue-dark, 0.25), 
+              0 0 0 1px rgba($white, 0.9) inset;
+  padding-left: 4rem;
+  padding-right: 4rem;
+  position: relative;
+  transform-origin: top center;
+  transition: max-height 0.7s cubic-bezier(0.4, 0, 0.2, 1) 0s,
+              opacity 0.4s ease 0.1s,
+              transform 0.5s ease 0.1s,
+              filter 0.4s ease 0.1s,
+              padding 0.4s ease 0.1s;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 2rem;
+    right: 2rem;
+    height: 5px;
+    background: linear-gradient(90deg, transparent 0%, $red 25%, $blue 75%, transparent 100%);
+    border-radius: 5px 5px 0 0;
+    opacity: 0.85;
+  }
+
+  @media (max-width: $bp-md) {
+    padding-left: 1.75rem;
+    padding-right: 1.75rem;
+  }
+}
+
+// Paper Header with Dual Logos
+.paperHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 2rem;
+  border-bottom: 2px dashed rgba($blue, 0.15);
+  margin-bottom: 2.5rem;
+  gap: 1.5rem;
+  opacity: 0;
+  transform: translateY(15px);
+  transition: opacity 0.6s ease 0.4s, transform 0.6s ease 0.4s;
+
+  @media (max-width: $bp-sm) {
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+    gap: 1rem;
+  }
+}
+
+.logoBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 90px;
+  width: 150px;
+
+  @media (max-width: $bp-sm) {
+    width: 90px;
+    height: 45px;
+  }
+}
+
+.logoImage {
+  object-fit: contain;
+  width: auto;
+  height: 100%;
+}
+
+.logo3dImage {
+  object-fit: contain;
+  width: auto;
+  height: 100%;
+}
+
+.headerCenter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+
+  @media (max-width: $bp-sm) {
+    width: 100%;
+    order: 3;
+  }
+}
+
+.associationName {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: $blue-dark;
+}
+
+.headerDivider {
+  width: 40px;
+  height: 2px;
+  background: $red;
+  border-radius: 2px;
+}
+
+.letterTag {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: $grey-600;
+}
+
+// Handwritten Font Section
+.handwrittenText {
+  color: #0E1D42;
+  font-size: clamp(1.4rem, 2.5vw, 1.7rem);
+  line-height: 1.85;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  word-spacing: 0.05em;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.7s ease 0.5s, transform 0.7s ease 0.5s;
+}
+
+.valuesHighlight {
+  font-weight: 700;
+  color: $red;
+}
+
+.salutation {
+  font-size: clamp(1.5rem, 2.7vw, 1.85rem);
+  font-weight: 700;
+  color: $blue;
+  margin-bottom: 0.25rem;
+
+  &:nth-of-type(2) {
+    margin-bottom: 1.75rem;
+  }
+}
+
+.paragraph {
+  margin-bottom: 1.5rem;
+  text-indent: 1.5rem;
+  text-align: justify;
+
+  @media (max-width: $bp-sm) {
+    text-indent: 0;
+    text-align: left;
+  }
+}
+
+.valediction {
+  margin-top: 2.5rem;
+  margin-bottom: 1.5rem;
+  font-size: clamp(1.5rem, 2.6vw, 1.8rem);
+  font-weight: 700;
+  color: $blue;
+}
+
+.signatureBox {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  opacity: 0;
+  transform: translateY(15px);
+  transition: opacity 0.6s ease 0.6s, transform 0.6s ease 0.6s;
+}
+
+.signatureLine {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  text-align: right;
+  border-top: 1px solid rgba($blue, 0.2);
+  padding-top: 0.5rem;
+}
+
+.signTitle {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: $red;
+  line-height: 1.2;
+}
+
+.signClub {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: $blue-dark;
+}
+
+// Paper Footer Action
+.paperFooter {
+  display: flex;
+  justify-content: center;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px dashed rgba($blue, 0.15);
+}
+
+.closePaperBtn {
+  background: rgba($blue, 0.07);
+  color: $blue-dark;
+  border: 1px solid rgba($blue, 0.2);
+  border-radius: 9999px;
+  padding: 0.65rem 1.65rem;
+  font-size: 0.925rem;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  cursor: pointer;
+  transition: all 0.3s $ease;
+
+  &:hover {
+    background: rgba($red, 0.1);
+    border-color: $red;
+    color: $red;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba($red, 0.15);
+  }
+}

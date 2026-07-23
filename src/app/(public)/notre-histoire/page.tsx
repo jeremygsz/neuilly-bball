@@ -9,6 +9,7 @@ import {
     Compass, 
     Activity 
 } from "lucide-react";
+import PresidentLetter from "@/components/public/histoire/PresidentLetter";
 import s from "./page.module.scss";
 
 export const metadata: Metadata = {
@@ -32,6 +33,9 @@ export default function NotreHistoirePage() {
                     </p>
                 </div>
             </section>
+
+            {/* ── Mot du Président ── */}
+            <PresidentLetter />
 
             {/* ── Intro / Vision ── */}
             <section className={s.introSection}>
