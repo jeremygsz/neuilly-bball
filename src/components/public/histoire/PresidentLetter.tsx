@@ -160,7 +160,7 @@ export default function PresidentLetter() {
                                 {/* Handwritten Signature */}
                                 <div className={s.signatureBox}>
                                     <div className={s.signatureLine}>
-                                        <span className={s.signTitle}>La Présidence</span>
+                                        <span className={s.signTitle}>N. Revah</span>
                                         <span className={s.signClub}>Neuilly Basketball Association</span>
                                     </div>
                                 </div>

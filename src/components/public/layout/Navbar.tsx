@@ -29,27 +29,35 @@ const navLinks = [
 ];
 
 const headerVariants = {
-    hidden:  { y: -80, opacity: 0 },
-    visible: { y: 0,   opacity: 1,
-        transition: { duration: 0.5, ease: [0.4, 0, 0.2, 1] as const } },
+    hidden:  { opacity: 0, y: -20 },
+    visible: { 
+        opacity: 1, 
+        y: 0,
+        transition: { duration: 0.4, ease: [0.4, 0, 0.2, 1] as const } 
+    },
 };
 
 const mobileMenuVariants = {
-    hidden:  { opacity: 0, height: 0 },
-    visible: { opacity: 1, height: "auto",
-        transition: { duration: 0.32, ease: [0.4, 0, 0.2, 1] as const } },
-    exit:    { opacity: 0, height: 0,
-        transition: { duration: 0.24, ease: [0.4, 0, 0.2, 1] as const } },
+    hidden:  { opacity: 0, y: -10 },
+    visible: { 
+        opacity: 1, 
+        y: 0,
+        transition: { duration: 0.25, ease: [0.4, 0, 0.2, 1] as const } 
+    },
+    exit:    { 
+        opacity: 0, 
+        y: -10,
+        transition: { duration: 0.2, ease: [0.4, 0, 0.2, 1] as const } 
+    },
 };
 
 const itemVariants = {
     hidden:  { x: -16, opacity: 0 },
     visible: (i: number) => ({
         x: 0, opacity: 1,
-        transition: { delay: i * 0.055, duration: 0.3, ease: [0.34, 1.56, 0.64, 1] as const },
+        transition: { delay: i * 0.04, duration: 0.25, ease: [0.34, 1.56, 0.64, 1] as const },
     }),
 };
-
 
 export function Navbar() {
     const [isOpen,   setIsOpen]   = useState(false);
@@ -60,27 +68,30 @@ export function Navbar() {
 
     useEffect(() => {
         const onScroll = () => setScrolled(window.scrollY > 24);
+        onScroll(); // initial check
         window.addEventListener("scroll", onScroll, { passive: true });
         return () => window.removeEventListener("scroll", onScroll);
     }, []);
 
     useEffect(() => {
-        const id = setTimeout(() => setIsOpen(false), 0);
-        return () => clearTimeout(id);
+        setIsOpen(false);
     }, [pathname]);
 
-    // Bloque le défilement de la page en arrière-plan lorsque le menu mobile est ouvert (notamment sur Safari/iOS)
+    // Anti-scroll body lock optimisé pour iOS Safari & Chrome
     useEffect(() => {
         if (isOpen) {
             document.body.style.overflow = "hidden";
             document.documentElement.style.overflow = "hidden";
+            document.body.style.touchAction = "none";
         } else {
             document.body.style.overflow = "";
             document.documentElement.style.overflow = "";
+            document.body.style.touchAction = "";
         }
         return () => {
             document.body.style.overflow = "";
             document.documentElement.style.overflow = "";
+            document.body.style.touchAction = "";
         };
     }, [isOpen]);
 
@@ -90,7 +101,10 @@ export function Navbar() {
         styles.header,
         scrolled ? styles["header--scrolled"] : styles["header--transparent"],
         (!scrolled && isLightPage) ? styles["header--light"] : "",
+        isOpen ? styles["header--menuOpen"] : "",
     ].join(" ");
+
+    const closeMobileMenu = () => setIsOpen(false);
 
     return (
         <motion.header
@@ -102,7 +116,7 @@ export function Navbar() {
             <nav className={styles.nav}>
 
                 {/* ── Logo ── */}
-                <Link href="/" className={styles.logo}>
+                <Link href="/" className={styles.logo} onClick={closeMobileMenu}>
                     <Image
                         src="/images/logo3d.png"
                         alt="Neuilly Basketball Association"
@@ -213,6 +227,7 @@ export function Navbar() {
                     onClick={() => setIsOpen((v) => !v)}
                     aria-label={isOpen ? "Fermer le menu" : "Ouvrir le menu"}
                     aria-expanded={isOpen}
+                    type="button"
                 >
                     <AnimatePresence mode="wait" initial={false}>
                         <motion.span
@@ -256,6 +271,7 @@ export function Navbar() {
                                         {link.href ? (
                                             <Link
                                                 href={link.href}
+                                                onClick={closeMobileMenu}
                                                 className={[
                                                     styles.mobileLink,
                                                     isActive ? styles["mobileLink--active"] : "",
@@ -272,6 +288,7 @@ export function Navbar() {
                                                         styles.mobileLinkTrigger,
                                                         isActive ? styles["mobileLink--active"] : "",
                                                     ].join(" ")}
+                                                    type="button"
                                                 >
                                                     {link.label}
                                                     <ChevronDown
@@ -287,7 +304,7 @@ export function Navbar() {
                                                             initial={{ height: 0, opacity: 0 }}
                                                             animate={{ height: "auto", opacity: 1 }}
                                                             exit={{ height: 0, opacity: 0 }}
-                                                            transition={{ duration: 0.3, ease: "easeInOut" }}
+                                                            transition={{ duration: 0.25, ease: "easeInOut" }}
                                                         >
                                                             {link.children.map((child) => {
                                                                 const isChildActive = pathname === child.href;
@@ -295,6 +312,7 @@ export function Navbar() {
                                                                     <li key={child.label}>
                                                                         <Link
                                                                             href={child.href}
+                                                                            onClick={closeMobileMenu}
                                                                             className={[
                                                                                 styles.mobileSubLink,
                                                                                 isChildActive ? styles["mobileSubLink--active"] : "",
@@ -320,7 +338,11 @@ export function Navbar() {
                                 initial="hidden"
                                 animate="visible"
                             >
-                                <Link href="/inscription" className={styles.mobileCta}>
+                                <Link 
+                                    href="/inscription" 
+                                    onClick={closeMobileMenu}
+                                    className={styles.mobileCta}
+                                >
                                     Adhésion 2026-2027
                                 </Link>
                             </motion.li>
