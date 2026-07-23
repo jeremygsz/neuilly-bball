@@ -162,6 +162,13 @@ export default function PresidentLetter() {
                                     <div className={s.signatureLine}>
                                         <span className={s.signTitle}>N. Revah</span>
                                         <span className={s.signClub}>Neuilly Basketball Association</span>
+                                        <Image
+                                            src="/images/signature.png"
+                                            alt="Signature du Président"
+                                            width={200}
+                                            height={80}
+                                            className={s.signatureImg}
+                                        />
                                     </div>
                                 </div>
                             </div>
