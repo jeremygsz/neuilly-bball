@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { 
     Award, 
@@ -22,15 +23,28 @@ export default function NotreHistoirePage() {
         <main className={s.page}>
             {/* ── Hero ── */}
             <section className={s.hero}>
-                <div className={s.heroInner}>
-                    <span className={s.heroLabel}>Le Club</span>
-                    <h1 className={s.heroTitle}>
-                        Notre <span className={s.accent}>Histoire</span>
-                    </h1>
-                    <p className={s.heroSub}>
-                        Plus qu’un club. Une vision. Découvrez la genèse et les valeurs
-                        fondatrices de Neuilly Basketball Association.
-                    </p>
+                <div className={s.heroImageWrapper}>
+                    <Image
+                        src="/images/hero/COMPLEXE-6.JPG"
+                        alt="Complexe de l'Île du Pont — Neuilly Basketball"
+                        fill
+                        priority
+                        className={s.heroImage}
+                        sizes="100vw"
+                    />
+                    <div className={s.heroOverlay} />
+                </div>
+                <div className={s.heroContent}>
+                    <div className={s.heroInner}>
+                        <span className={s.heroLabel}>Le Club</span>
+                        <h1 className={s.heroTitle}>
+                            Notre <span className={s.accent}>Histoire</span>
+                        </h1>
+                        <p className={s.heroSub}>
+                            Plus qu'un club. Une vision. Découvrez la genèse et les valeurs
+                            fondatrices de Neuilly Basketball Association.
+                        </p>
+                    </div>
                 </div>
             </section>
 

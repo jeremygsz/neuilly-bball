@@ -1,6 +1,7 @@
 import { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
-import { 
+import {
     Heart, 
     Smile, 
     Sparkles, 
@@ -22,15 +23,28 @@ export default function SportAdaptePage() {
         <main className={s.page}>
             {/* ── Hero ── */}
             <section className={s.hero}>
-                <div className={s.heroInner}>
-                    <span className={s.heroLabel}>Inclusion & Partage</span>
-                    <h1 className={s.heroTitle}>
-                        Sport <span className={s.accent}>Adapté</span>
-                    </h1>
-                    <p className={s.heroSub}>
-                        Le basketball pour tous, sans exception. Découvrez notre vision 
-                        d'un sport inclusif, bienveillant et rassembleur.
-                    </p>
+                <div className={s.heroImageWrapper}>
+                    <Image
+                        src="/images/hero/COMPLEXE-2.JPG"
+                        alt="Complexe de l'Île du Pont — Neuilly Basketball"
+                        fill
+                        priority
+                        className={s.heroImage}
+                        sizes="100vw"
+                    />
+                    <div className={s.heroOverlay} />
+                </div>
+                <div className={s.heroContent}>
+                    <div className={s.heroInner}>
+                        <span className={s.heroLabel}>Inclusion & Partage</span>
+                        <h1 className={s.heroTitle}>
+                            Sport <span className={s.accent}>Adapté</span>
+                        </h1>
+                        <p className={s.heroSub}>
+                            Le basketball pour tous, sans exception. Découvrez notre vision
+                            d'un sport inclusif, bienveillant et rassembleur.
+                        </p>
+                    </div>
                 </div>
             </section>
 

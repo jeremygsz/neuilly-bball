@@ -6,44 +6,66 @@
   color: $blue-dark;
 }
 
-// ─── Hero ─────────────────────────────────────────────────────────────────────
+// ─── Hero Pleine Largeur ────────────────────────────────────────────────────────────────────────────────
 .hero {
-  background: $blue-dark;
-  padding: 8rem 1.5rem 6rem;
   position: relative;
+  height: 92vh;
+  min-height: 600px;
+  max-height: 900px;
   overflow: hidden;
 
-  &::before {
-    content: '';
-    position: absolute;
-    top: -80px;
-    right: -80px;
-    width: 320px;
-    height: 320px;
-    border-radius: 50%;
-    border: 60px solid rgba($red, 0.08);
-    pointer-events: none;
+  @media (max-width: $bp-md) {
+    height: 70vh;
+    min-height: 480px;
   }
+}
 
-  &::after {
-    content: '';
-    position: absolute;
-    bottom: -150px;
-    left: -150px;
-    width: 400px;
-    height: 400px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba($blue-light, 0.15) 0%, transparent 70%);
-    pointer-events: none;
+.heroImageWrapper {
+  position: absolute;
+  inset: 0;
+}
+
+.heroImage {
+  object-fit: cover;
+  object-position: center 30%;
+  transition: transform 8s ease;
+
+  .hero:hover & {
+    transform: scale(1.03);
+  }
+}
+
+.heroOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba($blue-dark, 0.5) 0%,
+    rgba($blue-dark, 0.55) 50%,
+    rgba($blue-dark, 0.88) 100%
+  );
+}
+
+.heroContent {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  padding-bottom: 5rem;
+
+  @media (max-width: $bp-md) {
+    padding-bottom: 3rem;
   }
 }
 
 .heroInner {
+  width: 100%;
   max-width: 800px;
   margin: 0 auto;
   text-align: center;
   position: relative;
   z-index: 1;
+  padding: 0 1.5rem;
 }
 
 .heroLabel {
@@ -69,6 +91,7 @@
   font-family: var(--font-display);
   letter-spacing: 0.02em;
   text-transform: uppercase;
+  text-shadow: 0 2px 20px rgba(0,0,0,0.4);
 }
 
 .accent {

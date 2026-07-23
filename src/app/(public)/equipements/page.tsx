@@ -1,6 +1,7 @@
 import { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
-import { 
+import {
     Activity, 
     Zap, 
     BookOpen, 
@@ -55,15 +56,28 @@ export default function EquipementsPage() {
         <main className={s.page}>
             {/* ── Hero ── */}
             <section className={s.hero}>
-                <div className={s.heroInner}>
-                    <span className={s.heroLabel}>L'Excellence Technique</span>
-                    <h1 className={s.heroTitle}>
-                        Nos <span className={s.accent}>Équipements</span>
-                    </h1>
-                    <p className={s.heroSub}>
-                        Des outils de dernière génération pour enrichir chaque séance, 
-                        faciliter l'apprentissage et révéler le potentiel de nos joueurs.
-                    </p>
+                <div className={s.heroImageWrapper}>
+                    <Image
+                        src="/images/court/COURT.JPG"
+                        alt="Terrain de basketball — Neuilly Basketball"
+                        fill
+                        priority
+                        className={s.heroImage}
+                        sizes="100vw"
+                    />
+                    <div className={s.heroOverlay} />
+                </div>
+                <div className={s.heroContent}>
+                    <div className={s.heroInner}>
+                        <span className={s.heroLabel}>L'Excellence Technique</span>
+                        <h1 className={s.heroTitle}>
+                            Nos <span className={s.accent}>Équipements</span>
+                        </h1>
+                        <p className={s.heroSub}>
+                            Des outils de dernière génération pour enrichir chaque séance,
+                            faciliter l'apprentissage et révéler le potentiel de nos joueurs.
+                        </p>
+                    </div>
                 </div>
             </section>
 
