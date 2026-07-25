@@ -1,0 +1,241 @@
+@use "@/styles/vars" as *;
+
+.form {
+  background: $white;
+  border: 1px solid $grey-200;
+  border-radius: 24px;
+  padding: 3rem;
+  box-shadow: var(--shadow-md);
+  max-width: 800px;
+  margin: 0 auto;
+
+  @media (max-width: $bp-md) {
+    padding: 1.5rem;
+  }
+}
+
+.formTitle {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  color: $blue-dark;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.formSubtitle {
+  font-size: 0.95rem;
+  color: $grey-600;
+  margin-bottom: 2.5rem;
+  line-height: 1.5;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+
+  @media (max-width: $bp-sm) {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  text-align: left;
+}
+
+.label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: $blue-dark;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.input,
+.select,
+.textarea {
+  background: $grey-100;
+  border: 1px solid $grey-200;
+  color: $blue-dark;
+  padding: 0.9rem 1.2rem;
+  border-radius: var(--radius);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  transition: all 0.3s $ease;
+  outline: none;
+
+  &::placeholder {
+    color: $grey-600;
+    opacity: 0.7;
+  }
+
+  &:focus {
+    border-color: $red;
+    box-shadow: 0 0 10px rgba($red, 0.15);
+    background: $white;
+  }
+}
+
+.select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%230D1B3E'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1.2rem center;
+  background-size: 1rem;
+  padding-right: 2.5rem;
+
+  option {
+    background: $white;
+    color: $blue-dark;
+  }
+}
+
+.textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.checkboxSection {
+  margin-bottom: 2rem;
+  text-align: left;
+}
+
+.sectionLabel {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: $blue-dark;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid $grey-200;
+  padding-bottom: 0.5rem;
+}
+
+.checkboxGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+
+  @media (max-width: $bp-sm) {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+}
+
+.checkboxLabel {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+.checkboxInput {
+  display: none;
+}
+
+.checkboxBox {
+  width: 20px;
+  height: 20px;
+  border: 1px solid $grey-400;
+  border-radius: var(--radius-sm);
+  background: $white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.25s $ease;
+  color: $white;
+
+  .checkboxCheckIcon {
+    opacity: 0;
+    transform: scale(0.5);
+    transition: all 0.2s $ease;
+  }
+}
+
+.checkboxInput:checked + .checkboxBox {
+  background: $red;
+  border-color: $red;
+  box-shadow: 0 0 8px rgba($red, 0.2);
+
+  .checkboxCheckIcon {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.checkboxText {
+  font-size: 0.9rem;
+  color: $grey-600;
+  transition: color 0.2s $ease;
+
+  .checkboxLabel:hover & {
+    color: $blue-dark;
+  }
+}
+
+.message {
+  padding: 1rem 1.25rem;
+  border-radius: var(--radius);
+  font-size: 0.9rem;
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
+
+  &.success {
+    background: rgba(16, 185, 129, 0.08);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    color: #059669;
+  }
+
+  &.error {
+    background: rgba($red, 0.05);
+    border: 1px solid rgba($red, 0.2);
+    color: $red;
+  }
+}
+
+.submitBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  width: 100%;
+  padding: 1rem 2rem;
+  border-radius: var(--radius);
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition: all 0.3s $ease;
+  text-decoration: none;
+  background: $red;
+  color: $white;
+  border: none;
+  box-shadow: var(--shadow-red);
+
+  &:hover:not(:disabled) {
+    background: $red-light;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba($red, 0.3);
+  }
+
+  &:active:not(:disabled) {
+    transform: translateY(1px);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    box-shadow: none;
+  }
+}

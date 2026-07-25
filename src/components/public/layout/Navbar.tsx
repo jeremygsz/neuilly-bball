@@ -24,7 +24,7 @@ const navLinks = [
     },
     { href: "/stages", label: "Nos Stages" },
     { href: "/boutique", label: "Boutique" },
-    { href: "/#", label: "Nos partenaires" },
+    { href: "/training-center", label: "Training Center" },
     { href: "/contact", label: "Contact" },
 ];
 
