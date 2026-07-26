@@ -76,10 +76,27 @@ export async function submitTrainingCenter(formData: FormData) {
 ${projectDescription}
     `.trim();
 
-    const subject = `Elite Training Center - ${firstname} ${lastname} (${club})`;
+    const subject = `Training Center - ${firstname} ${lastname} (${club})`;
 
     try {
-        // 1. Sauvegarde en DB (table contact réutilisée)
+        // 1. Sauvegarde en DB dans la table dédiée
+        await prisma.trainingCenterRequest.create({
+            data: {
+                firstname,
+                lastname,
+                email,
+                phone: phone || null,
+                club,
+                league,
+                dates,
+                playersCount,
+                objectives,
+                services,
+                projectDescription,
+            },
+        });
+
+        // 2. Sauvegarde en DB (table contact réutilisée pour l'admin global)
         await prisma.contact.create({
             data: {
                 firstname,
@@ -91,31 +108,94 @@ ${projectDescription}
             },
         });
 
-        // 2. Envoi de l'email via Resend
+        // 3. Envoi de l'email via Resend
         if (process.env.RESEND_API_KEY) {
             try {
                 const { data, error: mailError } = await resend.emails.send({
                     from: 'Neuilly Basketball Training Center <contact@contact.neuillybasketball.com>',
                     to: ['contact@neuillybasketball.com'],
                     replyTo: email,
-                    subject: `[Elite Training Center] Demande de ${firstname} ${lastname} - ${club}`,
+                    subject: `[Training Center] Demande de ${firstname} ${lastname} (${club})`,
                     html: `
-                        <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; border: 1px solid #eee; padding: 20px; border-radius: 8px;">
-                            <h2 style="color: #1B3A8C; border-bottom: 2px solid #C8102E; padding-bottom: 8px;">Demande d'accès au High Performance Training Center</h2>
-                            <p><strong>De :</strong> ${firstname} ${lastname} (${email})</p>
-                            <p><strong>Téléphone :</strong> ${phone || "Non renseigné"}</p>
-                            <p><strong>Club actuel :</strong> ${club} (${league})</p>
-                            <p><strong>Dates souhaitées :</strong> ${dates}</p>
-                            <p><strong>Nombre de joueurs :</strong> ${playersCount}</p>
+                        <div style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; line-height: 1.6; color: #1e293b; max-width: 600px; margin: 0 auto; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);">
+                            <!-- Header Banner -->
+                            <div style="background: linear-gradient(135deg, #0d1b3e 0%, #1b3a8c 100%); padding: 30px 24px; text-align: center; border-bottom: 4px solid #c8102e;">
+                                <h1 style="color: #ffffff; margin: 0; font-size: 22px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;">High Performance</h1>
+                                <p style="color: #93c5fd; margin: 5px 0 0 0; font-size: 14px; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 500;">Demande de Privatisation Training Center</p>
+                            </div>
                             
-                            <h3 style="color: #1B3A8C; margin-top: 20px;">Objectifs</h3>
-                            <p>${objectives.length > 0 ? objectives.join(", ") : "Aucun"}</p>
-                            
-                            <h3 style="color: #1B3A8C; margin-top: 20px;">Services demandés</h3>
-                            <p>${services.length > 0 ? services.join(", ") : "Aucun"}</p>
-                            
-                            <h3 style="color: #1B3A8C; margin-top: 20px;">Description du projet</h3>
-                            <p style="background: #f9f9f9; padding: 12px; border-left: 4px solid #C8102E; border-radius: 4px; white-space: pre-wrap;">${projectDescription}</p>
+                            <div style="padding: 24px;">
+                                <!-- Section: Athlete Profile -->
+                                <h3 style="color: #0d1b3e; border-bottom: 1px solid #f1f5f9; padding-bottom: 8px; margin-top: 0; margin-bottom: 16px; font-size: 16px; text-transform: uppercase; letter-spacing: 0.05em;">👤 Profil de l'Athlète</h3>
+                                <table style="width: 100%; border-collapse: collapse; margin-bottom: 24px;">
+                                    <tr>
+                                        <td style="padding: 8px 0; color: #64748b; font-size: 14px; width: 35%;">Nom complet</td>
+                                        <td style="padding: 8px 0; color: #0d1b3e; font-size: 14px; font-weight: 600;">${firstname} ${lastname}</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 8px 0; color: #64748b; font-size: 14px;">Club / Organisation</td>
+                                        <td style="padding: 8px 0; color: #0d1b3e; font-size: 14px; font-weight: 600;">${club}</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 8px 0; color: #64748b; font-size: 14px;">Championnat / Ligue</td>
+                                        <td style="padding: 8px 0; color: #0d1b3e; font-size: 14px; font-weight: 600;"><span style="background-color: #eff6ff; color: #1b3a8c; padding: 2px 8px; border-radius: 4px; font-size: 12px; font-weight: 700;">${league}</span></td>
+                                    </tr>
+                                </table>
+
+                                <!-- Section: Contact details -->
+                                <h3 style="color: #0d1b3e; border-bottom: 1px solid #f1f5f9; padding-bottom: 8px; margin-bottom: 16px; font-size: 16px; text-transform: uppercase; letter-spacing: 0.05em;">📞 Coordonnées</h3>
+                                <table style="width: 100%; border-collapse: collapse; margin-bottom: 24px;">
+                                    <tr>
+                                        <td style="padding: 8px 0; color: #64748b; font-size: 14px; width: 35%;">Email</td>
+                                        <td style="padding: 8px 0; color: #0d1b3e; font-size: 14px; font-weight: 600;"><a href="mailto:${email}" style="color: #1b3a8c; text-decoration: none;">${email}</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 8px 0; color: #64748b; font-size: 14px;">Téléphone</td>
+                                        <td style="padding: 8px 0; color: #0d1b3e; font-size: 14px; font-weight: 600;">${phone || "Non renseigné"}</td>
+                                    </tr>
+                                </table>
+
+                                <!-- Section: Project Info -->
+                                <h3 style="color: #0d1b3e; border-bottom: 1px solid #f1f5f9; padding-bottom: 8px; margin-bottom: 16px; font-size: 16px; text-transform: uppercase; letter-spacing: 0.05em;">🗓️ Détails du Séjour</h3>
+                                <table style="width: 100%; border-collapse: collapse; margin-bottom: 24px;">
+                                    <tr>
+                                        <td style="padding: 8px 0; color: #64748b; font-size: 14px; width: 35%;">Dates souhaitées</td>
+                                        <td style="padding: 8px 0; color: #0d1b3e; font-size: 14px; font-weight: 600; color: #c8102e;">${dates}</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 8px 0; color: #64748b; font-size: 14px;">Nombre de joueurs</td>
+                                        <td style="padding: 8px 0; color: #0d1b3e; font-size: 14px; font-weight: 600;">${playersCount}</td>
+                                    </tr>
+                                </table>
+
+                                <!-- Section: Objectives & Services -->
+                                <div style="margin-bottom: 24px; display: table; width: 100%;">
+                                    <div style="display: table-cell; width: 50%; padding-right: 10px; vertical-align: top;">
+                                        <h4 style="color: #0d1b3e; font-size: 13px; margin: 0 0 10px 0; text-transform: uppercase; letter-spacing: 0.05em;">🏀 Objectifs du séjour</h4>
+                                        <ul style="margin: 0; padding-left: 18px; font-size: 13px; color: #475569; line-height: 1.5;">
+                                            ${objectives.length > 0 ? objectives.map(obj => `<li style="margin-bottom: 4px;">${obj}</li>`).join("") : `<li style="color: #94a3b8; font-style: italic;">Aucun renseigné</li>`}
+                                        </ul>
+                                    </div>
+                                    <div style="display: table-cell; width: 50%; padding-left: 10px; vertical-align: top;">
+                                        <h4 style="color: #0d1b3e; font-size: 13px; margin: 0 0 10px 0; text-transform: uppercase; letter-spacing: 0.05em;">⚡ Services demandés</h4>
+                                        <ul style="margin: 0; padding-left: 18px; font-size: 13px; color: #475569; line-height: 1.5;">
+                                            ${services.length > 0 ? services.map(srv => `<li style="margin-bottom: 4px;">${srv}</li>`).join("") : `<li style="color: #94a3b8; font-style: italic;">Aucun renseigné</li>`}
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <!-- Section: Project Description -->
+                                <h3 style="color: #0d1b3e; border-bottom: 1px solid #f1f5f9; padding-bottom: 8px; margin-bottom: 12px; font-size: 16px; text-transform: uppercase; letter-spacing: 0.05em;">📝 Description du Projet</h3>
+                                <div style="background-color: #f8fafc; border-left: 4px solid #c8102e; border-radius: 4px; padding: 16px; margin-bottom: 16px;">
+                                    <p style="margin: 0; font-size: 14px; color: #334155; white-space: pre-wrap; font-style: italic;">"${projectDescription}"</p>
+                                </div>
+                            </div>
+
+                            <!-- Footer -->
+                            <div style="background-color: #f8fafc; padding: 20px 24px; text-align: center; border-top: 1px solid #e2e8f0; font-size: 12px; color: #94a3b8;">
+                                <p style="margin: 0 0 4px 0;">Ce mail est généré automatiquement suite à une demande sur le site Neuilly Basketball.</p>
+                                <p style="margin: 0; font-weight: 600; color: #64748b;">Neuilly Basketball Association — High Performance Section</p>
+                            </div>
                         </div>
                     `,
                 });

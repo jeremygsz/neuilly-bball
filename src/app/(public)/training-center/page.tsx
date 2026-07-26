@@ -131,7 +131,7 @@ export default function TrainingCenterPage() {
                         AU CŒUR DE PARIS
                     </h1>
                     <p className={s.heroSub}>
-                        Neuilly Basketball Association met à disposition des joueurs professionnels et espoirs
+                        Neuilly Basketball Association met à disposition à des joueurs professionnels et espoirs
                         une structure confidentielle d'excellence pour organiser leur préparation individuelle sur mesure.
                     </p>
 

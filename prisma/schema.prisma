@@ -115,3 +115,23 @@ enum Role {
   ADMIN
   SUPER_ADMIN
 }
+
+model TrainingCenterRequest {
+  id                 Int      @id @default(autoincrement())
+  firstname          String   @db.VarChar(100)
+  lastname           String   @db.VarChar(100)
+  email              String   @db.VarChar(255)
+  phone              String?  @db.VarChar(20)
+  club               String   @db.VarChar(255)
+  league             String   @db.VarChar(255)
+  dates              String   @db.VarChar(255)
+  playersCount       String   @db.VarChar(50)
+  objectives         String[] @default([])
+  services           String[] @default([])
+  projectDescription String   @db.Text
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @default(now()) @updatedAt
+
+  @@map("training_center_request")
+}
+
