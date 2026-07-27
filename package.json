@@ -2,9 +2,6 @@
   "name": "neuilly-basketball",
   "version": "0.1.0",
   "private": true,
-  "prisma": {
-    "seed": "ts-node prisma/seed.ts"
-  },
   "scripts": {
     "dev": "next dev --turbopack",
     "postinstall": "prisma generate",
