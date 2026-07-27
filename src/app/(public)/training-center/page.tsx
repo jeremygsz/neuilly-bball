@@ -18,7 +18,7 @@ import { TrainingCenterForm } from "@/components/public/training-center/Training
 import s from "./page.module.scss";
 
 export const metadata: Metadata = {
-    title: "High Performance Training Center | Neuilly Basketball",
+    title: "NBHPC | Neuilly Basketball",
     description:
         "Votre camp d’entraînement privé au cœur de Paris. Infrastructure de basket haut de niveau pour joueurs NBA, EuroLeague, Betclic Élite, Pro B, NCAA et internationaux.",
 };
@@ -123,7 +123,7 @@ export default function TrainingCenterPage() {
                 <div className={s.gridBackground} />
                 <div className={s.heroInner}>
                     <div className={s.badgeWrapper}>
-                        <span className={s.heroLabel}>High Performance Training Center</span>
+                        <span className={s.heroLabel}>NEUILLY BASKET HIGH PERFORMANCE CENTER</span>
                     </div>
                     <h1 className={s.heroTitle}>
                         VOTRE CAMP<br />
