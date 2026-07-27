@@ -37,6 +37,12 @@
   z-index: 2;
 }
 
+.langSwitcherWrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
 .badgeWrapper {
   display: inline-block;
   margin-bottom: 2rem;
