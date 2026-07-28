@@ -217,6 +217,19 @@ const t = {
     },
 };
 
+// ─── Clientèle / Ligues ─────────────────────────────────────────────────────
+
+const LEAGUES = [
+    { name: "NBA", logo: "/images/leagues/nba.svg" },
+    { name: "WNBA", logo: "/images/leagues/wnba.svg" },
+    { name: "Euroleague", logo: "/images/leagues/euroleague.svg" },
+    { name: "Betclic Élite 1 & 2", logo: "/images/leagues/betclic-elite.svg" },
+    { name: "Pro B", logo: "/images/leagues/pro-b.svg" },
+    { name: "NCAA", logo: "/images/leagues/ncaa.svg" },
+    { name: "NM1 / Féminines Pro", logo: "/images/leagues/ffbb.svg" },
+    { name: "Internationaux", logo: "/images/leagues/fiba.svg" },
+];
+
 // ─── Inner Content (reads from context) ──────────────────────────────────────
 
 function TrainingCenterContent() {
@@ -249,10 +262,19 @@ function TrainingCenterContent() {
                     <div className={s.clienteleContainer}>
                         <span className={s.clienteleTitle}>{tr.clienteleTitle}</span>
                         <div className={s.clienteleGrid}>
-                            {["NBA", "EuroLeague", "Betclic Élite", "Pro B", "NCAA", "NM1 / Féminines Pro", "Internationaux"].map((client, idx) => (
-                                <span key={idx} className={s.clienteleBadge}>
-                                    🏀 {client}
-                                </span>
+                            {LEAGUES.map((league) => (
+                                <div key={league.name} className={s.clienteleItem}>
+                                    <div className={s.clienteleLogoWrapper}>
+                                        <Image
+                                            src={league.logo}
+                                            alt={league.name}
+                                            fill
+                                            sizes="80px"
+                                            className={s.clienteleLogo}
+                                        />
+                                    </div>
+                                    <span className={s.clienteleName}>{league.name}</span>
+                                </div>
                             ))}
                         </div>
                     </div>
