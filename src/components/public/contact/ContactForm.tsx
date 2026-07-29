@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Send, Loader2 } from "lucide-react";
+import { Send, Loader2, Check } from "lucide-react";
 import { submitContact } from "@/app/actions/contact";
 import s from "./ContactForm.module.scss";
 
@@ -56,8 +56,27 @@ export function ContactForm() {
         setIsPending(false);
     }
 
+    const handleSendAnother = () => {
+        setMessage(null);
+    };
+
+    if (message?.type === "success") {
+        return (
+            <div className={`${s.successView} ${s.animateFade}`}>
+                <div className={s.successIcon}>
+                    <Check size={48} />
+                </div>
+                <h3 className={s.successTitle}>Message Envoyé !</h3>
+                <p className={s.successText}>{message.text}</p>
+                <button className={s.closeSuccessBtn} onClick={handleSendAnother}>
+                    Envoyer un autre message
+                </button>
+            </div>
+        );
+    }
+
     return (
-        <form onSubmit={handleSubmit} className={s.form}>
+        <form onSubmit={handleSubmit} className={`${s.form} ${s.animateFade}`}>
             <div className={s.row}>
                 <div className={s.field}>
                     <label htmlFor="firstname" className={s.label}>Prénom *</label>
@@ -144,8 +163,8 @@ export function ContactForm() {
                 />
             </div>
 
-            {message && (
-                <div className={`${s.message} ${s[message.type]}`}>
+            {message?.type === "error" && (
+                <div className={`${s.message} ${s.error}`}>
                     {message.text}
                 </div>
             )}
