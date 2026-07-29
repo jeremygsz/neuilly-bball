@@ -2,7 +2,7 @@
 
 import { prisma } from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
-import { resend } from "@/lib/mailer";
+import { getResend } from "@/lib/mailer";
 import { z } from "zod";
 
 const contactSchema = z.object({
@@ -46,7 +46,8 @@ export async function submitContact(formData: FormData) {
         });
 
         // 2. Envoi de l'email via Resend
-        if (process.env.RESEND_API_KEY) {
+        const resend = getResend();
+        if (resend) {
             try {
                 const { data, error: mailError } = await resend.emails.send({
                     from: 'Neuilly Basketball <contact@contact.neuillybasketball.com>',
