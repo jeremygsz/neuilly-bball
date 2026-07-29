@@ -1,16 +1,17 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter, Bebas_Neue } from "next/font/google";
 import "@/styles/globals.scss";
 
 
-const geistSans = Geist({
-    variable: "--font-geist-sans",
+const inter = Inter({
+    variable: "--font-body",
     subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
-    variable: "--font-geist-mono",
+const bebasNeue = Bebas_Neue({
+    variable: "--font-display",
     subsets: ["latin"],
+    weight: "400",
 });
 
 export const metadata: Metadata = {
@@ -62,7 +63,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
             />
         </head>
-        <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        <body className={`${inter.variable} ${bebasNeue.variable} antialiased`}>
         {children}
         </body>
         </html>
