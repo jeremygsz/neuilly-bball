@@ -11,12 +11,15 @@ import {
     Star,
 } from "lucide-react";
 import s from "./page.module.scss";
+import { ActualitesSection } from "@/components/public/blog/ActualitesSection";
 
 export const metadata: Metadata = {
     title: "Actualités | Neuilly Basketball",
     description:
         "Suivez toute l'actualité de Neuilly Basketball Association : événements, résultats, stages, tournois et moments de vie du club.",
 };
+
+export const dynamic = "force-dynamic";
 
 const eventTypes = [
     {
@@ -96,6 +99,13 @@ export default function ActualitesPage() {
                     </p>
                 </div>
             </section>
+
+            <ActualitesSection
+                eyebrow="Actualités"
+                title="Toutes nos actualités"
+                limit={100}
+                showAllLink={false}
+            />
 
             {/* ── 1. Vivre le club au quotidien ── */}
             <section className={s.introSection}>

@@ -3,16 +3,28 @@ import { ArrowRight } from "lucide-react";
 import s from "./ActualitesSection.module.scss";
 import { prisma } from "@/lib/prisma";
 import * as m from "framer-motion/client";
-import { ArticleCard } from "@/components/public/blog/ArticleCard";
+import { ArticleCard } from "./ArticleCard";
 import { Post } from "@prisma/client";
 
+interface Props {
+    eyebrow?: string;
+    title?: string;
+    limit?: number;
+    showAllLink?: boolean;
+}
+
 // ─── Section ─────────────────────────────────────────────────────────────────
-export async function ActualitesSection() {
+export async function ActualitesSection({
+    eyebrow = "À la une",
+    title = "Dernières actualités",
+    limit = 3,
+    showAllLink = true,
+}: Props = {}) {
     let articles: Post[] = [];
     try {
         articles = await prisma.post.findMany({
             where: { isOnline: true },
-            take: 3,
+            take: limit,
             orderBy: { createdAt: "desc" }
         });
     } catch (error) {
@@ -34,15 +46,17 @@ export async function ActualitesSection() {
                     <div className={s.headerLeft}>
                         <span className={s.eyebrow}>
                             <span className={s.eyebrowLine} />
-                            À la une
+                            {eyebrow}
                         </span>
-                        <h2 className={s.sectionTitle}>Dernières actualités</h2>
+                        <h2 className={s.sectionTitle}>{title}</h2>
                     </div>
 
-                    <Link href="/actualites" className={s.allLink}>
-                        Toutes les actus
-                        <ArrowRight size={16} />
-                    </Link>
+                    {showAllLink && (
+                        <Link href="/actualites" className={s.allLink}>
+                            Toutes les actus
+                            <ArrowRight size={16} />
+                        </Link>
+                    )}
                 </m.div>
 
                 {/* Grid or Empty State */}

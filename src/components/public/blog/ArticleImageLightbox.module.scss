@@ -1,0 +1,54 @@
+@use "@/styles/vars" as *;
+
+.imageWrap {
+  position: relative;
+  display: block;
+  width: 100%;
+  max-width: 900px;
+  height: 420px;
+  margin: -3rem auto 0;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba($blue-dark, 0.18);
+  padding: 0;
+  border: none;
+  cursor: zoom-in;
+
+  @media (max-width: $bp-md) {
+    height: 260px;
+    margin-top: -1.5rem;
+  }
+}
+
+.image {
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba($blue-dark, 0);
+  opacity: 0;
+  transition: opacity 0.25s ease, background 0.25s ease;
+}
+
+.zoomIcon {
+  font-size: 2rem;
+  color: $white;
+  line-height: 1;
+}
+
+.imageWrap:hover {
+  .image {
+    transform: scale(1.03);
+  }
+
+  .overlay {
+    opacity: 1;
+    background: rgba($blue-dark, 0.35);
+  }
+}

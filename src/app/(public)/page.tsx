@@ -1,6 +1,6 @@
 import { HeroSection } from "@/components/public/home/HeroSection";
 import { WelcomeSection } from "@/components/public/home/WelcomeSection";
-import {ActualitesSection} from "@/components/public/home/ActualitesSection";
+import {ActualitesSection} from "@/components/public/blog/ActualitesSection";
 import {EquipesSection} from "@/components/public/home/EquipesSection";
 import {AgendaSection} from "@/components/public/home/AgendaSection";
 import {ClubSection} from "@/components/public/home/ClubSection";
