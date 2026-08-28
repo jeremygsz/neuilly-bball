@@ -17,7 +17,7 @@ function fadeUp(delay = 0): Pick<HTMLMotionProps<"div">, "initial" | "animate" |
 }
 
 const STATS = [
-    { value: "12",   label: "Équipes"        },
+    { value: "13",   label: "Équipes"        },
     { value: "350", label: "Licenciés"      },
     { value: "5",    label: "Machines de Shoot" },
 ];
