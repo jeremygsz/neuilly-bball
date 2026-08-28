@@ -17,9 +17,9 @@ function fadeUp(delay = 0): Pick<HTMLMotionProps<"div">, "initial" | "animate" |
 }
 
 const STATS = [
-    { value: "10",   label: "Équipes"        },
-    { value: "200", label: "Licenciés"      },
-    { value: "4",    label: "Machines de Shoot" },
+    { value: "12",   label: "Équipes"        },
+    { value: "350", label: "Licenciés"      },
+    { value: "5",    label: "Machines de Shoot" },
 ];
 
 export function HeroSection() {

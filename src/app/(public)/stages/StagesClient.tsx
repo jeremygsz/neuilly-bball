@@ -42,7 +42,8 @@ const stages = [
             { icon: Trophy, text: "Surprises & Plaisir" }
         ],
         type: "camp",
-        registerLink: "https://neuilly-basketball-association.sporteasy.net/collections/49998/checkout/"
+        registerLink: "https://neuilly-basketball-association.sporteasy.net/collections/49998/checkout/",
+        isFull: true
     },
     {
         id: "summer-camp-2",
