@@ -248,6 +248,17 @@
     }
   }
 
+  tfoot {
+    background: $blue-dark;
+    color: $white;
+
+    td {
+      padding: 1rem 1.5rem;
+      font-size: 0.9rem;
+      font-stqyle: italic;
+    }
+  }
+
   tbody {
     tr {
       border-bottom: 1px solid $grey-100;

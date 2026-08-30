@@ -15,6 +15,7 @@ function fadeUp(delay = 0): HTMLMotionProps<"div"> {
 
 const planningData = [
     { category: "U6 à U10", age: "6 à 10 ans", day: "Mercredi", time: "13h00 - 15h00", public: "Enfants", color: "#3b82f6" },
+    { category: "U10 à U15 (Gymnase Koening)", age: "10 à 15 ans", day: "Mardi", time: "18h00 - 20h00", public: "Enfants", color: "#10b981" },
     { category: "U10 à U15", age: "10 à 15 ans", day: "Mercredi", time: "15h30 - 18h00", public: "Enfants", color: "#10b981" },
     { category: "U15 à U18", age: "15 à 18 ans", day: "Mercredi", time: "18h00 - 20h00", public: "Enfants", color: "#f59e0b" },
     { category: "Basket Entreprise", age: "Adultes", day: "Mardi", time: "12h00 - 13h00", public: "Adultes", color: "#a855f7" },
@@ -149,6 +150,13 @@ export default function InscriptionPageContent() {
                                         </tr>
                                     ))}
                                 </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td colSpan={5} className={s.footNote}>
+                                            Pour toutes les autres catégories (seniors, adultes, etc.), merci de contacter le club directement.
+                                        </td>
+                                    </tr>
+                                </tfoot>
                             </table>
                         </div>
 
