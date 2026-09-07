@@ -21,8 +21,8 @@ const planningData = [
     { category: "Basket Entreprise", age: "Adultes", day: "Mardi", time: "12h00 - 13h00", public: "Adultes", color: "#a855f7" },
     { category: "Vétérans Loisirs Féminins", age: "À partir de 20 ans", day: "Vendredi", time: "18h00 - 20h00", public: "Adultes", color: "#ec4899" },
     { category: "Vétérans Loisirs Masculins", age: "À partir de 20 ans", day: "Mardi", time: "20h00 - 22h00", public: "Adultes", color: "#6366f1" },
-    { category: "Vétérans Loisirs Masculins", age: "À partir de 20 ans", day: "Vendredi", time: "20h00 - 22h00", public: "Adultes", color: "#6366f1" },
-    { category: "Seniors 1", age: "Adultes", day: "Jeudi", time: "20h00 - 22h00", public: "Adultes", color: "#ef4444" },
+    { category: "Vétérans Loisirs Masculins", age: "À partir de 20 ans", day: "Jeudi", time: "20h00 - 22h00", public: "Adultes", color: "#6366f1" },
+    { category: "Seniors 1", age: "Adultes", day: "Vendredi", time: "20h00 - 22h00", public: "Adultes", color: "#ef4444" },
     { category: "Seniors 1", age: "Adultes", day: "Samedi", time: "11h00 - 13h00", public: "Adultes", color: "#ef4444" },
     { category: "Enfants U6 à U18*", age: "6 à 18 ans", day: "Samedi", time: "15h30 - 18h00", public: "Toutes les catégories enfants", color: "multi" },
 ];
