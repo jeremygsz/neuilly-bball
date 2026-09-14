@@ -34,7 +34,7 @@ model Team {
 
 enum Gender {
   Masculin
-  Feminin
+  Féminin
   Mixte
 }
 
