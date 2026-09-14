@@ -6,10 +6,10 @@ import s from "./Footer.module.scss";
 const footerLinks = {
     club: [
         { href: "/",              label: "Accueil"               },
-        { href: "/#",          label: "Le Club"               },
+        { href: "/notre-histoire", label: "Le Club"               },
         { href: "/equipes",       label: "Équipes"               },
         { href: "/stages",        label: "Nos Stages"            },
-        { href: "/#",             label: "Nos Équipements"      },
+        { href: "/equipements",   label: "Nos Équipements"      },
         { href: "/boutique",      label: "Boutique"      },
         { href: "/actualites",    label: "À La Une"              },
     ],
