@@ -1,0 +1,78 @@
+export type CategoryKey =
+    | "jeunes-1"
+    | "jeunes-2"
+    | "jeunes-3"
+    | "corporate"
+    | "loisirs-masculin"
+    | "loisirs-feminin";
+
+export interface CategoryStyle {
+    label: string;
+    color: string;
+    textColor?: string;
+}
+
+export const CATEGORY_STYLES: Record<CategoryKey, CategoryStyle> = {
+    "jeunes-1":         { label: "Jeunes 6 à 10 ans",   color: "#8ED9A5" },
+    "jeunes-2":         { label: "Jeunes 10 à 14 ans",  color: "#2EC4B6", textColor: "#FFFFFF" },
+    "jeunes-3":         { label: "Jeunes 15 à 18 ans",  color: "#1B9E77", textColor: "#FFFFFF" },
+    corporate:          { label: "Basket Entreprise",   color: "#1B3F73", textColor: "#FFFFFF" },
+    "loisirs-masculin": { label: "Loisirs Masculin",    color: "#FF8A50" },
+    "loisirs-feminin":  { label: "Loisirs Féminin",     color: "#C355D8", textColor: "#FFFFFF" },
+};
+
+// Ids des équipes (table `team`) rattachées à chaque créneau. Les libellés affichés
+// sont résolus dynamiquement depuis la base — ce fichier ne fixe que le jour, l'horaire,
+// le lieu et la catégorie (couleur) d'un créneau.
+export interface PlanningSlot {
+    day: string;
+    start: number;
+    end: number;
+    category: CategoryKey;
+    teamIds: number[];
+}
+
+export interface PlanningSite {
+    id: "ile-du-pont" | "koenig";
+    name: string;
+    address: string;
+    slots: PlanningSlot[];
+}
+
+export const DAY_ORDER = ["Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche"];
+
+export const HOURS = Array.from({ length: 10 }, (_, i) => 12 + i); // 12h → 21h (colonnes de la grille, jusqu'à 22h)
+
+export const sites: PlanningSite[] = [
+    {
+        id: "ile-du-pont",
+        name: "Complexe sportif de l'Île du Pont",
+        address: "Neuilly-sur-Seine",
+        slots: [
+            { day: "Mardi", start: 12, end: 13, category: "corporate", teamIds: [11] },
+            { day: "Mardi", start: 20, end: 22, category: "loisirs-masculin", teamIds: [12] },
+
+            { day: "Mercredi", start: 13, end: 15, category: "jeunes-1", teamIds: [3, 4] },
+            { day: "Mercredi", start: 15, end: 17, category: "jeunes-2", teamIds: [5, 9] },
+            { day: "Mercredi", start: 18, end: 20, category: "jeunes-3", teamIds: [8, 7] },
+
+            { day: "Jeudi", start: 20, end: 22, category: "loisirs-masculin", teamIds: [12] },
+
+            { day: "Vendredi", start: 18, end: 20, category: "loisirs-feminin", teamIds: [10] },
+
+            { day: "Samedi", start: 13, end: 15, category: "jeunes-1", teamIds: [3, 4] },
+            { day: "Samedi", start: 15, end: 17, category: "jeunes-2", teamIds: [5, 9] },
+            { day: "Samedi", start: 17, end: 19, category: "jeunes-3", teamIds: [8, 7] },
+        ],
+    },
+    {
+        id: "koenig",
+        name: "Espace Koenig",
+        address: "Neuilly-sur-Seine",
+        slots: [
+            { day: "Mardi", start: 18, end: 19, category: "jeunes-1", teamIds: [3, 4] },
+            { day: "Mardi", start: 19, end: 20, category: "jeunes-2", teamIds: [5] },
+            { day: "Mardi", start: 20, end: 22, category: "loisirs-masculin", teamIds: [12] },
+        ],
+    },
+];

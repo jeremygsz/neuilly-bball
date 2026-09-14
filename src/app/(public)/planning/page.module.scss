@@ -1,0 +1,423 @@
+@use "@/styles/vars" as *;
+
+.main {
+  min-height: 100vh;
+  background-color: $white;
+}
+
+// ─── Header (fond identique à la Boutique) ────────────────────────────────────
+.hero {
+  position: relative;
+  padding: 140px 24px 100px;
+  background: linear-gradient(135deg, $blue-dark 0%, $blue 100%);
+  text-align: center;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -20%;
+    width: 140%;
+    height: 140%;
+    background: radial-gradient(circle, rgba($white, 0.05) 0%, transparent 70%);
+    z-index: 1;
+  }
+}
+
+.heroInner {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.heroLabel {
+  display: inline-block;
+  padding: 6px 16px;
+  background: rgba($red, 0.2);
+  border: 1px solid rgba($red, 0.4);
+  color: $white;
+  border-radius: 100px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 24px;
+}
+
+.title {
+  font-size: clamp(3rem, 8vw, 5rem);
+  line-height: 0.9;
+  margin: 1.5rem 0;
+  color: $white;
+  text-transform: uppercase;
+
+  span {
+    color: $red-light;
+  }
+}
+
+.lead {
+  font-size: 1.15rem;
+  color: rgba($white, 0.7);
+  max-width: 680px;
+  margin: 0 auto;
+  font-weight: 500;
+}
+
+// ─── Corps de page ─────────────────────────────────────────────────────────────
+.lower {
+  position: relative;
+  overflow: hidden;
+  padding: 4rem 0 6rem;
+}
+
+.bgDecor {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.15;
+
+  .blob1 {
+    position: absolute;
+    top: -10%;
+    right: -10%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, $red 0%, transparent 70%);
+    filter: blur(80px);
+  }
+
+  .blob2 {
+    position: absolute;
+    bottom: -10%;
+    left: -10%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, $blue 0%, transparent 70%);
+    filter: blur(80px);
+  }
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+// ─── Semainier ──────────────────────────────────────────────────────────────
+.scheduleSection {
+  margin-bottom: 3rem;
+}
+
+.sitesStack {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  margin-top: 2rem;
+}
+
+.siteCard {
+  background: $white;
+  border-radius: var(--radius-xl);
+  border: 1px solid $grey-200;
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+}
+
+.siteHeader {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.5rem 2rem;
+  background: $blue-dark;
+  color: $white;
+
+  h3 {
+    font-size: 1.6rem;
+    letter-spacing: 0.03em;
+  }
+
+  p {
+    font-size: 0.85rem;
+    color: rgba($white, 0.6);
+  }
+}
+
+.siteIcon {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: rgba($white, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gridWrapper {
+  overflow-x: auto;
+  padding: 1.5rem;
+
+  &::-webkit-scrollbar {
+    height: 6px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: $grey-200;
+    border-radius: 10px;
+  }
+}
+
+.weekGrid {
+  display: grid;
+  min-width: 760px;
+  row-gap: 4px;
+  column-gap: 0;
+  position: relative;
+}
+
+.cornerCell {
+  background: transparent;
+}
+
+.hourLabel {
+  padding: 0 0 0.5rem 2px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: $grey-400;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  align-self: end;
+}
+
+.dayTrack {
+  background: $grey-100;
+  border-radius: var(--radius-sm);
+}
+
+.dayTrackAlt {
+  background: $white;
+  border: 1px solid $grey-100;
+}
+
+.dayLabel {
+  display: flex;
+  align-items: center;
+  padding-left: 0.75rem;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  letter-spacing: 0.03em;
+  color: $blue-dark;
+}
+
+.slotBar {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1px;
+  margin: 4px 2px;
+  padding: 0.35rem 0.6rem;
+  border-radius: var(--radius-sm);
+  box-shadow: 0 1px 3px rgba(13, 27, 62, 0.15);
+  overflow: hidden;
+  min-width: 0;
+}
+
+.slotLabel {
+  font-size: 0.72rem;
+  font-weight: 700;
+  line-height: 1.15;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.slotTime {
+  font-size: 0.62rem;
+  font-weight: 600;
+  opacity: 0.85;
+  white-space: nowrap;
+}
+
+// ─── Légende (partagée) ─────────────────────────────────────────────────────
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 0 0.25rem;
+
+  .legendTitle {
+    font-weight: 700;
+    color: $blue-dark;
+    font-size: 0.95rem;
+  }
+
+  .legendItem {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.85rem;
+    color: $grey-600;
+
+    .legendColor {
+      width: 14px;
+      height: 14px;
+      border-radius: 3px;
+      flex-shrink: 0;
+    }
+  }
+}
+
+// ─── Synthèse ───────────────────────────────────────────────────────────────
+.synthese {
+  display: flex;
+  gap: 1.25rem;
+  align-items: flex-start;
+  background: $grey-100;
+  border: 1px solid $grey-200;
+  border-radius: var(--radius-lg);
+  padding: 1.75rem 2rem;
+  margin-bottom: 4rem;
+
+  h3 {
+    font-size: 1.3rem;
+    color: $blue-dark;
+    margin-bottom: 0.4rem;
+    letter-spacing: 0.02em;
+  }
+
+  p {
+    color: $grey-600;
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+}
+
+.syntheseIcon {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: rgba($blue, 0.1);
+  color: $blue;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// ─── Tableau récapitulatif ──────────────────────────────────────────────────
+.recapSection {
+  margin-bottom: 2rem;
+
+  .recapHeader {
+    text-align: center;
+    margin-bottom: 2rem;
+
+    h2 {
+      font-size: 2.25rem;
+      color: $blue-dark;
+      margin-bottom: 0.5rem;
+    }
+
+    p {
+      color: $grey-400;
+      font-size: 1.05rem;
+    }
+  }
+}
+
+.tableWrapper {
+  background: $white;
+  border-radius: var(--radius-lg);
+  border: 1px solid $grey-200;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  margin-bottom: 1.5rem;
+  overflow-x: auto;
+}
+
+.recapTable {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  min-width: 680px;
+
+  thead {
+    background: $blue-dark;
+    color: $white;
+
+    th {
+      padding: 1.1rem 1.5rem;
+      font-family: var(--font-display);
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-size: 0.85rem;
+    }
+  }
+
+  tbody {
+    tr {
+      border-bottom: 1px solid $grey-100;
+      transition: background 0.2s ease;
+
+      &:last-child {
+        border-bottom: none;
+      }
+
+      &:hover {
+        background: $grey-100;
+      }
+    }
+
+    td {
+      padding: 0.9rem 1.5rem;
+      color: $grey-400;
+      font-size: 0.9rem;
+
+      &.dayCell {
+        font-weight: 700;
+        color: $blue-dark;
+      }
+
+      &.categoryCell {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        color: $blue-dark;
+        font-weight: 600;
+      }
+
+      .colorTag {
+        width: 16px;
+        height: 16px;
+        border-radius: 4px;
+        flex-shrink: 0;
+      }
+    }
+  }
+}
+
+.siteBadge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.3rem 0.7rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.siteBadgePont {
+  background: rgba($blue, 0.1);
+  color: $blue;
+}
+
+.siteBadgeKoenig {
+  background: rgba($red, 0.1);
+  color: $red;
+}
