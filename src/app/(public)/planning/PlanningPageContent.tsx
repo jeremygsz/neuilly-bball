@@ -3,16 +3,9 @@
 import { motion, type HTMLMotionProps } from "framer-motion";
 import { MapPin, Info } from "lucide-react";
 import { TeamWithPlayers } from "@/types";
+import { PlanningLegend, PlanningRecapTable } from "@/components/public/planning/PlanningRecapTable";
+import { CATEGORY_STYLES, DAY_ORDER, HOURS, sites, makeTeamLabelResolver, type PlanningSite } from "@/lib/planning";
 import s from "./page.module.scss";
-import {
-    CATEGORY_STYLES,
-    DAY_ORDER,
-    HOURS,
-    sites,
-    type CategoryKey,
-    type PlanningSlot,
-    type PlanningSite,
-} from "./data";
 
 interface Props {
     teams: TeamWithPlayers[];
@@ -28,21 +21,6 @@ function fadeUp(delay = 0): HTMLMotionProps<"div"> {
 
 function formatHour(h: number) {
     return `${h}h`;
-}
-
-function CategoryLegend() {
-    const keys = Object.keys(CATEGORY_STYLES) as CategoryKey[];
-    return (
-        <div className={s.legend}>
-            <span className={s.legendTitle}>Légende :</span>
-            {keys.map((key) => (
-                <div key={key} className={s.legendItem}>
-                    <div className={s.legendColor} style={{ backgroundColor: CATEGORY_STYLES[key].color }} />
-                    <span>{CATEGORY_STYLES[key].label}</span>
-                </div>
-            ))}
-        </div>
-    );
 }
 
 function daysForSite(site: PlanningSite) {
@@ -128,43 +106,8 @@ function SiteSchedule({ site, teamLabel }: { site: PlanningSite; teamLabel: (tea
     );
 }
 
-interface RecapRow {
-    day: string;
-    time: string;
-    site: PlanningSite;
-    slot: PlanningSlot;
-}
-
-function buildRecapRows(): RecapRow[] {
-    const rows: RecapRow[] = [];
-    for (const site of sites) {
-        for (const slot of site.slots) {
-            rows.push({
-                day: slot.day,
-                time: `${String(slot.start).padStart(2, "0")}h00 - ${String(slot.end).padStart(2, "0")}h00`,
-                site,
-                slot,
-            });
-        }
-    }
-    return rows.sort((a, b) => {
-        const dayDiff = DAY_ORDER.indexOf(a.day) - DAY_ORDER.indexOf(b.day);
-        if (dayDiff !== 0) return dayDiff;
-        return a.slot.start - b.slot.start;
-    });
-}
-
 export default function PlanningPageContent({ teams }: Props) {
-    const teamsById = new Map(teams.map((team) => [team.id, team]));
-
-    const teamLabel = (teamIds: number[]) =>
-        teamIds
-            .map((id) => teamsById.get(id))
-            .filter((team): team is TeamWithPlayers => Boolean(team))
-            .map((team) => (team.gender === "Mixte" ? team.label : `${team.label} ${team.gender}`))
-            .join(" & ");
-
-    const recapRows = buildRecapRows();
+    const teamLabel = makeTeamLabelResolver(teams);
 
     return (
         <main className={s.main}>
@@ -198,7 +141,7 @@ export default function PlanningPageContent({ teams }: Props) {
                     <div className={s.content}>
                         {/* ── Semainier par site ── */}
                         <motion.section className={s.scheduleSection} {...fadeUp(0.4)}>
-                            <CategoryLegend />
+                            <PlanningLegend />
 
                             <div className={s.sitesStack}>
                                 {sites.map((site) => (
@@ -230,44 +173,7 @@ export default function PlanningPageContent({ teams }: Props) {
                                 <p>Tous les créneaux, jour par jour, sur les deux sites</p>
                             </div>
 
-                            <div className={s.tableWrapper}>
-                                <table className={s.recapTable}>
-                                    <thead>
-                                        <tr>
-                                            <th>Jour</th>
-                                            <th>Horaires</th>
-                                            <th>Lieu</th>
-                                            <th>Équipe(s)</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {recapRows.map((row, index) => {
-                                            const label = teamLabel(row.slot.teamIds);
-                                            if (!label) return null;
-                                            const style = CATEGORY_STYLES[row.slot.category];
-                                            return (
-                                                <tr key={index}>
-                                                    <td className={s.dayCell}>{row.day}</td>
-                                                    <td>{row.time}</td>
-                                                    <td>
-                                                        <span
-                                                            className={`${s.siteBadge} ${row.site.id === "koenig" ? s.siteBadgeKoenig : s.siteBadgePont}`}
-                                                        >
-                                                            {row.site.id === "koenig" ? "Espace Koenig" : "Île du Pont"}
-                                                        </span>
-                                                    </td>
-                                                    <td className={s.categoryCell}>
-                                                        <div className={s.colorTag} style={{ backgroundColor: style.color }} />
-                                                        {label}
-                                                    </td>
-                                                </tr>
-                                            );
-                                        })}
-                                    </tbody>
-                                </table>
-                            </div>
-
-                            <CategoryLegend />
+                            <PlanningRecapTable teams={teams} />
                         </motion.section>
                     </div>
                 </div>

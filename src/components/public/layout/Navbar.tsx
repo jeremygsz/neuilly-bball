@@ -15,6 +15,7 @@ const navLinks = [
         children: [
             { href: "/notre-histoire", label: "Notre Histoire" },
             { href: "/equipes", label: "Nos Équipes" },
+            { href: "/planning", label: "Planning" },
             { href: "/staff-technique", label: "Notre Staff Technique" },
             { href: "/infrastructure", label: "Infrastructure" },
             { href: "/equipements", label: "Nos Équipements" },
@@ -23,7 +24,6 @@ const navLinks = [
         ]
     },
     { href: "/stages", label: "Nos Stages" },
-    { href: "/planning", label: "Planning" },
     { href: "/boutique", label: "Boutique" },
     { href: "/training-center", label: "Training Center" },
     { href: "/contact", label: "Contact" },

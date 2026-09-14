@@ -1,3 +1,5 @@
+import { TeamWithPlayers } from "@/types";
+
 export type CategoryKey =
     | "jeunes-1"
     | "jeunes-2"
@@ -76,3 +78,39 @@ export const sites: PlanningSite[] = [
         ],
     },
 ];
+
+export interface RecapRow {
+    day: string;
+    time: string;
+    site: PlanningSite;
+    slot: PlanningSlot;
+}
+
+export function buildRecapRows(): RecapRow[] {
+    const rows: RecapRow[] = [];
+    for (const site of sites) {
+        for (const slot of site.slots) {
+            rows.push({
+                day: slot.day,
+                time: `${String(slot.start).padStart(2, "0")}h00 - ${String(slot.end).padStart(2, "0")}h00`,
+                site,
+                slot,
+            });
+        }
+    }
+    return rows.sort((a, b) => {
+        const dayDiff = DAY_ORDER.indexOf(a.day) - DAY_ORDER.indexOf(b.day);
+        if (dayDiff !== 0) return dayDiff;
+        return a.slot.start - b.slot.start;
+    });
+}
+
+export function makeTeamLabelResolver(teams: TeamWithPlayers[]) {
+    const teamsById = new Map(teams.map((team) => [team.id, team]));
+    return (teamIds: number[]) =>
+        teamIds
+            .map((id) => teamsById.get(id))
+            .filter((team): team is TeamWithPlayers => Boolean(team))
+            .map((team) => (team.gender === "Mixte" ? team.label : `${team.label} ${team.gender}`))
+            .join(" & ");
+}

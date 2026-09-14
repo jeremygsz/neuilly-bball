@@ -1,0 +1,94 @@
+@use "@/styles/vars" as *;
+
+.section {
+  padding: 0 24px 80px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  padding: 2.5rem 3rem;
+  border-radius: var(--radius-xl);
+  background: linear-gradient(135deg, $blue-dark 0%, $blue 100%);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -10%;
+    width: 60%;
+    height: 200%;
+    background: radial-gradient(circle, rgba($white, 0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  @media (max-width: $bp-md) {
+    flex-direction: column;
+    text-align: center;
+    padding: 2.5rem 1.75rem;
+  }
+}
+
+.icon {
+  position: relative;
+  z-index: 1;
+  flex-shrink: 0;
+  width: 64px;
+  height: 64px;
+  border-radius: 16px;
+  background: rgba($white, 0.12);
+  color: $white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.text {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+
+  h2 {
+    font-size: 1.75rem;
+    color: $white;
+    letter-spacing: 0.02em;
+    margin-bottom: 0.4rem;
+  }
+
+  p {
+    color: rgba($white, 0.7);
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+}
+
+.button {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-shrink: 0;
+  padding: 0.9rem 1.75rem;
+  border-radius: 999px;
+  background: $white;
+  color: $blue-dark;
+  font-weight: 700;
+  font-size: 0.95rem;
+  white-space: nowrap;
+  transition: transform 0.2s $ease-bounce, box-shadow 0.2s $ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  }
+}

@@ -1,4 +1,6 @@
 import { Metadata } from "next";
+import { prisma } from "@/lib/prisma";
+import { TeamWithPlayers } from "@/types";
 import InscriptionPageContent from "./InscriptionPageContent";
 
 export const metadata: Metadata = {
@@ -10,6 +12,18 @@ export const metadata: Metadata = {
     }
 };
 
-export default function InscriptionPage() {
-    return <InscriptionPageContent />;
+export const dynamic = "force-dynamic";
+
+export default async function InscriptionPage() {
+    let teams: TeamWithPlayers[] = [];
+    try {
+        teams = await prisma.team.findMany({
+            where: { isOnline: true },
+            orderBy: { id: "asc" },
+        }) as unknown as TeamWithPlayers[];
+    } catch (error) {
+        console.error("Failed to fetch teams:", error);
+    }
+
+    return <InscriptionPageContent teams={teams} />;
 }

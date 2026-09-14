@@ -5,6 +5,7 @@ import {EquipesSection} from "@/components/public/home/EquipesSection";
 import {AgendaSection} from "@/components/public/home/AgendaSection";
 import {ClubSection} from "@/components/public/home/ClubSection";
 import {PartenairesSection} from "@/components/public/home/PartenairesSection";
+import {PlanningCtaSection} from "@/components/public/home/PlanningCtaSection";
 
 export const dynamic = "force-dynamic";
 
@@ -18,6 +19,7 @@ export default function HomePage() {
             {/*<AgendaSection />*/}
             {/*<ClubSection />*/}
             <PartenairesSection />
+            <PlanningCtaSection />
         </>
     );
 }
