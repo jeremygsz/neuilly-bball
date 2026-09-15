@@ -108,6 +108,12 @@ export function Footer() {
                                     Complexe Sportif de l'île du Pont<br/> 92200 Neuilly-sur-Seine
                                 </a>
                             </li>
+                            <li className={s.contactItem}>
+                                <MapPin size={15} className={s.contactIcon} />
+                                <a href="https://maps.app.goo.gl/1vzHeLT4pwaSuy1o6" target='_blank'>
+                                    Espace Sportif Koenig<br/> 23 Bd du Général Koenig, 92200 Neuilly-sur-Seine
+                                </a>
+                            </li>
                             <li>
                                 <a href="tel:+33646861477" className={s.contactLink}>
                                     <Phone size={15} className={s.contactIcon} />
