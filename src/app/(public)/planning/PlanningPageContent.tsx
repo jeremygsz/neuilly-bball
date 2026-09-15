@@ -1,7 +1,8 @@
 "use client";
 
 import { motion, type HTMLMotionProps } from "framer-motion";
-import { MapPin, Info } from "lucide-react";
+import Image from "next/image";
+import { MapPin, Info, Camera } from "lucide-react";
 import { TeamWithPlayers } from "@/types";
 import { PlanningLegend, PlanningRecapTable } from "@/components/public/planning/PlanningRecapTable";
 import { CATEGORY_STYLES, DAY_ORDER, HOURS, sites, makeTeamLabelResolver, type PlanningSite } from "@/lib/planning";
@@ -21,6 +22,61 @@ function fadeUp(delay = 0): HTMLMotionProps<"div"> {
 
 function formatHour(h: number) {
     return `${h}h`;
+}
+
+const siteGalleries = [
+    {
+        id: "ile-du-pont",
+        name: "Complexe sportif de l'Île du Pont",
+        address: "Neuilly-sur-Seine",
+        photos: [
+            { src: "/images/court/COURT.JPG",    alt: "Complexe sportif de l'Île du Pont"  },
+            { src: "/images/court/COURT-2.JPG",  alt: "Complexe sportif de l'Île du Pont"  },
+            { src: "/images/court/COURT-3.JPG",  alt: "Complexe sportif de l'Île du Pont" },
+            { src: "/images/court/COURT-4.JPG",  alt: "Complexe sportif de l'Île du Pont" },
+        ],
+    },
+    {
+        id: "koenig",
+        name: "Espace Koenig",
+        address: "23 Bd du Général Koenig, 92200 Neuilly-sur-Seine",
+        photos: [
+            { src: "/images/court/koening1.jpeg",   alt: "Espace Koenig" },
+            { src: "/images/court/koening2.jpeg", alt: "Espace Koenig" },
+            { src: "/images/court/koening3.jpeg", alt: "Espace Koenig" },
+            { src: "/images/court/koening4.jpeg", alt: "Espace Koenig" },
+        ],
+    },
+];
+
+function SiteGallery({ site }: { site: (typeof siteGalleries)[number] }) {
+    return (
+        <div className={s.siteCard}>
+            <div className={s.siteHeader}>
+                <div className={s.siteIcon}>
+                    <Camera size={20} />
+                </div>
+                <div>
+                    <h3 className="font-display">{site.name}</h3>
+                    <p>{site.address}</p>
+                </div>
+            </div>
+
+            <div className={s.photoGrid}>
+                {site.photos.map((photo, i) => (
+                    <div key={i} className={s.photoWrapper}>
+                        <Image
+                            src={photo.src}
+                            alt={photo.alt}
+                            fill
+                            sizes="(max-width: 768px) 50vw, 25vw"
+                            style={{ objectFit: "cover" }}
+                        />
+                    </div>
+                ))}
+            </div>
+        </div>
+    );
 }
 
 function daysForSite(site: PlanningSite) {
@@ -165,6 +221,20 @@ export default function PlanningPageContent({ teams }: Props) {
                                 </p>
                             </div>
                         </motion.div>
+
+                        {/* ── Galeries photos des sites ── */}
+                        <motion.section className={s.gallerySection} {...fadeUp(0.55)}>
+                            <div className={s.galleryHeader}>
+                                <h2 className="font-display">Nos Sites</h2>
+                                <p>Découvrez nos deux lieux d&apos;entraînement à Neuilly-sur-Seine</p>
+                            </div>
+
+                            <div className={s.galleryGrid}>
+                                {siteGalleries.map((site) => (
+                                    <SiteGallery key={site.id} site={site} />
+                                ))}
+                            </div>
+                        </motion.section>
 
                         {/* ── Tableau récapitulatif ── */}
                         <motion.section className={s.recapSection} {...fadeUp(0.6)}>
