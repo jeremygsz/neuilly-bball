@@ -38,33 +38,29 @@ export default function InscriptionPageContent({ teams }: Props) {
                         
                         <motion.h1 className={`${s.title} font-display`} {...fadeUp(0.2)}>
                             INSCRIPTIONS <br />
-                            <span className="">OUVERTES !</span>
+                            <span className="">TERMINÉES !</span>
                         </motion.h1>
 
-                        <motion.div className={`${s.brush} font-display`} {...fadeUp(0.25)}>
-                            POUR TOUS
-                        </motion.div>
+                        {/*<motion.div className={`${s.brush} font-display`} {...fadeUp(0.25)}>*/}
+                        {/*    POUR TOUS*/}
+                        {/*</motion.div>*/}
                         
-                        <motion.p className={s.lead} {...fadeUp(0.3)}>
-                            Rejoins la Neuilly Basketball Association et viens vivre ta passion du basket au cœur de l'équipe !
-                        </motion.p>
+                        {/*<motion.p className={s.lead} {...fadeUp(0.3)}>*/}
+                        {/*    Rejoins la Neuilly Basketball Association et viens vivre ta passion du basket au cœur de l'équipe !*/}
+                        {/*</motion.p>*/}
                     </div>
 
                     {/* ── CTA Card ── */}
                     <motion.div className={s.ctaCard} {...fadeUp(0.4)}>
                         <div className={s.ctaInner}>
                             <div className={s.ctaText}>
-                                <h2 className="font-display">INSCRIS-TOI DÈS MAINTENANT !</h2>
-                                <p>Les inscriptions se font exclusivement en ligne via la plateforme SportEasy.</p>
+                                <p>Les inscriptions automatiques en ligne sont désormais fermées pour la saison 2026-2027.</p>
+                                <p>Pour toute nouvelle demande d’inscription, merci de contacter directement Neuilly Basketball Association :
+                                    📞 06 46 86 14 77
+                                    💬 Par SMS ou WhatsApp au même numéro.
+                                    <br/>
+                                    Nous étudierons chaque demande en fonction des places encore disponibles.</p>
                             </div>
-                            <Link 
-                                href="https://neuilly-basketball-association.sporteasy.net/collections/49026/" 
-                                target="_blank" 
-                                className="btn-primary"
-                            >
-                                <span>Accéder au formulaire</span>
-                                <ExternalLink size={18} />
-                            </Link>
                         </div>
                     </motion.div>
 

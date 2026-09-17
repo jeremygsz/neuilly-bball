@@ -13,7 +13,6 @@ export default function StagesPage() {
             {/* ── Hero ── */}
             <section className={s.hero}>
                 <div className={s.heroInner}>
-                    <span className={s.heroLabel}>Vacances d'Été 2026</span>
                     <h1 className={s.heroTitle}>
                         Nos <span className={s.accent}>Stages</span>
                     </h1>

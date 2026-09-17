@@ -98,6 +98,13 @@ const galleryImages = [
     { src: "/images/game/IMG_9741.jpeg",  alt: "Neuilly Basketball — drive vers le panier" },
     { src: "/images/game/IMG_9753.jpeg",  alt: "Neuilly Basketball — fin de match" },
     { src: "/images/game/IMG_9650.jpg",   alt: "Neuilly Basketball — séquence de jeu" },
+    { src: "/images/game/kids1.jpeg",     alt: "Neuilly Basketball — enfants" },
+    { src: "/images/game/kids2.jpeg",     alt: "Neuilly Basketball — enfants" },
+    { src: "/images/game/kids3.jpeg",     alt: "Neuilly Basketball — enfants" },
+    { src: "/images/game/kids4.jpeg",     alt: "Neuilly Basketball — enfants" },
+    { src: "/images/game/kids5.jpeg",     alt: "Neuilly Basketball — enfants" },
+    { src: "/images/game/kids6.jpeg",     alt: "Neuilly Basketball — enfants" },
+    { src: "/images/game/kids7.jpeg",     alt: "Neuilly Basketball — enfants" },
 ];
 
 export default function InfrastructurePage() {
@@ -170,7 +177,8 @@ export default function InfrastructurePage() {
                                 <ul className={s.locationList}>
                                     <li>
                                         <Car size={16} className={s.listIcon} />
-                                        Parking disponible sur place
+                                        Parking: vélo, moto, trotinnette
+                                        Pour les voitures: se garer dans les alentours
                                     </li>
                                     <li>
                                         <MapPin size={16} className={s.listIcon} />
@@ -182,7 +190,7 @@ export default function InfrastructurePage() {
                                     </li>
                                     <li>
                                         <Accessibility size={16} className={s.listIcon} />
-                                        Accès PMR disponible
+                                        Accès PMR disponible (uniquement pour l'espace Koening)
                                     </li>
                                 </ul>
                                 <Link
