@@ -17,17 +17,31 @@ interface Product {
 const PRODUCTS: Product[] = [
     {
         id: 1,
-        name: "Sweat - Jogging",
+        name: "Sweat",
         category: "Lifestyle / Club",
-        images: ["/images/merch/sweat.jpeg","/images/merch/jogging.jpeg"],
-        description: "Ensemble Adidas comprenant sweat et jogging. Les articles peuvent être vendus séparément."
+        images: ["/images/merch/sweat.jpeg"],
+        description: "Sweat Adidas aux couleurs du club."
+    },
+    {
+        id: 6,
+        name: "Jogging",
+        category: "Lifestyle / Club",
+        images: ["/images/merch/jogging.jpeg"],
+        description: "Jogging Adidas aux couleurs du club."
     },
     {
         id: 2,
-        name: "Tenue d'Entraînement Reversible",
+        name: "Maillot d'Entraînement Reversible",
         category: "Entraînement",
-        images: ["/images/merch/haut.jpeg","/images/merch/short.jpeg"],
-        description: "Pack comprenant le maillot d'entraînement réversible et le short assorti."
+        images: ["/images/merch/haut.jpeg"],
+        description: "Maillot d'entraînement réversible."
+    },
+    {
+        id: 7,
+        name: "Short d'Entraînement",
+        category: "Entraînement",
+        images: ["/images/merch/short.jpeg"],
+        description: "Short assorti au maillot d'entraînement réversible."
     },
     {
         id: 3,
