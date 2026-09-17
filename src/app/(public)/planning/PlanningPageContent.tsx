@@ -133,9 +133,9 @@ function SiteSchedule({ site, teamLabel }: { site: PlanningSite; teamLabel: (tea
                     {site.slots.map((slot, idx) => {
                         const rowIndex = days.indexOf(slot.day);
                         if (rowIndex === -1) return null;
-                        const label = teamLabel(slot.teamIds);
-                        if (!label) return null;
                         const style = CATEGORY_STYLES[slot.category];
+                        const label = slot.teamIds.length ? teamLabel(slot.teamIds) : style.label;
+                        if (!label) return null;
                         const colStart = 2 + (slot.start - HOURS[0]);
                         const colEnd = 2 + (slot.end - HOURS[0]);
                         return (

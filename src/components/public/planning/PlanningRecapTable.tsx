@@ -39,9 +39,9 @@ export function PlanningRecapTable({ teams }: Props) {
                     </thead>
                     <tbody>
                         {recapRows.map((row, index) => {
-                            const label = teamLabel(row.slot.teamIds);
-                            if (!label) return null;
                             const style = CATEGORY_STYLES[row.slot.category];
+                            const label = row.slot.teamIds.length ? teamLabel(row.slot.teamIds) : style.label;
+                            if (!label) return null;
                             return (
                                 <tr key={index}>
                                     <td className={s.dayCell}>{row.day}</td>

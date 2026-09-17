@@ -6,7 +6,8 @@ export type CategoryKey =
     | "jeunes-3"
     | "corporate"
     | "loisirs-masculin"
-    | "loisirs-feminin";
+    | "loisirs-feminin"
+    | "attribution";
 
 export interface CategoryStyle {
     label: string;
@@ -21,6 +22,7 @@ export const CATEGORY_STYLES: Record<CategoryKey, CategoryStyle> = {
     corporate:          { label: "Basket Entreprise",   color: "#1B3F73", textColor: "#FFFFFF" },
     "loisirs-masculin": { label: "Loisirs Masculin",    color: "#FF8A50" },
     "loisirs-feminin":  { label: "Loisirs Féminin",     color: "#C355D8", textColor: "#FFFFFF" },
+    attribution:        { label: "En cours d'attribution", color: "#000000", textColor: "#FFFFFF" },
 };
 
 // Ids des équipes (table `team`) rattachées à chaque créneau. Les libellés affichés
@@ -43,7 +45,7 @@ export interface PlanningSite {
 
 export const DAY_ORDER = ["Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche"];
 
-export const HOURS = Array.from({ length: 10 }, (_, i) => 12 + i); // 12h → 21h (colonnes de la grille, jusqu'à 22h)
+export const HOURS = Array.from({ length: 13 }, (_, i) => 9 + i); // 9h → 21h (colonnes de la grille, jusqu'à 22h)
 
 export const sites: PlanningSite[] = [
     {
@@ -52,19 +54,28 @@ export const sites: PlanningSite[] = [
         address: "Neuilly-sur-Seine",
         slots: [
             { day: "Mardi", start: 12, end: 13, category: "corporate", teamIds: [11] },
+            { day: "Mardi", start: 18, end: 20, category: "attribution", teamIds: [] },
             { day: "Mardi", start: 20, end: 22, category: "loisirs-masculin", teamIds: [12] },
 
+            { day: "Mercredi", start: 12, end: 13, category: "attribution", teamIds: [] },
             { day: "Mercredi", start: 13, end: 15, category: "jeunes-1", teamIds: [3, 4] },
             { day: "Mercredi", start: 15, end: 17, category: "jeunes-2", teamIds: [5, 9] },
+            { day: "Mercredi", start: 17, end: 18, category: "attribution", teamIds: [] },
             { day: "Mercredi", start: 18, end: 20, category: "jeunes-3", teamIds: [8, 7] },
+            { day: "Mercredi", start: 20, end: 22, category: "attribution", teamIds: [] },
 
+            { day: "Jeudi", start: 19, end: 20, category: "attribution", teamIds: [] },
             { day: "Jeudi", start: 20, end: 22, category: "loisirs-masculin", teamIds: [12] },
 
             { day: "Vendredi", start: 18, end: 20, category: "loisirs-feminin", teamIds: [10] },
+            { day: "Vendredi", start: 20, end: 22, category: "attribution", teamIds: [] },
 
+            { day: "Samedi", start: 9, end: 13, category: "attribution", teamIds: [] },
             { day: "Samedi", start: 13, end: 15, category: "jeunes-1", teamIds: [3, 4] },
             { day: "Samedi", start: 15, end: 17, category: "jeunes-2", teamIds: [5, 9] },
             { day: "Samedi", start: 17, end: 19, category: "jeunes-3", teamIds: [8, 7] },
+
+            { day: "Dimanche", start: 9, end: 13, category: "attribution", teamIds: [] },
         ],
     },
     {
@@ -75,6 +86,8 @@ export const sites: PlanningSite[] = [
             { day: "Mardi", start: 18, end: 19, category: "jeunes-1", teamIds: [3, 4] },
             { day: "Mardi", start: 19, end: 20, category: "jeunes-2", teamIds: [5] },
             { day: "Mardi", start: 20, end: 22, category: "loisirs-masculin", teamIds: [12] },
+
+            { day: "Jeudi", start: 17, end: 19, category: "attribution", teamIds: [] },
         ],
     },
 ];
