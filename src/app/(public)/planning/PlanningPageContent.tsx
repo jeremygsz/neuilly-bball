@@ -84,8 +84,15 @@ function daysForSite(site: PlanningSite) {
     return DAY_ORDER.filter((day) => present.has(day));
 }
 
+function hoursForSite(site: PlanningSite) {
+    const start = site.startHour ?? HOURS[0];
+    const end = HOURS[HOURS.length - 1];
+    return Array.from({ length: end - start + 1 }, (_, i) => start + i);
+}
+
 function SiteSchedule({ site, teamLabel }: { site: PlanningSite; teamLabel: (teamIds: number[]) => string }) {
     const days = daysForSite(site);
+    const hours = hoursForSite(site);
 
     return (
         <div className={s.siteCard}>
@@ -103,48 +110,48 @@ function SiteSchedule({ site, teamLabel }: { site: PlanningSite; teamLabel: (tea
                 <div
                     className={s.weekGrid}
                     style={{
-                        gridTemplateColumns: `minmax(110px, 130px) repeat(${HOURS.length}, minmax(48px, 1fr))`,
-                        gridTemplateRows: `auto repeat(${days.length}, minmax(52px, auto))`,
+                        gridTemplateColumns: `minmax(60px, 70px) repeat(${days.length}, minmax(140px, 1fr))`,
+                        gridTemplateRows: `auto repeat(${hours.length}, minmax(40px, auto))`,
                     }}
                 >
                     {/* ── Header row ── */}
                     <div className={s.cornerCell} style={{ gridRow: 1, gridColumn: 1 }} />
-                    {HOURS.map((h, i) => (
-                        <div key={h} className={s.hourLabel} style={{ gridRow: 1, gridColumn: i + 2 }}>
-                            {formatHour(h)}
+                    {days.map((day, i) => (
+                        <div key={day} className={s.dayLabel} style={{ gridRow: 1, gridColumn: i + 2 }}>
+                            {day}
                         </div>
                     ))}
 
-                    {/* ── Day rows (background stripes + labels) ── */}
-                    {days.map((day, i) => (
+                    {/* ── Hour rows (background stripes + labels) ── */}
+                    {hours.map((h, i) => (
                         <div
-                            key={`row-${day}`}
+                            key={`row-${h}`}
                             className={i % 2 === 0 ? s.dayTrack : `${s.dayTrack} ${s.dayTrackAlt}`}
-                            style={{ gridRow: i + 2, gridColumn: `1 / ${HOURS.length + 2}` }}
+                            style={{ gridRow: i + 2, gridColumn: `1 / ${days.length + 2}` }}
                         />
                     ))}
-                    {days.map((day, i) => (
-                        <div key={`label-${day}`} className={s.dayLabel} style={{ gridRow: i + 2, gridColumn: 1 }}>
-                            {day}
+                    {hours.map((h, i) => (
+                        <div key={`label-${h}`} className={s.hourLabel} style={{ gridRow: i + 2, gridColumn: 1 }}>
+                            {formatHour(h)}
                         </div>
                     ))}
 
                     {/* ── Activity bars ── */}
                     {site.slots.map((slot, idx) => {
-                        const rowIndex = days.indexOf(slot.day);
-                        if (rowIndex === -1) return null;
+                        const colIndex = days.indexOf(slot.day);
+                        if (colIndex === -1) return null;
                         const style = CATEGORY_STYLES[slot.category];
                         const label = slot.teamIds.length ? teamLabel(slot.teamIds) : style.label;
                         if (!label) return null;
-                        const colStart = 2 + (slot.start - HOURS[0]);
-                        const colEnd = 2 + (slot.end - HOURS[0]);
+                        const rowStart = 2 + (slot.start - hours[0]);
+                        const rowEnd = 2 + (slot.end - hours[0]);
                         return (
                             <div
                                 key={idx}
                                 className={s.slotBar}
                                 style={{
-                                    gridRow: rowIndex + 2,
-                                    gridColumn: `${colStart} / ${colEnd}`,
+                                    gridColumn: colIndex + 2,
+                                    gridRow: `${rowStart} / ${rowEnd}`,
                                     backgroundColor: style.color,
                                     color: style.textColor ?? "#0D1B3E",
                                 }}

@@ -173,9 +173,8 @@
 
 .weekGrid {
   display: grid;
-  min-width: 760px;
   row-gap: 4px;
-  column-gap: 0;
+  column-gap: 4px;
   position: relative;
 }
 
@@ -184,13 +183,15 @@
 }
 
 .hourLabel {
-  padding: 0 0 0.5rem 2px;
+  display: flex;
+  align-items: center;
+  padding-right: 0.5rem;
   font-size: 0.7rem;
   font-weight: 700;
   color: $grey-400;
   text-transform: uppercase;
   letter-spacing: 0.03em;
-  align-self: end;
+  justify-content: flex-end;
 }
 
 .dayTrack {
@@ -206,33 +207,36 @@
 .dayLabel {
   display: flex;
   align-items: center;
-  padding-left: 0.75rem;
+  justify-content: center;
+  padding-bottom: 0.5rem;
   font-family: var(--font-display);
   font-size: 1rem;
   letter-spacing: 0.03em;
   color: $blue-dark;
+  text-align: center;
 }
 
 .slotBar {
   display: flex;
   flex-direction: column;
+  align-items: center;
   justify-content: center;
-  gap: 1px;
-  margin: 4px 2px;
-  padding: 0.35rem 0.6rem;
+  gap: 2px;
+  margin: 2px 4px;
+  padding: 0.5rem 0.6rem;
   border-radius: var(--radius-sm);
   box-shadow: 0 1px 3px rgba(13, 27, 62, 0.15);
   overflow: hidden;
   min-width: 0;
+  text-align: center;
 }
 
 .slotLabel {
-  font-size: 0.72rem;
+  font-size: 0.78rem;
   font-weight: 700;
-  line-height: 1.15;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  line-height: 1.2;
+  white-space: normal;
+  word-break: break-word;
 }
 
 .slotTime {

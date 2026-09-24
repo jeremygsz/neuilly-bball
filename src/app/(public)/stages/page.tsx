@@ -4,7 +4,7 @@ import s from "./page.module.scss";
 
 export const metadata: Metadata = {
     title: "Nos Stages | Neuilly Basketball",
-    description: "Inscrivez-vous aux stages de perfectionnement Neuilly Basketball pour l'été 2026. Summer Nocturne et Summer Basketball Camps pour tous les niveaux.",
+    description: "Inscrivez-vous aux stages de perfectionnement Neuilly Basketball. Basketball Camps pour tous les niveaux.",
 };
 
 export default function StagesPage() {
@@ -17,8 +17,7 @@ export default function StagesPage() {
                         Nos <span className={s.accent}>Stages</span>
                     </h1>
                     <p className={s.heroSub}>
-                        Progresse, relève des défis et vis ta passion du basketball
-                        avec nos coachs experts et du matériel de haut niveau.
+                        Tout au long de l’année nous proposons des stages pendants les vacances scolaires et les grandes vacances d’été.
                     </p>
                 </div>
             </section>
