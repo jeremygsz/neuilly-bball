@@ -48,12 +48,12 @@ const PARTENAIRES = [
     {
         nom: "Cress Sport",
         img: "/images/partner/cresssport.png",
-        desc: "Récupération par compression",
+        desc: "Équipement pour la performance",
     },
     {
         nom: "Hyperice",
         img: "/images/partner/hyperice.svg",
-        desc: "Récupération et performance",
+        desc: "Récupération par compression",
     },
     {
         nom: "Compex",

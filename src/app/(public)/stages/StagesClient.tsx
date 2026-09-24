@@ -35,19 +35,38 @@ const periods: Period[] = [
         label: "Vacances de la Toussaint 2026",
         stages: [
             {
-                id: "toussaint-camp",
+                id: "toussaint-camp-1",
                 title: "Camp de Basket",
                 subtitle: "1 semaine au choix",
                 image: "/images/stages/4.png",
-                dates: "Du 19 au 30 Octobre 2026",
+                dates: "Du 19 au 23 Octobre 2026",
                 hours: "10h-12h & 14h-17h",
                 target: "De 7 à 21 ans (Filles & Garçons)",
-                description: "2 semaines de stage, 1 semaine au choix : semaine 1 du 19 au 23 octobre, semaine 2 du 26 au 30 octobre. Gymnase climatisé, avec repas ou sans repas.",
+                description: "Gymnase climatisé, avec ou sans repas.",
                 features: [
                     { icon: Snowflake, text: "Gymnase climatisé" },
                     { icon: Target, text: "Perfectionnement technique" },
                     { icon: Zap, text: "Machines de shoot & VertiMax" },
-                    { icon: Calendar, text: "1 semaine au choix, repas en option" },
+                    { icon: Calendar, text: "Repas en option" },
+                    { icon: Trophy, text: "Jeux, concours & ambiance fun" }
+                ],
+                registerLink: "https://buy.stripe.com/cNi28r6Ts2XR0WlgtOefC0I",
+                isFull: false
+            },
+            {
+                id: "toussaint-camp-2",
+                title: "Camp de Basket",
+                subtitle: "1 semaine au choix",
+                image: "/images/stages/4.png",
+                dates: "Du 26 au 30 Octobre 2026",
+                hours: "10h-12h & 14h-17h",
+                target: "De 7 à 21 ans (Filles & Garçons)",
+                description: "Gymnase climatisé, avec ou sans repas.",
+                features: [
+                    { icon: Snowflake, text: "Gymnase climatisé" },
+                    { icon: Target, text: "Perfectionnement technique" },
+                    { icon: Zap, text: "Machines de shoot & VertiMax" },
+                    { icon: Calendar, text: "Repas en option" },
                     { icon: Trophy, text: "Jeux, concours & ambiance fun" }
                 ],
                 registerLink: "https://buy.stripe.com/cNi28r6Ts2XR0WlgtOefC0I",

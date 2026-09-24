@@ -119,7 +119,7 @@ export function Navbar() {
                 {/* ── Logo ── */}
                 <Link href="/" className={styles.logo} onClick={closeMobileMenu}>
                     <Image
-                        src="/images/logo3.png"
+                        src="/images/logo5.png"
                         alt="Neuilly Basketball Association"
                         width={60}
                         height={60}
