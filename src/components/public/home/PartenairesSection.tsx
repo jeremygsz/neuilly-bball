@@ -42,7 +42,7 @@ const PARTENAIRES = [
     },
     {
         nom: "Sport Protech",
-        img: "/images/partner/sportprotech.jpg",
+        img: "/images/partner/sportprotech.png",
         desc: "Équipement de protection",
     },
     {

@@ -79,20 +79,9 @@ function SiteGallery({ site }: { site: (typeof siteGalleries)[number] }) {
     );
 }
 
-function daysForSite(site: PlanningSite) {
-    const present = new Set(site.slots.map((slot) => slot.day));
-    return DAY_ORDER.filter((day) => present.has(day));
-}
-
-function hoursForSite(site: PlanningSite) {
-    const start = site.startHour ?? HOURS[0];
-    const end = HOURS[HOURS.length - 1];
-    return Array.from({ length: end - start + 1 }, (_, i) => start + i);
-}
-
 function SiteSchedule({ site, teamLabel }: { site: PlanningSite; teamLabel: (teamIds: number[]) => string }) {
-    const days = daysForSite(site);
-    const hours = hoursForSite(site);
+    const days = DAY_ORDER;
+    const hours = HOURS;
 
     return (
         <div className={s.siteCard}>

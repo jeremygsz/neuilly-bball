@@ -40,13 +40,12 @@ export interface PlanningSite {
     id: "ile-du-pont" | "koenig";
     name: string;
     address: string;
-    startHour?: number;
     slots: PlanningSlot[];
 }
 
-export const DAY_ORDER = ["Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche"];
+export const DAY_ORDER = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche"];
 
-export const HOURS = Array.from({ length: 13 }, (_, i) => 9 + i); // 9h → 21h (colonnes de la grille, jusqu'à 22h)
+export const HOURS = Array.from({ length: 14 }, (_, i) => 9 + i); // 9h → 22h (axe de la grille, sur les deux sites)
 
 export const sites: PlanningSite[] = [
     {
@@ -83,7 +82,6 @@ export const sites: PlanningSite[] = [
         id: "koenig",
         name: "Espace Koenig",
         address: "Neuilly-sur-Seine",
-        startHour: 15,
         slots: [
             { day: "Mardi", start: 18, end: 19, category: "jeunes-1", teamIds: [3, 4] },
             { day: "Mardi", start: 19, end: 20, category: "jeunes-2", teamIds: [5] },
