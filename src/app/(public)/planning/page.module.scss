@@ -184,24 +184,25 @@
 
 .hourLabel {
   display: flex;
-  align-items: center;
-  padding-right: 0.5rem;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding-left: 0.25rem;
   font-size: 0.7rem;
   font-weight: 700;
   color: $grey-400;
   text-transform: uppercase;
   letter-spacing: 0.03em;
-  justify-content: flex-end;
+  position: relative;
+  transform: translateY(-50%);
+  pointer-events: none;
 }
 
 .dayTrack {
-  background: $grey-100;
-  border-radius: var(--radius-sm);
+  border-top: 1px solid $grey-200;
 }
 
 .dayTrackAlt {
-  background: $white;
-  border: 1px solid $grey-100;
+  border-top: 1px solid $grey-200;
 }
 
 .dayLabel {

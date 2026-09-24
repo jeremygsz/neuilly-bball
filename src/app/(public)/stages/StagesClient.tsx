@@ -12,7 +12,7 @@ interface StageFeature {
 interface Stage {
     id: string;
     title: string;
-    subtitle: string;
+    subtitle?: string;
     image: string;
     dates: string;
     hours: string;
@@ -37,7 +37,6 @@ const periods: Period[] = [
             {
                 id: "toussaint-camp-1",
                 title: "Camp de Basket",
-                subtitle: "1 semaine au choix",
                 image: "/images/stages/4.png",
                 dates: "Du 19 au 23 Octobre 2026",
                 hours: "10h-12h & 14h-17h",
@@ -56,7 +55,6 @@ const periods: Period[] = [
             {
                 id: "toussaint-camp-2",
                 title: "Camp de Basket",
-                subtitle: "1 semaine au choix",
                 image: "/images/stages/4.png",
                 dates: "Du 26 au 30 Octobre 2026",
                 hours: "10h-12h & 14h-17h",
@@ -81,7 +79,6 @@ const periods: Period[] = [
             {
                 id: "summer-nocturne",
                 title: "Summer Nocturne",
-                subtitle: "Stage de perfectionnement",
                 image: "/images/stages/1.png",
                 dates: "Du 6 au 10 Juillet 2026",
                 hours: "De 18h à 21h",
@@ -152,7 +149,7 @@ export default function StagesClient() {
                         {period.stages.map((stage) => (
                             <div key={stage.id} className={`${s.card} ${stage.isFull ? s.cardFull : s["card--available"]}`}>
                                 <div className={s.cardHeader}>
-                                    <div className={s.cardBadge}>{stage.subtitle}</div>
+                                    {stage.subtitle && <div className={s.cardBadge}>{stage.subtitle}</div>}
                                     <h2 className={s.cardTitle}>{stage.title}</h2>
                                     <div className={s.cardDates}>
                                         <Calendar size={18} className={s.icon} />
