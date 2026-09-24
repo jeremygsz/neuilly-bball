@@ -43,8 +43,8 @@ const siteGalleries = [
         photos: [
             { src: "/images/court/koening1.jpeg",   alt: "Espace Koenig" },
             { src: "/images/court/koening2.jpeg", alt: "Espace Koenig" },
-            { src: "/images/court/koening3.jpeg", alt: "Espace Koenig" },
-            { src: "/images/court/koening4.jpeg", alt: "Espace Koenig" },
+            { src: "/images/court/koening5.jpeg", alt: "Espace Koenig" },
+            { src: "/images/court/koening6.jpeg", alt: "Espace Koenig" },
         ],
     },
 ];
