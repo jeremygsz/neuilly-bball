@@ -35,6 +35,36 @@ const PARTENAIRES = [
         img: "/images/partner/drdish.svg",
         desc: "Machine de tir",
     },
+    {
+        nom: "Vertimax",
+        img: "/images/partner/vertimax.avif",
+        desc: "Entraînement d'explosivité",
+    },
+    {
+        nom: "Sport Protech",
+        img: "/images/partner/sportprotech.jpg",
+        desc: "Équipement de protection",
+    },
+    {
+        nom: "Cress Sport",
+        img: "/images/partner/cresssport.png",
+        desc: "Récupération par compression",
+    },
+    {
+        nom: "Hyperice",
+        img: "/images/partner/hyperice.svg",
+        desc: "Récupération et performance",
+    },
+    {
+        nom: "Compex",
+        img: "/images/partner/compex.svg",
+        desc: "Électrostimulation musculaire",
+    },
+    {
+        nom: "Jolt",
+        img: "/images/partner/jolt.svg",
+        desc: "Entraînement de réactivité",
+    }
 ];
 
 export function PartenairesSection() {

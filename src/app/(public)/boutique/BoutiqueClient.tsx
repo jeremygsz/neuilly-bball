@@ -44,11 +44,11 @@ const PRODUCTS: Product[] = [
         description: "Short assorti au maillot d'entraînement réversible."
     },
     {
-        id: 3,
-        name: "Sac à Dos Club",
-        category: "Accessoires",
-        images: ["/images/merch/sac.jpeg"], // Placeholder if specific backpack image is missing
-        description: "Sac à dos technique Adidas avec compartiment à ballon séparé."
+        id: 5,
+        name: "T-shirt d'Entraînement",
+        category: "Entraînement",
+        images: ["/images/merch/shirt.jpeg"],
+        description: "T-shirt respirant pour vos sessions de perfectionnement."
     },
     {
         id: 4,
@@ -58,12 +58,12 @@ const PRODUCTS: Product[] = [
         description: "Veste zippée légère pour les déplacements."
     },
     {
-        id: 5,
-        name: "T-shirt d'Entraînement",
-        category: "Entraînement",
-        images: ["/images/merch/shirt.jpeg"],
-        description: "T-shirt respirant pour vos sessions de perfectionnement."
-    }
+        id: 3,
+        name: "Sac à Dos Club",
+        category: "Accessoires",
+        images: ["/images/merch/sac.jpeg"], // Placeholder if specific backpack image is missing
+        description: "Sac à dos technique Adidas avec compartiment à ballon séparé."
+    },
 ];
 
 function ProductCard({ product }: { product: Product }) {
