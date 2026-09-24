@@ -60,9 +60,8 @@ export const sites: PlanningSite[] = [
             { day: "Mercredi", start: 12, end: 13, category: "attribution", teamIds: [] },
             { day: "Mercredi", start: 13, end: 15, category: "jeunes-1", teamIds: [3, 4] },
             { day: "Mercredi", start: 15, end: 17, category: "jeunes-2", teamIds: [5, 9] },
-            { day: "Mercredi", start: 17, end: 18, category: "attribution", teamIds: [] },
-            { day: "Mercredi", start: 18, end: 20, category: "jeunes-3", teamIds: [8, 7] },
-            { day: "Mercredi", start: 20, end: 22, category: "attribution", teamIds: [] },
+            { day: "Mercredi", start: 17, end: 19, category: "jeunes-3", teamIds: [8, 7] },
+            { day: "Mercredi", start: 19, end: 22, category: "attribution", teamIds: [] },
 
             { day: "Jeudi", start: 19, end: 20, category: "attribution", teamIds: [] },
             { day: "Jeudi", start: 20, end: 22, category: "loisirs-masculin", teamIds: [12] },
@@ -74,6 +73,7 @@ export const sites: PlanningSite[] = [
             { day: "Samedi", start: 13, end: 15, category: "jeunes-1", teamIds: [3, 4] },
             { day: "Samedi", start: 15, end: 17, category: "jeunes-2", teamIds: [5, 9] },
             { day: "Samedi", start: 17, end: 19, category: "jeunes-3", teamIds: [8, 7] },
+            { day: "Samedi", start: 19, end: 22, category: "attribution", teamIds: [] },
 
             { day: "Dimanche", start: 9, end: 13, category: "attribution", teamIds: [] },
         ],
