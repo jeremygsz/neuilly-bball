@@ -1,7 +1,7 @@
 @use "@/styles/vars" as *;
 
 .page {
-  background: $blue-dark;
+  background: $white;
   min-height: 100vh;
 }
 
@@ -77,28 +77,61 @@
   margin: 0 auto;
 }
 
+.periodHeader {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 32px;
+
+  h2 {
+    font-size: 1.8rem;
+    color: $blue-dark;
+    white-space: nowrap;
+  }
+
+  &::after {
+    content: '';
+    flex: 1;
+    height: 2px;
+    background: $grey-200;
+  }
+}
+
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 32px;
   margin-bottom: 64px;
+
+  @media (max-width: $bp-lg) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @media (max-width: $bp-sm) {
+    grid-template-columns: 1fr;
+  }
 }
 
 // ── Card ─────────────────────────────────────────────────────────────────────
 .card {
-  background: rgba($white, 0.03);
-  border: 1px solid rgba($white, 0.1);
+  background: $white;
+  border: 1px solid $grey-200;
   border-radius: 24px;
   display: flex;
   flex-direction: column;
   overflow: hidden;
   transition: all 0.4s $ease;
-  backdrop-filter: blur(10px);
+  box-shadow: var(--shadow-sm);
+
+  .cardBadge {
+    background: rgba($red, 0.1);
+    color: $red;
+  }
 
   &:hover {
     transform: translateY(-8px);
     border-color: rgba($red, 0.3);
-    background: rgba($white, 0.05);
+    box-shadow: var(--shadow-lg), 0 0 20px rgba($red, 0.08);
 
     .cardImage .image {
       transform: scale(1.05);
@@ -106,37 +139,46 @@
   }
 }
 
-.card--nocturne {
+// ── Stage disponible : mis en avant en fond bleu ──────────────────────────────
+.card--available {
   border-color: rgba($blue-light, 0.3);
-  background: linear-gradient(145deg, rgba($blue-dark, 0.9), rgba($blue, 0.2));
+  background: linear-gradient(145deg, $blue-dark 0%, $blue 100%);
 
   .cardBadge {
     background: rgba($blue-light, 0.2);
     color: skyblue;
   }
 
+  .cardHeader {
+    border-bottom-color: rgba($white, 0.08);
+  }
+
+  .cardTitle,
+  .cardDates,
+  .featureItem {
+    color: $white;
+  }
+
+  .cardDesc,
+  .infoItem {
+    color: $grey-400;
+  }
+
+  .infoItem svg {
+    color: $grey-400;
+  }
+
   .accent { color: $blue-light; }
 
   &:hover {
     border-color: $blue-light;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba($blue-light, 0.2);
-  }
-}
-
-.card--camp {
-  .cardBadge {
-    background: rgba($red, 0.15);
-    color: $red-light;
-  }
-
-  &:hover {
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba($red, 0.1);
+    box-shadow: 0 20px 40px rgba(13, 27, 62, 0.35), 0 0 20px rgba($blue-light, 0.2);
   }
 }
 
 .cardHeader {
   padding: 32px;
-  border-bottom: 1px solid rgba($white, 0.05);
+  border-bottom: 1px solid $grey-100;
   height: 280px;
   display: flex;
   flex-direction: column;
@@ -149,7 +191,7 @@
 
 .cardFull {
   opacity: 0.85;
-  border-color: rgba($white, 0.1) !important;
+  border-color: $grey-200 !important;
   box-shadow: none !important;
 
   .cardHeader, .image, .cardBody {
@@ -226,7 +268,7 @@
 .cardTitle {
   font-size: 1.75rem;
   font-weight: 800;
-  color: $white;
+  color: $blue-dark;
   margin-bottom: 12px;
   text-transform: uppercase;
 }
@@ -235,7 +277,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  color: $white;
+  color: $blue-dark;
   font-weight: 600;
   font-size: 1.1rem;
   margin-bottom: 16px;
@@ -256,11 +298,11 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  color: $grey-400;
+  color: $grey-600;
   font-size: 0.9rem;
 
   svg {
-    color: $grey-600;
+    color: $grey-400;
   }
 }
 
@@ -270,7 +312,7 @@
 }
 
 .cardDesc {
-  color: $grey-400;
+  color: $grey-600;
   line-height: 1.6;
   margin-bottom: 24px;
 }
@@ -288,7 +330,7 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  color: $white;
+  color: $blue-dark;
   font-size: 0.95rem;
 }
 
@@ -323,13 +365,13 @@
   display: block;
   width: 100%;
   padding: 16px;
-  background: rgba($white, 0.1);
-  color: rgba($white, 0.4);
+  background: $grey-100;
+  color: $grey-400;
   text-align: center;
   border-radius: 12px;
   font-weight: 700;
   cursor: not-allowed;
-  border: 1px solid rgba($white, 0.1);
+  border: 1px solid $grey-200;
 }
 
 // ── Extra Info ───────────────────────────────────────────────────────────────
@@ -339,8 +381,8 @@
   grid-template-columns: 1fr 1fr;
   gap: 32px;
   padding: 40px;
-  background: rgba($white, 0.02);
-  border: 1px solid rgba($white, 0.05);
+  background: $grey-100;
+  border: 1px solid $grey-200;
   border-radius: 24px;
 
   @media (max-width: $bp-md) {
@@ -359,12 +401,12 @@
   }
 
   h3 {
-    color: $white;
+    color: $blue-dark;
     margin-bottom: 8px;
   }
 
   p {
-    color: $grey-400;
+    color: $grey-600;
   }
 }
 
@@ -376,16 +418,16 @@
   }
 
   h3 {
-    color: $white;
+    color: $blue-dark;
     margin-bottom: 8px;
   }
 
   p {
-    color: $grey-400;
+    color: $grey-600;
   }
 
   strong {
-    color: $white;
+    color: $blue-dark;
     font-size: 1.2rem;
     transition: color 0.3s $ease;
   }
