@@ -271,11 +271,6 @@ export function EquipesClientWrapper({ initialTeams }: Props) {
             {tab === "categories" && (
                 <section className={s.content}>
                     <div className={s.container}>
-                        <TeamsFilter
-                            teams={initialTeams}
-                            activeId={activeTeamId}
-                            onChange={setActiveTeamId}
-                        />
                         {visibleTeams.length > 0 ? (
                             <div className={s.grid}>
                                 {visibleTeams.map((team) => (
