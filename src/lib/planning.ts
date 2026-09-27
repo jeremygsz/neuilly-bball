@@ -47,7 +47,7 @@ export interface PlanningSite {
 
 export const DAY_ORDER = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche"];
 
-export const HOURS = Array.from({ length: 14 }, (_, i) => 7 + i); // 9h → 22h (axe de la grille, sur les deux sites)
+export const HOURS = Array.from({ length: 16 }, (_, i) => 7 + i); // 9h → 22h (axe de la grille, sur les deux sites)
 
 export const sites: PlanningSite[] = [
     {
