@@ -7,6 +7,7 @@ export type CategoryKey =
     | "corporate"
     | "loisirs-masculin"
     | "loisirs-feminin"
+    | "seniors-1"
     | "attribution";
 
 export interface CategoryStyle {
@@ -23,6 +24,7 @@ export const CATEGORY_STYLES: Record<CategoryKey, CategoryStyle> = {
     "loisirs-masculin": { label: "Loisirs Masculin",    color: "#FFD3B0" },
     "loisirs-feminin":  { label: "Loisirs Féminin",     color: "#f54298", textColor: "#FFFFFF" },
     attribution:        { label: "En cours d'attribution", color: "#000000", textColor: "#FFFFFF" },
+    "seniors-1":        { label: "Seniors 1", color: "#959aed", textColor: "#FFFFFF" },
 };
 
 // Ids des équipes (table `team`) rattachées à chaque créneau. Les libellés affichés
@@ -45,7 +47,7 @@ export interface PlanningSite {
 
 export const DAY_ORDER = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche"];
 
-export const HOURS = Array.from({ length: 14 }, (_, i) => 9 + i); // 9h → 22h (axe de la grille, sur les deux sites)
+export const HOURS = Array.from({ length: 14 }, (_, i) => 7 + i); // 9h → 22h (axe de la grille, sur les deux sites)
 
 export const sites: PlanningSite[] = [
     {
@@ -61,7 +63,8 @@ export const sites: PlanningSite[] = [
             { day: "Mercredi", start: 13, end: 15, category: "jeunes-1", teamIds: [3, 4] },
             { day: "Mercredi", start: 15, end: 17, category: "jeunes-2", teamIds: [5, 9] },
             { day: "Mercredi", start: 17, end: 19, category: "jeunes-3", teamIds: [8, 7] },
-            { day: "Mercredi", start: 19, end: 22, category: "attribution", teamIds: [] },
+            { day: "Mercredi", start: 19, end: 20, category: "attribution", teamIds: [] },
+            { day: "Mercredi", start: 20, end: 22, category: "seniors-1", teamIds: [6] },
 
             { day: "Jeudi", start: 19, end: 20, category: "attribution", teamIds: [] },
             { day: "Jeudi", start: 20, end: 22, category: "loisirs-masculin", teamIds: [12] },
@@ -69,7 +72,8 @@ export const sites: PlanningSite[] = [
             { day: "Vendredi", start: 18, end: 20, category: "loisirs-feminin", teamIds: [10] },
             { day: "Vendredi", start: 20, end: 22, category: "attribution", teamIds: [] },
 
-            { day: "Samedi", start: 9, end: 13, category: "attribution", teamIds: [] },
+            { day: "Samedi", start: 8, end: 11, category: "attribution", teamIds: [] },
+            { day: "Samedi", start: 11, end: 13, category: "seniors-1", teamIds: [6] },
             { day: "Samedi", start: 13, end: 15, category: "jeunes-1", teamIds: [3, 4] },
             { day: "Samedi", start: 15, end: 17, category: "jeunes-2", teamIds: [5, 9] },
             { day: "Samedi", start: 17, end: 19, category: "jeunes-3", teamIds: [8, 7] },
