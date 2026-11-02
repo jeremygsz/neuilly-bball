@@ -31,6 +31,33 @@ interface Period {
 
 const periods: Period[] = [
     {
+        id: "noel-2026",
+        label: "Vacances de Noël 2026",
+        stages: [
+            {
+                id: "noel-camp-1",
+                title: "Camp de Basket",
+                image: "/images/stages/5.jpg",
+                dates: "Du 21 au 24 Décembre 2026",
+                hours: "10h-12h & 14h-17h",
+                target: "De 6 à 17 ans (Filles & Garçons)",
+                description: "LE TEMPS PASSE VITE… NOËL APPROCHE DÉJÀ! On a l'impression que la rentrée, c'était hier… et pourtant, nous voilà déjà en train de préparer les fêtes de fin d'année !\n" +
+                    "Après le succès de nos stages de la Toussaint, toute l'équipe de Neuilly Basketball Association est déjà mobilisée pour vous préparer un nouveau rendez-vous sportif, festif et inoubliable !\n" +
+                    "À Neuilly Basketball Association, nous voulons que chaque enfant trouve sa place, quel que soit son niveau.\n" +
+                    "Nous prenons le temps d'accompagner chacun, de corriger les gestes, de valoriser les progrès et de transmettre notre passion du basketball dans une ambiance à la fois sérieuse, bienveillante et joyeuse.\n" +
+                    "Et parce que nous privilégions la qualité de l'encadrement, nous limitons volontairement ce stage à 25 enfants maximum.\n",
+                features: [
+                    { icon: Snowflake, text: "Gymnase climatisé" },
+                    { icon: Target, text: "Perfectionnement technique : dribbles, passes, tirs, double-pas, travail des appuis et maîtrise du ballon." },
+                    { icon: Zap, text: "Ateliers de shoot : exercices de précision, répétitions et défis grâce notamment à nos machines professionnelles Dr. Dish." },
+                    { icon: Calendar, text: "Repas en option" },
+                    { icon: Trophy, text: "Esprit d'équipe et partage, jeux concours : apprendre à jouer ensemble, s'entraider, se respecter et développer les valeurs du sport." }
+                ],
+                registerLink: "https://buy.stripe.com/5kQ8wP4Lk55Z20p7XiefC1R",
+                isFull: false
+            }
+        ],
+    },{
         id: "toussaint-2026",
         label: "Vacances de la Toussaint 2026",
         stages: [
@@ -50,7 +77,7 @@ const periods: Period[] = [
                     { icon: Trophy, text: "Jeux, concours & ambiance fun" }
                 ],
                 registerLink: "https://buy.stripe.com/cNi28r6Ts2XR0WlgtOefC0I",
-                isFull: false
+                isFull: true
             },
             {
                 id: "toussaint-camp-2",
@@ -68,7 +95,7 @@ const periods: Period[] = [
                     { icon: Trophy, text: "Jeux, concours & ambiance fun" }
                 ],
                 registerLink: "https://buy.stripe.com/cNi28r6Ts2XR0WlgtOefC0I",
-                isFull: false
+                isFull: true
             }
         ],
     },
