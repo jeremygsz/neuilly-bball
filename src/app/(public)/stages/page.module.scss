@@ -115,6 +115,58 @@
   }
 }
 
+.periodIntroText {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+}
+
+.periodIntroChristmas {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, $blue-dark 0%, $blue 100%);
+  border-color: $blue-dark;
+  border-left-color: $red;
+  color: $white;
+}
+
+.snow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.snowflake {
+  position: absolute;
+  top: -24px;
+  color: rgba($white, 0.7);
+  animation: snowfall linear infinite;
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+    display: none;
+  }
+}
+
+@keyframes snowfall {
+  0% {
+    top: -24px;
+    transform: translateX(0) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  50% {
+    transform: translateX(16px) rotate(180deg);
+  }
+  100% {
+    top: 100%;
+    transform: translateX(-8px) rotate(360deg);
+    opacity: 0.2;
+  }
+}
+
 .grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));

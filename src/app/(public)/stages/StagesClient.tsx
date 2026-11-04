@@ -27,13 +27,23 @@ interface Period {
     id: string;
     label: string;
     intro?: string;
+    theme?: "christmas";
     stages: Stage[];
 }
+
+// Valeurs fixes (pas de Math.random) pour éviter un mismatch d'hydratation
+const snowflakes = Array.from({ length: 24 }, (_, i) => ({
+    left: (i * 37) % 100,
+    size: 10 + ((i * 7) % 14),
+    duration: 6 + ((i * 5) % 7),
+    delay: -((i * 3) % 10),
+}));
 
 const periods: Period[] = [
     {
         id: "noel-2026",
         label: "Vacances de Noël 2026",
+        theme: "christmas",
         intro: "LE TEMPS PASSE VITE… NOËL APPROCHE DÉJÀ! On a l'impression que la rentrée, c'était hier… et pourtant, nous voilà déjà en train de préparer les fêtes de fin d'année !\n" +
             "Après le succès de nos stages de la Toussaint, toute l'équipe de Neuilly Basketball Association est déjà mobilisée pour vous préparer un nouveau rendez-vous sportif, festif et inoubliable !\n" +
             "À Neuilly Basketball Association, nous voulons que chaque enfant trouve sa place, quel que soit son niveau.\n" +
@@ -173,7 +183,27 @@ export default function StagesClient() {
                         <h2 className="font-display">{period.label}</h2>
                     </div>
 
-                    {period.intro && <p className={s.periodIntro}>{period.intro}</p>}
+                    {period.intro && (
+                        <div className={`${s.periodIntro} ${period.theme === "christmas" ? s.periodIntroChristmas : ""}`}>
+                            {period.theme === "christmas" && (
+                                <div className={s.snow} aria-hidden="true">
+                                    {snowflakes.map((f, i) => (
+                                        <Snowflake
+                                            key={i}
+                                            size={f.size}
+                                            className={s.snowflake}
+                                            style={{
+                                                left: `${f.left}%`,
+                                                animationDuration: `${f.duration}s`,
+                                                animationDelay: `${f.delay}s`,
+                                            }}
+                                        />
+                                    ))}
+                                </div>
+                            )}
+                            <p className={s.periodIntroText}>{period.intro}</p>
+                        </div>
+                    )}
 
                     <div className={s.grid}>
                         {period.stages.map((stage) => (
