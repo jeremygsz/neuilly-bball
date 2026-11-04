@@ -53,7 +53,8 @@ const periods: Period[] = [
         id: "noel-2026",
         label: "Vacances de Noël 2026",
         theme: "christmas",
-        intro: "LE TEMPS PASSE VITE… NOËL APPROCHE DÉJÀ! On a l'impression que la rentrée, c'était hier… et pourtant, nous voilà déjà en train de préparer les fêtes de fin d'année !\n" +
+        intro: "LE TEMPS PASSE VITE… NOËL APPROCHE DÉJÀ!\n" +
+            " On a l'impression que la rentrée, c'était hier… et pourtant, nous voilà déjà en train de préparer les fêtes de fin d'année !\n" +
             "Après le succès de nos stages de la Toussaint, toute l'équipe de Neuilly Basketball Association est déjà mobilisée pour vous préparer un nouveau rendez-vous sportif, festif et inoubliable !\n" +
             "À Neuilly Basketball Association, nous voulons que chaque enfant trouve sa place, quel que soit son niveau.\n" +
             "Nous prenons le temps d'accompagner chacun, de corriger les gestes, de valoriser les progrès et de transmettre notre passion du basketball dans une ambiance à la fois sérieuse, bienveillante et joyeuse.",
