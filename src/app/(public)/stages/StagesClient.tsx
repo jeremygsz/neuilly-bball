@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { Calendar, Clock, MapPin, Users, Target, Zap, Video, Trophy, Maximize2, Snowflake } from "lucide-react";
+import { Calendar, Clock, MapPin, Users, Target, Zap, Video, Trophy, Maximize2, Snowflake, Leaf } from "lucide-react";
 import s from "./page.module.scss";
 
 interface StageFeature {
@@ -27,7 +27,7 @@ interface Period {
     id: string;
     label: string;
     intro?: string;
-    theme?: "christmas";
+    theme?: "christmas" | "autumn";
     stages: Stage[];
 }
 
@@ -37,6 +37,15 @@ const snowflakes = Array.from({ length: 24 }, (_, i) => ({
     size: 10 + ((i * 7) % 14),
     duration: 6 + ((i * 5) % 7),
     delay: -((i * 3) % 10),
+}));
+
+const leafColors = ["#facc15", "#f97316", "#dc2626"];
+const leaves = Array.from({ length: 18 }, (_, i) => ({
+    left: (i * 41) % 100,
+    size: 14 + ((i * 7) % 12),
+    duration: 8 + ((i * 5) % 7),
+    delay: -((i * 3) % 12),
+    color: leafColors[i % leafColors.length],
 }));
 
 const periods: Period[] = [
@@ -71,6 +80,11 @@ const periods: Period[] = [
     },{
         id: "toussaint-2026",
         label: "Vacances de la Toussaint 2026",
+        theme: "autumn",
+        intro: "Les vacances approchent et Neuilly Basketball Association vous prépare deux semaines de basket exceptionnelles !\n" +
+            "Au programme : du basket, du plaisir, du travail, des progrès, des défis et surtout de très beaux moments à partager ensemble !\n" +
+            "UNE EXPÉRIENCE BASKET COMPLÈTE !\n" +
+            "Que votre enfant soit débutant ou déjà passionné, notre objectif reste le même : lui permettre de progresser à son rythme, de prendre confiance en lui et surtout de prendre un maximum de plaisir sur le terrain !",
         stages: [
             {
                 id: "toussaint-camp-1",
@@ -184,7 +198,7 @@ export default function StagesClient() {
                     </div>
 
                     {period.intro && (
-                        <div className={`${s.periodIntro} ${period.theme === "christmas" ? s.periodIntroChristmas : ""}`}>
+                        <div className={`${s.periodIntro} ${period.theme === "christmas" ? s.periodIntroChristmas : ""} ${period.theme === "autumn" ? s.periodIntroAutumn : ""}`}>
                             {period.theme === "christmas" && (
                                 <div className={s.snow} aria-hidden="true">
                                     {snowflakes.map((f, i) => (
@@ -196,6 +210,24 @@ export default function StagesClient() {
                                                 left: `${f.left}%`,
                                                 animationDuration: `${f.duration}s`,
                                                 animationDelay: `${f.delay}s`,
+                                            }}
+                                        />
+                                    ))}
+                                </div>
+                            )}
+                            {period.theme === "autumn" && (
+                                <div className={s.snow} aria-hidden="true">
+                                    {leaves.map((l, i) => (
+                                        <Leaf
+                                            key={i}
+                                            size={l.size}
+                                            fill="currentColor"
+                                            className={s.leaf}
+                                            style={{
+                                                left: `${l.left}%`,
+                                                color: l.color,
+                                                animationDuration: `${l.duration}s`,
+                                                animationDelay: `${l.delay}s`,
                                             }}
                                         />
                                     ))}

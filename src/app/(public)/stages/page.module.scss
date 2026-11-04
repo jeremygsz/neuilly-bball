@@ -167,6 +167,52 @@
   }
 }
 
+.periodIntroAutumn {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #3b1a0c 0%, #7c2d12 100%);
+  border-color: #3b1a0c;
+  border-left-color: #f97316;
+  color: $white;
+}
+
+.leaf {
+  position: absolute;
+  top: -28px;
+  opacity: 0.85;
+  animation: leaffall linear infinite;
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+    display: none;
+  }
+}
+
+@keyframes leaffall {
+  0% {
+    top: -28px;
+    transform: translateX(0) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.85;
+  }
+  25% {
+    transform: translateX(28px) rotate(70deg);
+  }
+  50% {
+    transform: translateX(-12px) rotate(160deg);
+  }
+  75% {
+    transform: translateX(24px) rotate(250deg);
+  }
+  100% {
+    top: 100%;
+    transform: translateX(-6px) rotate(340deg);
+    opacity: 0.3;
+  }
+}
+
 .grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
