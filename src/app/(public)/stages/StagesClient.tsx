@@ -62,7 +62,7 @@ const periods: Period[] = [
             {
                 id: "noel-camp-1",
                 title: "Camp de Basket",
-                image: "/images/stages/5.jpg",
+                image: "/images/stages/noel26.jpeg",
                 dates: "Du 21 au 24 Décembre 2026",
                 hours: "10h-12h & 14h-17h",
                 target: "De 6 à 17 ans (Filles & Garçons)",
